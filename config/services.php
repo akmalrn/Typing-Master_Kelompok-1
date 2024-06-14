@@ -30,5 +30,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'), // ID Klien Google
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'), // Rahasia Klien Google
+        'redirect' => env('GOOGLE_REDIRECT_URL'), // URL pengalihan setelah login
+    ],
 ];
