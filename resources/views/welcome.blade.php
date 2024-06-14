@@ -53,7 +53,7 @@
             font-size: 13px;
             text-decoration: none;
             margin: 15px 0 10px;
-            
+
         }
         .container button {
             background-color: #003465;
@@ -227,29 +227,47 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form action="{{ route('RegistrasiUsers') }}" method="POST">
+                @csrf <!-- Token CSRF untuk keamanan -->
                 <h1>Create Account</h1>
+
+                <!-- Ikon Media Sosial -->
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
+
                 <span>or use your email for registration</span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+
+
+                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                @if ($errors->has('email'))
+                    <span class="error">{{ $errors->first('email') }}</span>
+                @endif
+                <input type="text" name="name" placeholder="Name" value="{{ old('name') }}">
+                @if ($errors->has('name'))
+                    <span class="error">{{ $errors->first('name') }}</span>
+                @endif
+                <input type="password" name="password" placeholder="Password">
+                @if ($errors->has('password'))
+                    <span class="error">{{ $errors->first('password') }}</span>
+                @endif
+
+                <!-- Button Submit -->
+                <button type="submit">Sign Up</button>
             </form>
+
         </div>
         <div class="form-container sign-in">
             <form>
                 <h1>Sign In</h1>
                 <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <!-- Tambahkan tombol di form atau halaman login -->
+                    <a href="{{ route('auth.google') }}" class="btn btn-google">
+                        <i class="fa-brands fa-google-plus-g"></i>
+                    </a>
                 </div>
                 <span>or use your email password</span>
                 <input type="email" placeholder="Email">
