@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class achievements extends Controller
+class feedback_controller extends Controller
 {
     //
 }

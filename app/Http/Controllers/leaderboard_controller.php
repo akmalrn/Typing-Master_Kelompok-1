@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class settings extends Controller
+class leaderboard_controller extends Controller
 {
     //
 }
