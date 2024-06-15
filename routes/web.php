@@ -47,7 +47,9 @@ Route::get('users/{user}', [user_controller::class, 'show'])->name('users.show')
 Route::get('users/{user}/edit', [user_controller::class, 'edit'])->name('users.edit');
 Route::put('users/{user}', [user_controller::class, 'update'])->name('users.update');
 Route::delete('users/{user}', [user_controller::class, 'destroy'])->name('users.destroy');
-
+Route::get('listuser', function () {
+    return view('listuser')->with('message', 'Selamat Datang');
+});
 //User_Typing_Sessions_Controller
 
 
