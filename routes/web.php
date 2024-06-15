@@ -54,3 +54,7 @@ Route::get('auth/google', [SocialController::class, 'redirectToGoogle'])->name('
 
 // Route untuk menangani callback dari Google
 Route::get('auth/google/callback', [SocialController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+
+Route::get('listuser', function () {
+    return view('listuser')->with('message', 'Selamat Datang');
+});
