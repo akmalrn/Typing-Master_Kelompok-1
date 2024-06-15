@@ -51,6 +51,4 @@ Route::delete('users/{user}', [user_controller::class, 'destroy'])->name('users.
 //Google
 // Route untuk mengarahkan pengguna ke halaman login Google
 Route::get('auth/google', [SocialController::class, 'redirectToGoogle'])->name('auth.google');
-
-// Route untuk menangani callback dari Google
 Route::get('auth/google/callback', [SocialController::class, 'handleGoogleCallback'])->name('auth.google.callback');
