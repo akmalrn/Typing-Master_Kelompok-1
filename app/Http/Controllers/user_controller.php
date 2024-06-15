@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class user_controller extends Controller
 {
@@ -36,8 +37,8 @@ class user_controller extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'role' => 'user',  // Menyimpan role
         ]);
-
         return redirect()->route('Welcome')->with('success', 'User created successfully.');
     }
 
