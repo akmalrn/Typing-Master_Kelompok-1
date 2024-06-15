@@ -44,7 +44,6 @@ Route::get('/welcome', function () {
 Route::get('users', [user_controller::class, 'index'])->name('users.index');
 Route::get('welcome', [user_controller::class, 'Welcome'])->name('Welcome');
 Route::post('/welcome/registrasi', [user_controller::class, 'RegistrasiUsers'])->name('RegistrasiUsers');
-Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
 Route::get('users/{user}', [user_controller::class, 'show'])->name('users.show');
 Route::get('users/{user}/edit', [user_controller::class, 'edit'])->name('users.edit');
 Route::put('users/{user}', [user_controller::class, 'update'])->name('users.update');
@@ -54,6 +53,9 @@ Route::get('user/Dashboard', [user_controller::class, 'HalamanDashboard'])->name
 Route::get('listuser', function () {
     return view('listuser')->with('message', 'Selamat Datang');
 });
+//User Login
+Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
+Route::get('/logout', [user_login::class, 'LogoutUser'])->name('LogoutUser');
 //User_Typing_Sessions_Controller
 
 

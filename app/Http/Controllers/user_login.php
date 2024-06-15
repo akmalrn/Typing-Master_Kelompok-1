@@ -50,26 +50,37 @@ class user_login extends Controller
 
     public function LoginUser(Request $request)
 {
-   $request->validate([
-       'email' => 'required|email',
-       'password' => 'required',
-   ]);
+    // Validasi input
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|string',
+    ]);
 
-   $credentials = $request->only('email', 'password');
+    $credentials = $request->only('email', 'password');
 
-   if (Auth::attempt($credentials)) {
-       // Pengguna berhasil login
-       $user = Auth::user();
+    if (Auth::attempt($credentials)) {
+        // Login berhasil, dapatkan ID pengguna
+        $userId = Auth::id();
 
-       // Periksa peran dan arahkan ke halaman yang sesuai
-       if ($user->role === 'admin') {
-           return redirect()->route('admin/HalamanAdmin');
-       } else {
-           return redirect()->route('HalamanDashboard');
-       }
-   } else {
-       // Pengguna gagal login, kembali ke halaman login dengan pesan kesalahan
-       return redirect()->route('login')->with('error', 'Invalid login credentials');
-   }
-}
+        // Anda bisa mendapatkan detail pengguna lain jika diperlukan
+        $user = Auth::user();
+        $userRole = $user->role;
+
+        // Periksa peran dan arahkan ke halaman yang sesuai
+        if ($userRole === 'admin') {
+            return redirect()->route('admin.dashboard')->with('success', 'Welcome Admin!');
+        } else {
+            return redirect()->route('HalamanDashboard')->with('success', 'Welcome User!');
+        }
+    } else {
+        // Login gagal, kembali ke halaman login dengan pesan kesalahan
+        return redirect()->route('login')->with('error', 'Invalid login credentials');
+    }
+        }
+
+        public function LogoutUser()
+        {
+            Auth::logout();
+            return redirect()->route('Welcome')->with('success', 'You have been logged out.');
+        }
 }

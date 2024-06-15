@@ -42,9 +42,9 @@
               <i class="fas fa-question-circle"></i>
               <span class="nav-item">Help</span>
             </a></li>
-            <li><a href="" class="logout">
+            <li><a href="{{ route('LogoutUser') }}" class="logout">
               <i class="fas fa-sign-out-alt"></i>
-              <span class="nav-item">Log out</span>
+              <span class="nav-item" onclick="return confirm('Are you sure you want to logout, {{ Auth::user()->name }}?')">Log out</span>
             </a></li>
           </ul>
         </nav>
