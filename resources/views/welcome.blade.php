@@ -231,14 +231,6 @@
                 @csrf <!-- Token CSRF untuk keamanan -->
                 <h1>Create Account</h1>
 
-                <!-- Ikon Media Sosial -->
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-
                 <span>or use your email for registration</span>
 
 
@@ -250,11 +242,11 @@
                 @if ($errors->has('name'))
                     <span class="error">{{ $errors->first('name') }}</span>
                 @endif
-                <input type="password" name="password" placeholder="Password">
                 @if ($errors->has('password'))
                     <span class="error">{{ $errors->first('password') }}</span>
                 @endif
 
+                <input type="password" name="password" placeholder="Password">
                 <!-- Button Submit -->
                 <button type="submit">Sign Up</button>
             </form>

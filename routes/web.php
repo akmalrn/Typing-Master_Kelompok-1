@@ -18,6 +18,9 @@ use App\Http\Controllers\user_controller;
 Route::get('/', function () {
     return redirect('welcome')->with('message', 'Selamat Datang');
 });
+Route::get('/welcome', function () {
+    return view('welcome'); // Sesuaikan dengan tampilan atau controller yang sesuai
+})->name('Welcome');
 //Achievements_Controller
 
 
@@ -51,6 +54,20 @@ Route::delete('users/{user}', [user_controller::class, 'destroy'])->name('users.
 //Google
 // Route untuk mengarahkan pengguna ke halaman login Google
 Route::get('auth/google', [SocialController::class, 'redirectToGoogle'])->name('auth.google');
-
-// Route untuk menangani callback dari Google
 Route::get('auth/google/callback', [SocialController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+
+
+//Middlewelare
+// Ini bisa diterapkan ke rute apapun yang perlu memeriksa dan mengarahkan berdasarkan peran
+Route::get('/dashboard', function () {
+    // Halaman yang ingin Anda tampilkan setelah redirection jika tidak di-handle oleh middleware
+})->middleware('role/redirect');
+Route::middleware(['auth', 'role/redirect'])->group(function () {
+    // Ini akan diterapkan ke semua rute dalam grup ini
+    Route::get('/dashboard', function () {
+        // Halaman dasbor
+    });
+
+    // Tambahkan lebih banyak rute yang memerlukan pemeriksaan peran dan redirection di sini
+});
+
