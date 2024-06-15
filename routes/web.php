@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\user_controller;
-
+use App\Http\Controllers\user_login;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,11 +43,14 @@ Route::get('/welcome', function () {
 //User_Controller
 Route::get('users', [user_controller::class, 'index'])->name('users.index');
 Route::get('welcome', [user_controller::class, 'Welcome'])->name('Welcome');
-Route::post('welcome', [user_controller::class, 'RegistrasiUsers'])->name('RegistrasiUsers');
+Route::post('/welcome/registrasi', [user_controller::class, 'RegistrasiUsers'])->name('RegistrasiUsers');
+Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
 Route::get('users/{user}', [user_controller::class, 'show'])->name('users.show');
 Route::get('users/{user}/edit', [user_controller::class, 'edit'])->name('users.edit');
 Route::put('users/{user}', [user_controller::class, 'update'])->name('users.update');
 Route::delete('users/{user}', [user_controller::class, 'destroy'])->name('users.destroy');
+
+Route::get('user/Dashboard', [user_controller::class, 'HalamanDashboard'])->name('HalamanDashboard');
 Route::get('listuser', function () {
     return view('listuser')->with('message', 'Selamat Datang');
 });

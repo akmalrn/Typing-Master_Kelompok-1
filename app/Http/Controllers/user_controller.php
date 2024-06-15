@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 
 class user_controller extends Controller
@@ -85,5 +85,10 @@ class user_controller extends Controller
         // Menggunakan Eloquent untuk menghapus pengguna
         User::find($id)->delete();
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
+    public function HalamanDashboard()
+    {
+        return view('user/Dashboard');
     }
 }
