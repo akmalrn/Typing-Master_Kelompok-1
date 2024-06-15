@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\user_controller;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
