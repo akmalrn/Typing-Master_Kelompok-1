@@ -43,16 +43,17 @@ Route::get('/welcome', function () {
 //User_Controller
 Route::get('listuser', function () {
     return view('listuser')->with('message', 'Selamat Datang');
-});
-Route::get('/listuser', [user_controller::class, 'listuser'])->name('listuser');
+});;
 Route::get('welcome', [user_controller::class, 'Welcome'])->name('Welcome');
 Route::post('/welcome/registrasi', [user_controller::class, 'RegistrasiUsers'])->name('RegistrasiUsers');
 Route::get('user/Dashboard', [user_controller::class, 'HalamanDashboard'])->name('HalamanDashboard');
+Route::put('/listuser/{id}', [user_controller::class, 'UpdateUsers'])->name('UpdateUsers');
+Route::delete('/users/{id}', [user_controller::class, 'DestroyUsers'])->name('DestroyUsers');
 
 //User Login
 Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
-Route::get('/LogoutUser', [user_login::class, 'LogoutUser'])->name('LogoutUser');
-Route::post('/logout', [user_login::class, 'LogoutAdmin'])->name('LogoutAdmin');
+Route::get('/LogoutUser', [user_controller::class, 'LogoutUser'])->name('LogoutUser');
+Route::post('/LogoutAdmin', [user_controller::class, 'LogoutAdmin'])->name('LogoutAdmin');
 
 //User_Typing_Sessions_Controller
 
@@ -79,4 +80,5 @@ Route::middleware(['auth', 'role/redirect'])->group(function () {
 
 //AdminController
 Route::get('admin/HalamanDev',[admin_controller::class, 'HalamanDev'])->name('HalamanDev');
-
+Route::get('admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
+    

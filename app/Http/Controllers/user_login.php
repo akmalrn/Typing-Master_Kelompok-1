@@ -68,7 +68,7 @@ class user_login extends Controller
 
         // Periksa peran dan arahkan ke halaman yang sesuai
         if ($userRole === 'admin') {
-            return redirect()->route('listuser')->with('success', 'Welcome Admin!');
+            return redirect()->route('HalamanAdmin')->with('success', 'Welcome Admin!');
         } else {
             return redirect()->route('HalamanDashboard')->with('success', 'Welcome User!');
         }

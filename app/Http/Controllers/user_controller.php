@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class user_controller extends Controller
 {
-    public function listuser()
-    {
-        $users = User::all();
-        return view('listuser', compact('users'));
-    }
-
-
     public function Welcome()
     {
         // Menggunakan Eloquent ORM untuk mengambil semua pengguna
@@ -83,7 +76,7 @@ class user_controller extends Controller
             'password' => $request->password ? bcrypt($request->password) : $user->password,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('listuser')->with('success', 'User updated successfully.');
     }
 
     // Menghapus pengguna dari basis data
@@ -91,11 +84,12 @@ class user_controller extends Controller
     {
         // Menggunakan Eloquent untuk menghapus pengguna
         User::find($id)->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('listuser')->with('success', 'User deleted successfully.');
     }
 
     public function HalamanDashboard()
     {
         return view('user/Dashboard');
     }
+
 }
