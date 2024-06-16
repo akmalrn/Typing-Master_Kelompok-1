@@ -61,7 +61,7 @@ Route::get('user/HalamanGames', [user_controller::class, 'HalamanGames'])->name(
 
 //User Login
 Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
-Route::post('/LogoutUser', [user_login::class, 'LogoutUser'])->name('LogoutUser');
+Route::get('/LogoutUser', [user_login::class, 'LogoutUser'])->name('LogoutUser');
 Route::post('/LogoutAdmin', [user_login::class, 'LogoutAdmin'])->name('LogoutAdmin');
 
 
@@ -78,3 +78,6 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 Route::get('admin/HalamanDev',[admin_controller::class, 'HalamanDev'])->name('HalamanDev');
 Route::get('admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
 Route::get('admin/HalamanReadText', [admin_controller::class, 'HalamanReadText'])->name('HalamanReadText');
+
+
+//middlewelare
