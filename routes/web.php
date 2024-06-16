@@ -41,7 +41,6 @@ Route::get('/welcome', function () {
 Route::get('admin/create/CreateText', [typing_lessons_controller::class, 'HalamanCreateText'])->name('HalamanCreateText');
 Route::post('admin/create/CreateText', [typing_lessons_controller::class, 'CreateTypingLessons'])->name('CreateTypingLessons');
 Route::get('/admin/ubah/{id}/UpdateText', [typing_lessons_controller::class, 'HalamanEditText'])->name('HalamanEditText');
-Route::post('/admin/ubah/{id}/UpdateText', [typing_lessons_controller::class, 'HalamanEditText'])->name('HalamanEditText');
 Route::put('/admin/ubah/{id}/UpdateText', [typing_lessons_controller::class, 'UpdateText'])->name('UpdateText');
 Route::delete('/admin/HalamanReadText/{id}', [typing_lessons_controller::class, 'DestroyText'])->name('DestroyText');
 
@@ -55,14 +54,16 @@ Route::get('listuser', function () {
 Route::get('welcome', [user_controller::class, 'Welcome'])->name('Welcome');
 Route::post('/welcome/registrasi', [user_controller::class, 'RegistrasiUsers'])->name('RegistrasiUsers');
 Route::get('user/Dashboard', [user_controller::class, 'HalamanDashboard'])->name('HalamanDashboard');
-Route::put('/admin/HalamanAdmin/{id}', [user_controller::class, 'UpdateUsers'])->name('UpdateUsers');
-Route::delete('/users/{id}', [user_controller::class, 'DestroyUsers'])->name('DestroyUsers');
+Route::get('/admin/ubah/{id}/UpdateUser', [user_controller::class, 'HalamanEditUsers'])->name('HalamanEditUsers');
+Route::put('/admin/ubah/{id}/UpdateUser', [user_controller::class, 'UpdateUsers'])->name('UpdateUsers');
+Route::delete('/admin/HalamanAdmin/{id}', [user_controller::class, 'DestroyUsers'])->name('DestroyUsers');
 Route::get('user/HalamanGames', [user_controller::class, 'HalamanGames'])->name('HalamanGames');
 
 //User Login
 Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
 Route::get('/LogoutUser', [user_login::class, 'LogoutUser'])->name('LogoutUser');
 Route::post('/LogoutAdmin', [user_login::class, 'LogoutAdmin'])->name('LogoutAdmin');
+
 
 //User_Typing_Sessions_Controller
 
@@ -75,5 +76,13 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 
 //AdminController
 Route::get('admin/HalamanDev',[admin_controller::class, 'HalamanDev'])->name('HalamanDev');
-Route::get('admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
+Route::get('admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->middleware('admin')->name('HalamanAdmin');
 Route::get('admin/HalamanReadText', [admin_controller::class, 'HalamanReadText'])->name('HalamanReadText');
+
+
+//middlewelare
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
+    Route::get('/user/dashboard', [user_controller::class, 'HalamanDashboard'])->name('HalamanDashboard');
+    // Tambahkan rute admin lainnya di sini
+});

@@ -21,9 +21,9 @@ class RedirectMiddleware
 
             // Redirect based on user role
             if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('HalamanAdmin');
             } elseif ($user->role === 'user') {
-                return redirect()->route('user.dashboard');
+                return redirect()->route('user/dashboard');
             }
         }
 
