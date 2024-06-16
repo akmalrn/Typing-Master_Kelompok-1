@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('leaderboard', function (Blueprint $table) {
-            $table->id('leaderboard_id');
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->float('wpm');
             $table->float('accuracy');

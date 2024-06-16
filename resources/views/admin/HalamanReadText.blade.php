@@ -153,7 +153,72 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
       </div>
     </nav>
-
+    <ul class="main-search-list-defaultlist d-none">
+      <li class="d-flex align-items-center"><a class="pb-25" href="#">
+          <h6 class="text-primary mb-0">Files</h6></a></li>
+      <li class="auto-suggestion d-flex align-items-center cursor-pointer"><a class="d-flex align-items-center justify-content-between w-100" href="#">
+          <div class="d-flex">
+            <div class="mr-50"><img src="{{ asset('typinglessontemplate/app-assets/images/icons/xls.png') }}" alt="png" height="32"></div>
+            <div class="search-data">
+              <p class="search-data-title mb-0">Two new item submitted</p><small class="text-muted">Marketing Manager</small>
+            </div>
+          </div><small class="search-data-size mr-50 text-muted">&apos;17kb</small></a></li>
+      <li class="auto-suggestion d-flex align-items-center cursor-pointer"><a class="d-flex align-items-center justify-content-between w-100" href="#">
+          <div class="d-flex">
+            <div class="mr-50"><img src="{{ asset('typinglessontemplate/app-assets/images/icons/jpg.png') }}" alt="png" height="32"></div>
+            <div class="search-data">
+              <p class="search-data-title mb-0">52 JPG file Generated</p><small class="text-muted">FontEnd Developer</small>
+            </div>
+          </div><small class="search-data-size mr-50 text-muted">&apos;11kb</small></a></li>
+      <li class="auto-suggestion d-flex align-items-center cursor-pointer"><a class="d-flex align-items-center justify-content-between w-100" href="#">
+          <div class="d-flex">
+            <div class="mr-50"><img src="{{ asset('typinglessontemplate/app-assets/images/icons/pdf.png') }}" alt="png" height="32"></div>
+            <div class="search-data">
+              <p class="search-data-title mb-0">25 PDF File Uploaded</p><small class="text-muted">Digital Marketing Manager</small>
+            </div>
+          </div><small class="search-data-size mr-50 text-muted">&apos;150kb</small></a></li>
+      <li class="auto-suggestion d-flex align-items-center cursor-pointer"><a class="d-flex align-items-center justify-content-between w-100" href="#">
+          <div class="d-flex">
+            <div class="mr-50"><img src="{{ asset('typinglessontemplate/app-assets/images/icons/doc.png') }}" alt="png" height="32"></div>
+            <div class="search-data">
+              <p class="search-data-title mb-0">Anna_Strong.doc</p><small class="text-muted">Web Designer</small>
+            </div>
+          </div><small class="search-data-size mr-50 text-muted">&apos;256kb</small></a></li>
+      <li class="d-flex align-items-center"><a class="pb-25" href="#">
+          <h6 class="text-primary mb-0">Members</h6></a></li>
+      <li class="auto-suggestion d-flex align-items-center cursor-pointer"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
+          <div class="d-flex align-items-center">
+            <div class="avatar mr-50"><img src="{{ asset('typinglessontemplate/app-assets/images/portrait/small/avatar-s-8.jpg') }}" alt="png" height="32"></div>
+            <div class="search-data">
+              <p class="search-data-title mb-0">John Doe</p><small class="text-muted">UI designer</small>
+            </div>
+          </div></a></li>
+      <li class="auto-suggestion d-flex align-items-center cursor-pointer"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
+          <div class="d-flex align-items-center">
+            <div class="avatar mr-50"><img src="{{ asset('typinglessontemplate/app-assets/images/portrait/small/avatar-s-1.jpg') }}" alt="png" height="32"></div>
+            <div class="search-data">
+              <p class="search-data-title mb-0">Michal Clark</p><small class="text-muted">FontEnd Developer</small>
+            </div>
+          </div></a></li>
+      <li class="auto-suggestion d-flex align-items-center cursor-pointer"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
+          <div class="d-flex align-items-center">
+            <div class="avatar mr-50"><img src="{{ asset('typinglessontemplate/app-assets/images/portrait/small/avatar-s-14.jpg') }}" alt="png" height="32"></div>
+            <div class="search-data">
+              <p class="search-data-title mb-0">Milena Gibson</p><small class="text-muted">Digital Marketing Manager</small>
+            </div>
+          </div></a></li>
+      <li class="auto-suggestion d-flex align-items-center cursor-pointer"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
+          <div class="d-flex align-items-center">
+            <div class="avatar mr-50"><img src="{{ asset('typinglessontemplate/app-assets/images/portrait/small/avatar-s-6.jpg') }}" alt="png" height="32"></div>
+            <div class="search-data">
+              <p class="search-data-title mb-0">Anna Strong</p><small class="text-muted">Web Designer</small>
+            </div>
+          </div></a></li>
+    </ul>
+    <ul class="main-search-list-defaultlist-other-list d-none">
+      <li class="auto-suggestion d-flex align-items-center justify-content-between cursor-pointer"><a class="d-flex align-items-center justify-content-between w-100 py-50">
+          <div class="d-flex justify-content-start"><span class="mr-75 feather icon-alert-circle"></span><span>No results found.</span></div></a></li>
+    </ul>
     <!-- END: Header-->
 
 
@@ -170,6 +235,7 @@ License: You must have a valid license purchased only from themeforest(the above
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+          </li>
           <li class=" navigation-header"><span>Apps</span>
           </li>
           <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">User</span></a>
@@ -208,38 +274,39 @@ License: You must have a valid license purchased only from themeforest(the above
   <div class="container">
     <div class="card">
         <div class="card-header">
-            <h4>User List</h4>
+            <h4>Text</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('search') }}" method="GET" class="search-form">
-                <input type="text" name="search" placeholder="Cari Nama Barang">
-                <button type="submit">Cari</button>
-            </form>
-                </div>
+            <div class="ag-grid-btns d-flex justify-content-between flex-wrap mb-1">
+                <input type="text" class="ag-grid-filter form-control w-50 mr-1 mb-1 mb-sm-0" id="filter-text-box"
+                    placeholder="Search...." oninput="onFilterChanged()" />
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Level</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $user)
+                        @foreach($typing_lessons as $typing_lesson)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->created_at }}</td>
+                            <td>{{ $typing_lesson->id }}</td>
+                            <td>{{ $typing_lesson->lesson_title }}</td>
+                            <td>{{ $typing_lesson->lesson_content }}</td>
+                            <td>{{ $typing_lesson->difficulty_level }}</td>
+                            <td>{{ $typing_lesson->created_at }}</td>
                             <td>
-                                <a href="{{ route('UpdateUsers', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('DestroyUsers', $user->id) }}" method="POST" style="display: inline-block;">
+                                <a href="{{ route('HalamanEditText', $typing_lesson->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <form action="{{ route('DestroyText', $typing_lesson->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this typing_lesson?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -266,7 +333,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
-      <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">Halaman Admin Kelompok-1  &copy; 2024<a class="text-bold-800 grey darken-2" href="{{ route('HalamanDev') }}" ;target="_blank">Kelompok 1,</a>Sangat Mudah</span><span class=  "float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
+      <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">Halaman Admin Kelompok-1  &copy; 2024<a class="text-bold-800 grey darken-2" href="{{ route('HalamanDev') }}" target="_blank">Kelompok 1,</a>Sangat Mudah</span><span class=  "float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
         <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
       </p>
     </footer>

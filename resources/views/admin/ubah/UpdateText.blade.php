@@ -170,6 +170,14 @@ License: You must have a valid license purchased only from themeforest(the above
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+          <li class=" nav-item"><a href="index.html"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge badge-warning badge-pill float-right mr-2">2</span></a>
+            <ul class="menu-content">
+              <li><a href="dashboard-analytics.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Analytics</span></a>
+              </li>
+              <li><a href="dashboard-ecommerce.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">eCommerce</span></a>
+              </li>
+            </ul>
+          </li>
           <li class=" navigation-header"><span>Apps</span>
           </li>
           <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">User</span></a>
@@ -208,44 +216,32 @@ License: You must have a valid license purchased only from themeforest(the above
   <div class="container">
     <div class="card">
         <div class="card-header">
-            <h4>User List</h4>
+            <h4>Update Text</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('search') }}" method="GET" class="search-form">
-                <input type="text" name="search" placeholder="Cari Nama Barang">
-                <button type="submit">Cari</button>
-            </form>
-                </div>
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Created At</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($users as $user)
-                        <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->created_at }}</td>
-                            <td>
-                                <a href="{{ route('UpdateUsers', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('DestroyUsers', $user->id) }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <form action="{{ route('UpdateText', $typing_lessons->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="form-group">
+                        <label for="lesson_title">Lesson Title:</label>
+                        <input type="text" class="form-control" id="lesson_title" name="lesson_title" value="{{ old('lesson_title', $typing_lessons->lesson_title) }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lesson_content">Content:</label>
+                        <textarea class="form-control" id="lesson_content" name="lesson_content" rows="5" required>{{ old('lesson_content', $typing_lessons->lesson_content) }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="difficulty_level">Difficulty Level:</label>
+                        <input type="text" class="form-control" id="difficulty_level" name="difficulty_level" value="{{ old('difficulty_level', $typing_lessons->difficulty_level) }}" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Update Lesson</button>
+                </form>
+
             </div>
         </div>
     </div>
@@ -266,7 +262,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
-      <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">Halaman Admin Kelompok-1  &copy; 2024<a class="text-bold-800 grey darken-2" href="{{ route('HalamanDev') }}" ;target="_blank">Kelompok 1,</a>Sangat Mudah</span><span class=  "float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
+      <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">Halaman Admin Kelompok-1  &copy; 2024<a class="text-bold-800 grey darken-2" href="{{ route('HalamanDev') }}" target="_blank">Kelompok 1,</a>Sangat Mudah</span><span class=  "float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
         <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
       </p>
     </footer>
