@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\user_controller;
 use App\Http\Controllers\user_login;
 use App\Http\Controllers\admin_controller;
@@ -60,8 +61,8 @@ Route::post('/LogoutAdmin', [user_login::class, 'LogoutAdmin'])->name('LogoutAdm
 
 //Google
 // Route untuk mengarahkan pengguna ke halaman login Google
-Route::get('auth/google', [SocialController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('auth/google/callback', [SocialController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 
 //Middlewelare
@@ -77,6 +78,7 @@ Route::middleware(['auth', 'role/redirect'])->group(function () {
 
     // Tambahkan lebih banyak rute yang memerlukan pemeriksaan peran dan redirection di sini
 });
+
 
 //AdminController
 Route::get('admin/HalamanDev',[admin_controller::class, 'HalamanDev'])->name('HalamanDev');
