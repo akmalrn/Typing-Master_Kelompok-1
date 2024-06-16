@@ -38,7 +38,7 @@ class GoogleController extends Controller
                     "name" => $googleUser->name,
                     "email" => $googleUser->email,
                     "id_google" => $googleUser->id,
-                    "password" => bcrypt(str_random(16)), // Secure handling for empty password
+                    "password" => '', // Secure handling for empty password
                     "email_verified_at" => now(),
                     "role" => 'user',
                 ]);
