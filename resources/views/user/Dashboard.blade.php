@@ -20,16 +20,18 @@
             </a></li>
             <li><a href="">
               <i class="fas fa-user"></i>
-              <span class="nav-item">Profile</span>
-            </a></li>
-            <li><a href="">
-              <i class="fas fa-wallet"></i>
-              <span class="nav-item">Wallet</span>
+              <span class="nav-item">My Profile</span>
             </a></li>
             <li><a href="">
               <i class="fas fa-chart-bar"></i>
-              <span class="nav-item">Analytics</span>
+              <span class="nav-item">Statistics</span>
             </a></li>
+            <li>
+              <a href="#">
+                  <i class="fas fa-trophy"></i>
+                  <span class="nav-item">Achievements</span>
+              </a>
+          </li>          
             <li><a href="{{ route('HalamanGames') }}">
               <i class="fas fa-gamepad"></i>
               <span class="nav-item">Game</span>
