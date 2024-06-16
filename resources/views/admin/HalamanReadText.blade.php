@@ -255,7 +255,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <ul class="menu-content">
               <li><a href="{{ route('HalamanCreateText') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Basic">Create</span></a>
               </li>
-              <li><a href="card-advance.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Advance">View</span></a>
+              <li><a href="{{ route('HalamanReadText') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Advance">View</span></a>
               </li>
             </ul>
           </li>

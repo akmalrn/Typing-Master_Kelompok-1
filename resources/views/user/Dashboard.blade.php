@@ -32,7 +32,7 @@
             </a></li>
             <li><a href="{{ route('HalamanGames') }}">
               <i class="fas fa-tasks"></i>
-              <span class="nav-item">Game</span>
+              <span class="nav-item">Games</span>
             </a></li>
             <li><a href="">
               <i class="fas fa-cog"></i>
