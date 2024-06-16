@@ -211,10 +211,11 @@ License: You must have a valid license purchased only from themeforest(the above
             <h4>User List</h4>
         </div>
         <div class="card-body">
-            <div class="ag-grid-btns d-flex justify-content-between flex-wrap mb-1">
-                <input type="text" class="ag-grid-filter form-control w-50 mr-1 mb-1 mb-sm-0" id="filter-text-box"
-                    placeholder="Search...." oninput="onFilterChanged()" />
-            </div>
+            <form action="{{ route('search') }}" method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Cari Nama Barang">
+                <button type="submit">Cari</button>
+            </form>
+                </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
