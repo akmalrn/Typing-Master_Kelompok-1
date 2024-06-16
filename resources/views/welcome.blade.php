@@ -256,10 +256,10 @@
             <form action="{{ route('LoginUser') }}" method="POST">
                 @csrf
                 <h1>Sign In</h1>
+                <div class="social-icons">
                 <!-- Tambahkan tombol Google login -->
                     <a href="{{ route('auth.google') }}" class="btn btn-google">
                         <i class="fa-brands fa-google-plus-g"></i>
-                <div class="social-icons">
                     </a>
                 </div>
                 <span>or use your email and password</span>
