@@ -49,7 +49,7 @@ class GoogleController extends Controller
         } catch (\Exception $e) {
             // Handle any errors
             Log::error('Google OAuth Error', ['error' => $e->getMessage()]);
-            return redirect()->route('login')->withErrors(['error' => 'Unable to login using Google. Please try again.']);
+            return redirect()->route('Welcome')->withErrors(['error' => 'Unable to login using Google. Please try again.']);
         }
     }
 }
