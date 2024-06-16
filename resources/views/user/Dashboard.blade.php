@@ -4,6 +4,7 @@
       <meta charset="UTF-8" />
       <title>Typing Master</title>
       <!-- Font Awesome Cdn Link -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-g7X3VIfL4jke6LmzAxWg4eoEmf05F3hgW9V4b5gFiUdO3hRTMiM7tkhZUXB+vrh2rUJ+zQi4/GsCFPn1f5Cesg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     </head>
     <body>
@@ -20,18 +21,20 @@
             </a></li>
             <li><a href="">
               <i class="fas fa-user"></i>
-              <span class="nav-item">Profile</span>
-            </a></li>
-            <li><a href="">
-              <i class="fas fa-wallet"></i>
-              <span class="nav-item">Wallet</span>
+              <span class="nav-item">My Profile</span>
             </a></li>
             <li><a href="">
               <i class="fas fa-chart-bar"></i>
-              <span class="nav-item">Analytics</span>
+              <span class="nav-item">Statistics</span>
             </a></li>
+            <li>
+              <a href="#">
+                  <i class="fas fa-trophy"></i>
+                  <span class="nav-item">Achievements</span>
+              </a>
+          </li>         
             <li><a href="{{ route('HalamanGames') }}">
-              <i class="fas fa-tasks"></i>
+              <i class="fas fa-gamepad"></i>
               <span class="nav-item">Game</span>
             </a></li>
             <li><a href="">
