@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\user_controller;
-
-
+use App\Http\Controllers\user_login;
+use App\Http\Controllers\admin_controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,16 +41,20 @@ Route::get('/welcome', function () {
 
 
 //User_Controller
-Route::get('users', [user_controller::class, 'index'])->name('users.index');
-Route::get('welcome', [user_controller::class, 'Welcome'])->name('Welcome');
-Route::post('welcome', [user_controller::class, 'RegistrasiUsers'])->name('RegistrasiUsers');
-Route::get('users/{user}', [user_controller::class, 'show'])->name('users.show');
-Route::get('users/{user}/edit', [user_controller::class, 'edit'])->name('users.edit');
-Route::put('users/{user}', [user_controller::class, 'update'])->name('users.update');
-Route::delete('users/{user}', [user_controller::class, 'destroy'])->name('users.destroy');
 Route::get('listuser', function () {
     return view('listuser')->with('message', 'Selamat Datang');
-});
+});;
+Route::get('welcome', [user_controller::class, 'Welcome'])->name('Welcome');
+Route::post('/welcome/registrasi', [user_controller::class, 'RegistrasiUsers'])->name('RegistrasiUsers');
+Route::get('user/Dashboard', [user_controller::class, 'HalamanDashboard'])->name('HalamanDashboard');
+Route::put('/listuser/{id}', [user_controller::class, 'UpdateUsers'])->name('UpdateUsers');
+Route::delete('/users/{id}', [user_controller::class, 'DestroyUsers'])->name('DestroyUsers');
+
+//User Login
+Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
+Route::get('/LogoutUser', [user_controller::class, 'LogoutUser'])->name('LogoutUser');
+Route::post('/LogoutAdmin', [user_controller::class, 'LogoutAdmin'])->name('LogoutAdmin');
+
 //User_Typing_Sessions_Controller
 
 
@@ -74,3 +78,7 @@ Route::middleware(['auth', 'role/redirect'])->group(function () {
     // Tambahkan lebih banyak rute yang memerlukan pemeriksaan peran dan redirection di sini
 });
 
+//AdminController
+Route::get('admin/HalamanDev',[admin_controller::class, 'HalamanDev'])->name('HalamanDev');
+Route::get('admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
+    
