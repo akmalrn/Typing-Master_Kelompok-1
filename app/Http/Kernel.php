@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
         'role/redirect' => \App\Http\Middleware\RedirectMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
 }
