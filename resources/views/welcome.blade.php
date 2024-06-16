@@ -258,7 +258,7 @@
                 <h1>Sign In</h1>
                 <div class="social-icons">
                 <!-- Tambahkan tombol Google login -->
-                    <a href="{{ route('auth.google') }}" class="btn btn-google">
+                    <a href="{{ url('auth/google') }}" class="btn btn-google">
                         <i class="fa-brands fa-google-plus-g"></i>
                     </a>
                 </div>
