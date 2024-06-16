@@ -74,7 +74,7 @@ class user_login extends Controller
         }
     } else {
         // Login gagal, kembali ke halaman login dengan pesan kesalahan
-        return redirect()->route('login')->with('error', 'Invalid login credentials');
+        return redirect()->route('Welcome')->with('error', 'Invalid login credentials');
     }
         }
 

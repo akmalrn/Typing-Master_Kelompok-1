@@ -17,32 +17,36 @@ class GoogleController extends Controller
     }
 
     public function handleGoogleCallback()
-    {
-        try {
-            $user = Socialite::driver('google')->user();
+{
+    try {
+        $user = Socialite::driver('google')->user();
 
-            // Cari pengguna berdasarkan id_google
-            $findUser = User::where('id_google', $user->id)->first();
+        // Debug: Tampilkan informasi pengguna dari Google
+        dd($user);
 
-            if ($findUser) {
-                Auth::login($findUser);
-                return redirect()->intended('user/Dashboard');
-            } else {
-                // Simpan data pengguna baru jika belum ada
-                $newUser = User::create([
-                    "name" => $user->name,
-                    "email" => $user->email,
-                    "id_google" => $user->id,
-                    "email_verified_at" => now(), // Anda dapat mengatur ini berdasarkan kebutuhan aplikasi Anda
-                    "role" => 'user',
-                ]);
+        // Cari pengguna berdasarkan id_google
+        $findUser = User::where('id_google', $user->id)->first();
 
-                Auth::login($newUser);
-                return redirect()->intended('user/Dashboard');
-            }
-        } catch (\Exception $e) {
-            // Tangani kesalahan yang mungkin terjadi
-            dd($e->getMessage());
+        if ($findUser) {
+            Auth::login($findUser);
+            return redirect()->intended('user/Dashboard');
+        } else {
+            // Simpan data pengguna baru jika belum ada
+            $newUser = User::create([
+                "name" => $user->name,
+                "email" => $user->email,
+                "id_google" => $user->id,
+                "email_verified_at" => now(), // Sesuaikan jika diperlukan
+                "role" => 'user',
+            ]);
+
+            Auth::login($newUser);
+            return redirect()->intended('user/Dashboard');
         }
+    } catch (\Exception $e) {
+        // Tangani kesalahan yang mungkin terjadi
+        dd($e);
     }
+}
+
 }

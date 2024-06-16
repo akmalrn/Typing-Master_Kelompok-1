@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
          Schema::create('typing_lessons', function (Blueprint $table) {
-            $table->id('lesson_id'); // Creates an auto-incrementing primary key
+            $table->id(); // Creates an auto-incrementing primary key
             $table->string('lesson_title', 255); // Creates a VARCHAR(255) column
             $table->text('lesson_content'); // Creates a TEXT column
             $table->string('difficulty_level', 50)->nullable(); // Creates a VARCHAR(50) column that can be NULL

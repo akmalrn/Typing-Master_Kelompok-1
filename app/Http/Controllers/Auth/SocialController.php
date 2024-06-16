@@ -48,7 +48,7 @@ class SocialController extends Controller
             $newUser = User::create([
                 'name' => $user->name,
                 'email' => $user->email,
-                'password' => Hash::make(Str::random(24)), // Anda mungkin tidak memerlukan password karena menggunakan Google
+                'password' => Hash::make(Str::random(24)),
             ]);
 
             Auth::login($newUser);

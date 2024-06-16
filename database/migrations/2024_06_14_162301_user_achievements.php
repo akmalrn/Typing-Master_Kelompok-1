@@ -13,13 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_achievements', function (Blueprint $table) {
-            $table->id('user_achievement_id');
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('achievement_id');
             $table->timestamp('date_achieved')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('achievement_id')->references('achievement_id')->on('achievements')->onDelete('cascade');
+            $table->foreign('achievement_id')->references('id')->on('achievements')->onDelete('cascade');
 
             $table->timestamps();
         });

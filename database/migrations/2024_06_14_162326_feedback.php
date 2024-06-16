@@ -13,14 +13,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('feedback', function (Blueprint $table) {
-            $table->id('feedback_id');
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('session_id');
             $table->text('comments')->nullable();
             $table->timestamp('feedback_date')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('session_id')->references('session_id')->on('user_typing_sessions')->onDelete('cascade');
+            $table->foreign('session_id')->references('id')->on('user_typing_sessions')->onDelete('cascade');
 
             $table->timestamps();
         });

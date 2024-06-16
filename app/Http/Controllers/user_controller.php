@@ -91,5 +91,8 @@ class user_controller extends Controller
     {
         return view('user/Dashboard');
     }
-
+    public function HalamanGames()
+    {
+        return view('user/HalamanGames');
+    }
 }

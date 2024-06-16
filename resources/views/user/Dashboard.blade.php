@@ -30,9 +30,9 @@
               <i class="fas fa-chart-bar"></i>
               <span class="nav-item">Analytics</span>
             </a></li>
-            <li><a href="">
+            <li><a href="{{ route('HalamanGames') }}">
               <i class="fas fa-tasks"></i>
-              <span class="nav-item">Tasks</span>
+              <span class="nav-item">Game</span>
             </a></li>
             <li><a href="">
               <i class="fas fa-cog"></i>

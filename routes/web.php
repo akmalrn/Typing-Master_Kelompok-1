@@ -6,6 +6,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\user_controller;
 use App\Http\Controllers\user_login;
 use App\Http\Controllers\admin_controller;
+use App\Http\Controllers\typing_lessons_controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,12 @@ Route::get('/welcome', function () {
 
 //Typing_Lessons_Controller
 
+Route::get('admin/create/CreateText', [typing_lessons_controller::class, 'HalamanCreateText'])->name('HalamanCreateText');
+Route::post('admin/create/CreateText', [typing_lessons_controller::class, 'CreateTypingLessons'])->name('CreateTypingLessons');
+Route::get('/admin/ubah/{id}/UpdateText', [typing_lessons_controller::class, 'HalamanEditText'])->name('HalamanEditText');
+Route::post('/admin/ubah/{id}/UpdateText', [typing_lessons_controller::class, 'HalamanEditText'])->name('HalamanEditText');
+Route::put('/admin/ubah/{id}/UpdateText', [typing_lessons_controller::class, 'UpdateText'])->name('UpdateText');
+Route::delete('/admin/HalamanReadText/{id}', [typing_lessons_controller::class, 'DestroyText'])->name('DestroyText');
 
 //User_Achievements_Controller
 
@@ -48,8 +55,9 @@ Route::get('listuser', function () {
 Route::get('welcome', [user_controller::class, 'Welcome'])->name('Welcome');
 Route::post('/welcome/registrasi', [user_controller::class, 'RegistrasiUsers'])->name('RegistrasiUsers');
 Route::get('user/Dashboard', [user_controller::class, 'HalamanDashboard'])->name('HalamanDashboard');
-Route::put('/listuser/{id}', [user_controller::class, 'UpdateUsers'])->name('UpdateUsers');
+Route::put('/admin/HalamanAdmin/{id}', [user_controller::class, 'UpdateUsers'])->name('UpdateUsers');
 Route::delete('/users/{id}', [user_controller::class, 'DestroyUsers'])->name('DestroyUsers');
+Route::get('user/HalamanGames', [user_controller::class, 'HalamanGames'])->name('HalamanGames');
 
 //User Login
 Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
@@ -65,21 +73,7 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 
-//Middlewelare
-// Ini bisa diterapkan ke rute apapun yang perlu memeriksa dan mengarahkan berdasarkan peran
-Route::get('/dashboard', function () {
-    // Halaman yang ingin Anda tampilkan setelah redirection jika tidak di-handle oleh middleware
-})->middleware('role/redirect');
-Route::middleware(['auth', 'role/redirect'])->group(function () {
-    // Ini akan diterapkan ke semua rute dalam grup ini
-    Route::get('/dashboard', function () {
-        // Halaman dasbor
-    });
-
-    // Tambahkan lebih banyak rute yang memerlukan pemeriksaan peran dan redirection di sini
-});
-
-
 //AdminController
 Route::get('admin/HalamanDev',[admin_controller::class, 'HalamanDev'])->name('HalamanDev');
 Route::get('admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
+Route::get('admin/HalamanReadText', [admin_controller::class, 'HalamanReadText'])->name('HalamanReadText');
