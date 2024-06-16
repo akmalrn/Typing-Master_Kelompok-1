@@ -249,7 +249,7 @@
                 <input type="password" name="password" placeholder="Password">
                 <!-- Button Submit -->
                 <button type="submit">Sign Up</button>
-            </form>
+            </form>  
 
         </div>
         <div class="form-container sign-in">
