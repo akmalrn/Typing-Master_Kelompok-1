@@ -26,7 +26,7 @@ class GoogleController extends Controller
 
             if ($findUser) {
                 Auth::login($findUser);
-                return redirect()->intended('/');
+                return redirect()->intended('admin/HalamanAdmin');
             } else {
                 // Menyimpan data user baru jika belum ada
                 $newUser = User::create([
@@ -39,7 +39,7 @@ class GoogleController extends Controller
                 ]);
 
                 Auth::login($newUser);
-                return redirect()->intended('/');
+                return redirect()->intended('admin/HalamanAdmin');
             }
         } catch (\Exception $e) {
             // Tangani jika terjadi kesalahan
