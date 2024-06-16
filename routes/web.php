@@ -7,6 +7,7 @@ use App\Http\Controllers\user_controller;
 use App\Http\Controllers\user_login;
 use App\Http\Controllers\admin_controller;
 use App\Http\Controllers\typing_lessons_controller;
+use App\Http\Controllers\search_controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,15 +77,10 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 
 //AdminController
 Route::get('admin/HalamanDev',[admin_controller::class, 'HalamanDev'])->name('HalamanDev');
-Route::get('admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->middleware('admin')->name('HalamanAdmin');
+Route::get('admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
 Route::get('admin/HalamanReadText', [admin_controller::class, 'HalamanReadText'])->name('HalamanReadText');
 
 
 //middlewelare
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
-    Route::get('/user/dashboard', [user_controller::class, 'HalamanDashboard'])->name('HalamanDashboard');
-    // Tambahkan rute admin lainnya di sini
-});
-
+Route::get('/admin/HalamanAdmin/search', [search_controller::class, 'search'])->name('search');
