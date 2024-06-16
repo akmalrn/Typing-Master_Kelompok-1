@@ -102,6 +102,7 @@ License: You must have a valid license purchased only from themeforest(the above
   <!-- BEGIN: Body-->
   <body class="vertical-layout vertical-menu-modern dark-layout 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="dark-layout">
 
+    @if (Auth::user()->role === 'admin')
     <!-- BEGIN: Header-->
     <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-dark navbar-shadow">
       <div class="navbar-wrapper">
@@ -214,8 +215,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <form action="{{ route('search') }}" method="GET" class="search-form">
                 <input type="text" name="search" placeholder="Cari Nama Barang">
                 <button type="submit">Cari</button>
-            </form>
-                </div>
+            </form><br>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -305,3 +305,8 @@ License: You must have a valid license purchased only from themeforest(the above
   </body>
   <!-- END: Body-->
 </html>
+@else
+            <p>Anda tidak memiliki izin untuk mengakses halaman ini.</p>
+            <p>Silakan <a href="{{ route('HalamanDashboard') }}">Kembali </a>Tidak Akan Bisa Mengakses Halaman Ini Muehehehehe </p>
+        @endif
+        @else
