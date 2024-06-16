@@ -31,8 +31,8 @@
               <span class="nav-item">Analytics</span>
             </a></li>
             <li><a href="{{ route('HalamanGames') }}">
-                <i class="fas fa-gamepad"></i>
-                <span class="nav-item">Game</span>
+              <i class="fas fa-gamepad"></i>
+              <span class="nav-item">Game</span>
             </a></li>
             <li><a href="">
               <i class="fas fa-cog"></i>
