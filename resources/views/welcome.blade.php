@@ -260,19 +260,26 @@
 
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form action="{{ route('LoginUser') }}" method="POST">
+                @csrf
                 <h1>Sign In</h1>
+<<<<<<< HEAD
                 <div class="social-icons">
                     <!-- Tambahkan tombol di form atau halaman login -->
                     <a href="{{ url ('auth/google') }}" class="btn btn-google">
+=======
+                <!-- Tambahkan tombol Google login -->
+                    <a href="{{ route('auth.google') }}" class="btn btn-google">
+>>>>>>> e62cf3f859399a4c26755e37e432f8bb54bc5b0f
                         <i class="fa-brands fa-google-plus-g"></i>
+                <div class="social-icons">
                     </a>
                 </div>
-                <span>or use your email password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <span>or use your email and password</span>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <button type="submit">Sign In</button>
             </form>
         </div>
         <div class="toggle-container">
