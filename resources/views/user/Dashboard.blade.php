@@ -33,6 +33,31 @@
             <li><a href="UserAchievements">
               <i class="fas fa-trophy"></i>
               <span class="nav-item">Achievements</span>
+            <li><a href="#" class="logo">
+                <img src="{{ asset('image/wikrama.png') }}" alt="Wikrama">
+              <span class="nav-item">DashBoard</span>
+            </a></li>
+            <li><a href="#">
+              <i class="fas fa-home"></i>
+              <span class="nav-item">Home</span>
+            </a></li>
+            <li><a href="">
+              <i class="fas fa-user"></i>
+              <span class="nav-item">My Profile</span>
+            </a></li>
+            <li><a href="">
+              <i class="fas fa-chart-bar"></i>
+              <span class="nav-item">Statistics</span>
+            </a></li>
+            <li>
+              <a href="#">
+                  <i class="fas fa-trophy"></i>
+                  <span class="nav-item">Achievements</span>
+              </a>
+          </li>          
+            <li><a href="{{ route('HalamanGames') }}">
+              <i class="fas fa-gamepad"></i>
+              <span class="nav-item">Game</span>
             </a></li>
             <li><a href="">
               <i class="fas fa-cog"></i>
@@ -45,6 +70,11 @@
             <li><a href="" class="logout">
               <i class="fas fa-sign-out-alt"></i>
               <span class="nav-item">Log out</span>
+              <span class="nav-item">Help</span>
+            </a></li>
+            <li><a href="{{ route('LogoutUser') }}" class="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="nav-item" onclick="return confirm('Are you sure you want to logout, {{ Auth::user()->name }}?')">Log out</span>
             </a></li>
           </ul>
         </nav>
@@ -68,6 +98,7 @@
 }
 body{
   background: #ffffff;
+  background: #dfe9f5;
 }
 .container{
   display: flex;
@@ -79,6 +110,7 @@ nav{
   height: 100vh;
   left: 0;
   background: #21357a;
+  background: #fff;
   width: 280px;
   overflow: hidden;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
@@ -102,6 +134,7 @@ nav{
 a{
   position: relative;
   color: rgba(247,233,2,255);
+  color: rgb(85, 83, 83);
   font-size: 14px;
   display: table;
   width: 280px;

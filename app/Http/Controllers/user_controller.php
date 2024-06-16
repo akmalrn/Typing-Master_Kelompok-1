@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 
 class user_controller extends Controller
@@ -54,8 +54,8 @@ class user_controller extends Controller
     public function HalamanEditUsers($id)
     {
         // Menggunakan Eloquent untuk menemukan pengguna berdasarkan ID
-        $user = User::find($id);
-        return view('users.edit', compact('user'));
+        $users = User::find($id);
+        return view('admin/ubah/UpdateUser', compact('users'));
     }
 
     // Memperbarui pengguna di basis data
@@ -76,7 +76,7 @@ class user_controller extends Controller
             'password' => $request->password ? bcrypt($request->password) : $user->password,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('HalamanAdmin')->with('success', 'User updated successfully.');
     }
 
     // Menghapus pengguna dari basis data
@@ -84,6 +84,15 @@ class user_controller extends Controller
     {
         // Menggunakan Eloquent untuk menghapus pengguna
         User::find($id)->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('HalamanAdmin')->with('success', 'User deleted successfully.');
+    }
+
+    public function HalamanDashboard()
+    {
+        return view('user/Dashboard');
+    }
+    public function HalamanGames()
+    {
+        return view('user/HalamanGames');
     }
 }

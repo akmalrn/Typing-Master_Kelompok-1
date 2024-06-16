@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->id('settings_id');
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('theme', 50)->nullable();
             $table->integer('practice_duration')->default(10);
