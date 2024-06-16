@@ -81,8 +81,10 @@ Route::get('admin/HalamanReadText', [admin_controller::class, 'HalamanReadText']
 
 
 //middlewelare
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
     Route::get('/user/dashboard', [user_controller::class, 'HalamanDashboard'])->name('HalamanDashboard');
     // Tambahkan rute admin lainnya di sini
 });
+
