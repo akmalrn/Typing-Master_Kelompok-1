@@ -212,10 +212,11 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <div class="card-body">
             <form action="{{ route('search') }}" method="GET" class="search-form">
-                <input type="text" name="search" placeholder="Cari Nama Barang">
+                <input type="text" name="search" placeholder="Cari Nama User">
                 <button type="submit">Cari</button>
             </form>
-                </div>
+            <br>
+
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
