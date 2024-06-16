@@ -427,13 +427,84 @@
     .desktop-2 button:hover {
       text-decoration: underline; /* Garis bawah saat hover */
     }
+    .logout-container {
+      box-shadow: 0px 0px 20.1px 0px rgba(0, 0, 0, 0.38);
+      border-radius: 25px;
+      background: #003465;
+      position: relative;
+      margin: 0 0 24px 1px;
+      display: flex;
+      padding: 16px 0;
+      width: 1243px;
+      box-sizing: border-box;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logout-rectangle {
+      box-shadow: 0px 0px 20.1px 0px rgba(0, 0, 0, 0.38);
+      border-radius: 25px;
+      background: #FFFFFF;
+      position: absolute;
+      top: 9px;
+      right: 13px;
+      width: 1216px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Gaya untuk teks level */
+    .logout-level {
+      position: relative;
+      overflow-wrap: break-word;
+      font-family: 'Poppins';
+      font-weight: 600;
+      font-size: 25px;
+      color: #000000;
+      text-align: center;
+    }
+
+    /* Gaya tambahan untuk tombol */
+    #logout-button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      padding: 0;
+      color: inherit; /* Gunakan warna teks yang diwariskan */
+      font-family: 'Poppins';
+      font-weight: 600;
+      font-size: 25px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Gaya tambahan untuk ikon SVG */
+    #logout-button svg {
+      fill: currentColor;
+      margin-right: 8px; /* Spasi antara ikon dan teks */
+    }
+
+    /* Gaya tambahan untuk efek hover */
+    #logout-button:hover {
+      text-decoration: underline; /* Garis bawah saat hover */
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-m7vM6R7G85fjbVcRk5FHV12BO5fn7A64W1wF43eeRLcn79rWqlAqyzfX3a8QVewKf59wF2l9TfP7b0hT9p7iPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="desktop_2.css"> <!-- External stylesheet -->
 </head>
 <body>
+  <button type="button" id="logout-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+      <path fill="currentColor" d="M20 12H8.828l2.586-2.586-1.414-1.414L4.586 12l5.414 5.414 1.414-1.414L8.828 14H20v-2z"/>
+    </svg> Logout
+  </button>  
   <div class="desktop-2">
     <div class="container-1">
       <div class="rectangle-4"></div>
