@@ -60,7 +60,7 @@ class user_login extends Controller
 
     if (Auth::attempt($credentials)) {
         // Login berhasil, dapatkan ID pengguna
-        $userId = Auth::id();
+        $user = Auth::id();
 
         // Anda bisa mendapatkan detail pengguna lain jika diperlukan
         $user = Auth::user();
@@ -68,7 +68,7 @@ class user_login extends Controller
 
         // Periksa peran dan arahkan ke halaman yang sesuai
         if ($userRole === 'admin') {
-            return redirect()->route('admin.dashboard')->with('success', 'Welcome Admin!');
+            return redirect()->route('listuser')->with('success', 'Welcome Admin!');
         } else {
             return redirect()->route('HalamanDashboard')->with('success', 'Welcome User!');
         }
@@ -79,6 +79,11 @@ class user_login extends Controller
         }
 
         public function LogoutUser()
+        {
+            Auth::logout();
+            return redirect()->route('Welcome')->with('success', 'You have been logged out.');
+        }
+        public function LogoutAdmin()
         {
             Auth::logout();
             return redirect()->route('Welcome')->with('success', 'You have been logged out.');

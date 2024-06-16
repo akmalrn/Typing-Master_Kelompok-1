@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class user_controller extends Controller
 {
+    public function listuser()
+    {
+        $users = User::all();
+        return view('listuser', compact('users'));
+    }
+
+
     public function Welcome()
     {
         // Menggunakan Eloquent ORM untuk mengambil semua pengguna
