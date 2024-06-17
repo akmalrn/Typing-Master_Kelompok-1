@@ -11,7 +11,7 @@
         <nav>
           <ul>
             <li><a href="#" class="logo">
-                <img src="{{ asset('image/wikrama.png') }}" alt="Wikrama">
+                <img src="{{ asset('images/wikrama.png') }}" alt="Wikrama">
               <span class="nav-item">DashBoard</span>
             </a></li>
             <li><a href="#">

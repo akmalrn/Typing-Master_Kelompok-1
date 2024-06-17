@@ -25,6 +25,8 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('welcome'); // Sesuaikan dengan tampilan atau controller yang sesuai
 })->name('Welcome');
+
+
 //Achievements_Controller
 
 
