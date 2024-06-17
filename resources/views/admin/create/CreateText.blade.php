@@ -49,6 +49,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/assets/css/style.css') }}">
     <!-- END: Custom CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         .user-dropdown {
         position: relative;
@@ -114,6 +115,23 @@ License: You must have a valid license purchased only from themeforest(the above
               </li>
               <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-dark navbar-shadow">
                 <div class="navbar-wrapper">
+                    @if (Auth::check())
+                    <li class="user-dropdown">
+                        <i class="fa-solid fa-user"></i>
+                            <span class="username">{{ Auth::user()->name }}</span>
+                            <span class="arrow-down"></span> <!-- Panah ke bawah -->
+                        <div class="dropdown-content">
+                            @if (Auth::user()->role == 'admin')
+                                <form id="logout-form-admin" action="{{ route('LogoutAdmin') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <a href="#" onclick="event.preventDefault(); if (confirm('Apakah Anda yakin ingin logout?')) { document.getElementById('logout-form-admin').submit(); }">
+                                    Logout
+                                </a>
+                            @endif
+                        </div>
+                    </li>
+                @endif
                     <div class="navbar-container content">
                         <div class="navbar-collapse" id="navbar-mobile">
                             <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
@@ -126,22 +144,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </ul>
                             </div>
                             <ul>
-                                @if (Auth::check())
-                                    <li class="user-dropdown">
-                                            <span class="username">{{ Auth::user()->name }}</span>
-                                            <span class="arrow-down"></span> <!-- Panah ke bawah -->
-                                        <div class="dropdown-content">
-                                            @if (Auth::user()->role == 'admin')
-                                                <form id="logout-form-admin" action="{{ route('LogoutAdmin') }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-                                                <a href="#" onclick="event.preventDefault(); if (confirm('Apakah Anda yakin ingin logout?')) { document.getElementById('logout-form-admin').submit(); }">
-                                                    Logout
-                                                </a>
-                                            @endif
-                                        </div>
-                                    </li>
-                                @endif
                             </ul>
                         </div>
                     </div>
@@ -170,14 +172,6 @@ License: You must have a valid license purchased only from themeforest(the above
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-          <li class=" nav-item"><a href="index.html"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge badge-warning badge-pill float-right mr-2">2</span></a>
-            <ul class="menu-content">
-              <li><a href="dashboard-analytics.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Analytics</span></a>
-              </li>
-              <li><a href="dashboard-ecommerce.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">eCommerce</span></a>
-              </li>
-            </ul>
-          </li>
           <li class=" navigation-header"><span>Apps</span>
           </li>
           <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">User</span></a>
@@ -251,9 +245,6 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
     <!-- BEGIN: Customizer-->
-
-
-
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
       <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">Halaman Admin Kelompok-1  &copy; 2024<a class="text-bold-800 grey darken-2" href="{{ route('HalamanDev') }}" target="_blank">Kelompok 1,</a>Sangat Mudah</span><span class=  "float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
