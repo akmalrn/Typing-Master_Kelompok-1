@@ -1,254 +1,879 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Master</title>
-</head>
-<body>
-<div class="container emp-profile">
-            <form method="post">
-            <button type="button" id="logout-button">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                     <path fill="currentColor" d="M20 12H8.828l2.586-2.586-1.414-1.414L4.586 12l5.414 5.414 1.414-1.414L8.828 14H20v-2z"/>
-                    </svg> Back
-                </button>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="file btn btn-lg btn-primary">
-                            Change Photo
-                            <input type="file" name="file"/>
-                        </div>
-                        <div class="profile-head">
-                                    <h5>
-                                        Kshiti Ghelani
-                                    </h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                    </div>
-                </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>User Id</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Kshiti123</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Kshiti Ghelani</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>kshitighelani@gmail.com</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>123 456 7890</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>           
-        </div>
-</body>
-<style>
-    body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --light: #f6f6f9;
+    --primary: #1976D2;
+    --light-primary: #CFE8FF;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #363949;
+    --danger: #D32F2F;
+	--light-danger: #FECDD3;
+    --warning: #FBC02D;
+    --light-warning: #FFF2C6;
+    --success: #388E3C;
+    --light-success: #BBF7D0;
+}
+
+*{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-.container {
-    max-width: 800px;
-    width: 100%;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
+.bx{
+    font-size: 1.7rem;
 }
 
-/* Profile Image */
-.profile-img {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.profile-img img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* Change Photo Button */
-.profile-img .file {
-    display: block;
-    width: 150px;
-    margin-top: 10px;
-    padding: 8px 12px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
+a{
     text-decoration: none;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.profile-img .file:hover {
-    background-color: #0056b3;
+li{
+    list-style: none;
 }
 
-/* Profile Head */
-.profile-head {
-    text-align: center;
-    margin-bottom: 30px;
+html{
+    overflow-x: hidden;
 }
 
-.profile-head h5 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 5px;
+body.dark{
+    --light: #181a1e;
+    --grey: #25252c;
+    --dark: #fbfbfb
 }
 
-.profile-head h6 {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 10px;
+body{
+    background: var(--grey);
+    overflow-x: hidden;
 }
 
-.profile-head .proile-rating {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-/* Navigation Tabs */
-.nav-tabs {
-    border-bottom: 2px solid #dee2e6;
-    margin-bottom: 20px;
-}
-
-.nav-tabs .nav-item {
-    margin-bottom: -1px;
-}
-
-.nav-tabs .nav-link {
-    font-size: 16px;
-    color: #555;
-    font-weight: 600;
-    border: none;
-    border-radius: 0;
-    background-color: transparent;
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--light);
+    width: 230px;
+    height: 100%;
+    z-index: 2000;
+    overflow-x: hidden;
+    scrollbar-width: none;
     transition: all 0.3s ease;
 }
 
-.nav-tabs .nav-link.active {
-    color: #007bff;
-    border-bottom-color: #007bff;
+.sidebar::-webkit-scrollbar{
+    display: none;
 }
 
-/* Profile Tab */
-.profile-tab label {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 5px;
+.sidebar.close{
+    width: 60px;
 }
 
-.profile-tab p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 10px;
+.sidebar .logo{
+    font-size: 24px;
+    font-weight: 700;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    color: var(--primary);
+    z-index: 500;
+    padding-bottom: 20px;
+    box-sizing: content-box;
 }
 
-/* Profile Edit Button */
-.profile-edit-btn {
-    display: block;
+.sidebar .logo .logo-name span{
+    color: var(--dark);
+}
+
+.sidebar .logo .bx{
+    min-width: 60px;
+    display: flex;
+    justify-content: center;
+    font-size: 2.2rem;
+}
+
+.sidebar .side-menu{
     width: 100%;
-    margin-top: 10px; /* Menambahkan margin atas */
-    padding: 10px;
+    margin-top: 48px;
+}
+
+.sidebar .side-menu li{
+    height: 48px;
+    background: transparent;
+    margin-left: 6px;
+    border-radius: 48px 0 0 48px;
+    padding: 4px;
+}
+
+.sidebar .side-menu li.active{
+    background: var(--grey);
+    position: relative;
+}
+
+.sidebar .side-menu li.active::before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: -40px;
+    right: 0;
+    box-shadow: 20px 20px 0 var(--grey);
+    z-index: -1;
+}
+
+.sidebar .side-menu li.active::after{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: -40px;
+    right: 0;
+    box-shadow: 20px -20px 0 var(--grey);
+    z-index: -1;
+}
+
+.sidebar .side-menu li a{
+    width: 100%;
+    height: 100%;
+    background: var(--light);
+    display: flex;
+    align-items: center;
+    border-radius: 48px;
     font-size: 16px;
+    color: var(--dark);
+    white-space: nowrap;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+}
+
+.sidebar .side-menu li.active a{
+    color: var(--success);
+}
+
+.sidebar.close .side-menu li a{
+    width: calc(48px - (4px * 2));
+    transition: all 0.3s ease;
+}
+
+.sidebar .side-menu li a .bx{
+    min-width: calc(60px - ((4px + 6px) * 2));
+    display: flex;
+    font-size: 1.6rem;
+    justify-content: center;
+}
+
+.sidebar .side-menu li a.logout{
+    color: var(--danger);
+}
+
+.content{
+    position: relative;
+    width: calc(100% - 230px);
+    left: 230px;
+    transition: all 0.3s ease;
+}
+
+.sidebar.close~.content{
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.content nav{
+    height: 56px;
+    background: var(--light);
+    padding: 0 24px 0 0;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.content nav::before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: -40px;
+    left: 0;
+    border-radius: 50%;
+    box-shadow: -20px -20px 0 var(--light);
+}
+
+.content nav a{
+    color: var(--dark);
+}
+
+.content nav .bx.bx-menu{
+    cursor: pointer;
+    color: var(--dark);
+}
+
+.content nav form{
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+}
+
+.content nav form .form-input{
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+
+.content nav form .form-input input{
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background: var(--grey);
+    border-radius: 36px 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: var(--dark);
+}
+
+.content nav form .form-input button{
+    width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary);
+    color: var(--light);
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+}
+
+.content nav .notif{
+    font-size: 20px;
+    position: relative;
+}
+
+.content nav .notif .count{
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    background: var(--danger);
+    border-radius: 50%;
+    color: var(--light);
+    border: 2px solid var(--light);
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content nav .profile img{
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.content nav .theme-toggle{
+    display: block;
+    min-width: 50px;
+    height: 25px;
+    background: var(--grey);
+    cursor: pointer;
+    position: relative;
+    border-radius: 25px;
+}
+
+.content nav .theme-toggle::before{
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: calc(25px - 4px);
+    background: var(--primary);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.content nav #theme-toggle:checked+.theme-toggle::before{
+    left: calc(100% - (25px - 4px) - 2px);
+}
+
+.content main{
+    width: 100%;
+    padding: 36px 24px;
+    max-height: calc(100vh - 56px);
+}
+
+.content main .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 16px;
+    flex-wrap: wrap;
+}
+
+.content main .header .left h1{
+    font-size: 36px;
     font-weight: 600;
-    color: #fff;
-    background-color: #007bff;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.content main .header .left .breadcrumb{
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+}
+
+.content main .header .left .breadcrumb li{
+    color: var(--dark);
+}
+
+.content main .header .left .breadcrumb li a{
+    color: var(--dark-grey);
+    pointer-events: none;
+}
+
+.content main .header .left .breadcrumb li a.active{
+    color: var(--primary);
+    pointer-events: none;
+}
+
+.content main .header .report{
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 36px;
+    background: var(--primary);
+    color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 10px;
+    font-weight: 500;
+}
+
+.content main .insights{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 24px;
+    margin-top: 36px;
+}
+
+.content main .insights li{
+    padding: 24px;
+    background: var(--light);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    cursor: pointer;
+}
+
+.content main .insights li .bx{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content main .insights li:nth-child(1) .bx{
+    background: var(--light-primary);
+    color: var(--primary);
+}
+
+.content main .insights li:nth-child(2) .bx{
+    background: var(--light-warning);
+    color: var(--warning);
+}
+
+.content main .insights li:nth-child(3) .bx{
+    background: var(--light-success);
+    color: var(--success);
+}
+
+.content main .insights li:nth-child(4) .bx{
+    background: var(--light-danger);
+    color: var(--danger);
+}
+
+.content main .insights li .info h3{
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.content main .insights li .info p{
+    color: var(--dark);
+}
+
+.content main .bottom-data{
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 24px;
+    margin-top: 24px;
+    width: 100%;
+    color: var(--dark);
+}
+
+.content main .bottom-data>div{
+    border-radius: 20px;
+    background: var(--light);
+    padding: 24px;
+    overflow-x: auto;
+}
+
+.content main .bottom-data .header{
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    margin-bottom: 24px;
+}
+
+.content main .bottom-data .header h3{
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.content main .bottom-data .header .bx{
+    cursor: pointer;
+}
+
+.content main .bottom-data .orders{
+    flex-grow: 1;
+    flex-basis: 500px;
+}
+
+.content main .bottom-data .orders table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content main .bottom-data .orders table th{
+    padding-bottom: 12px;
+    font-size: 13px;
+    text-align: left;
+    border-bottom: 1px solid var(--grey);
+}
+
+.content main .bottom-data .orders table td{
+    padding: 16px 0;
+}
+
+.content main .bottom-data .orders table tr td:first-child{
+    display: flex;
+    align-items: center;
+    grid-gap: 12px;
+    padding-left: 6px;
+}
+
+.content main .bottom-data .orders table td img{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.content main .bottom-data .orders table tbody tr{
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.content main .bottom-data .orders table tbody tr:hover{
+    background: var(--grey);
+}
+
+.content main .bottom-data .orders table tr td .status{
+    font-size: 10px;
+    padding: 6px 16px;
+    color: var(--light);
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.content main .bottom-data .orders table tr td .status.completed{
+    background: var(--success);
+}
+
+.content main .bottom-data .orders table tr td .status.process{
+    background: var(--primary);
+}
+
+.content main .bottom-data .orders table tr td .status.pending{
+    background: var(--warning);
+}
+
+.content main .bottom-data .reminders{
+    flex-grow: 1;
+    flex-basis: 300px;
+}
+
+.content main .bottom-data .reminders .task-list{
+    width: 100%;
+}
+
+.content main .bottom-data .reminders .task-list li{
+    width: 100%;
+    margin-bottom: 16px;
+    background: var(--grey);
+    padding: 14px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content main .bottom-data .reminders .task-list li .task-title{
+    display: flex;
+    align-items: center;
+}
+
+.content main .bottom-data .reminders .task-list li .task-title p{
+    margin-left: 6px;
+}
+
+.content main .bottom-data .reminders .task-list li .bx{
+  cursor: pointer;  
+}
+
+.content main .bottom-data .reminders .task-list li.completed{
+    border-left: 10px solid var(--success);
+}
+
+.content main .bottom-data .reminders .task-list li.not-completed{
+    border-left: 10px solid var(--danger);
+}
+
+.content main .bottom-data .reminders .task-list li:last-child{
+   margin-bottom: 0;
+}
+.content main .welcome {
+    background: var(--light);
+    border-radius: 20px;
+    padding: 24px;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content main .welcome .user-info {
+    flex-grow: 1;
+}
+
+.content main .welcome .cards {
+    display: flex;
+    grid-gap: 24px;
+}
+
+.content main .welcome .card {
+    background: var(--grey);
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    width: 220px;
+}
+
+.content main .welcome .card .icon {
+    background: var(--light);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.content main .welcome .card .info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.content main .welcome .card .info p {
+    color: var(--dark-grey);
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar{
+        width: 200px;
+    }
+
+    .content{
+        width: calc(100% - 60px);
+        left: 200px;
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+    
+    .content nav form .form-input input{
+        display: none;
+    }
+
+    .content nav form .form-input button{
+        width: auto;
+        height: auto;
+        background: transparent;
+        color: var(--dark);
+        border-radius: none;
+    }
+
+    .content nav form.show .form-input input{
+        display: block;
+        width: 100%;
+    }
+
+    .content nav form.show .form-input button{
+        width: 36px;
+        height: 100%;
+        color: var(--light);
+        background: var(--danger);
+        border-radius: 0 36px 36px 0;
+    }
+
+    .content nav form.show~.notif, .content nav form.show~.profile{
+        display: none;
+    }
+
+    .content main .insights {
+        grid-template-columns: 1fr;
+    }
+
+    .content main .bottom-data .header{
+        min-width: 340px;
+    }
+
+    .content main .bottom-data .orders table{
+        min-width: 340px;
+    }
+
+    .content main .bottom-data .reminders .task-list{
+        min-width: 340px;
+    }
+}
+/* Adjusted styles for sidebar icons */
+.sidebar .side-menu li a i {
+    min-width: calc(60px - ((4px + 6px) * 2)); /* Adjusted width based on existing styles */
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.sidebar .side-menu li a i.fa-gamepad {
+    min-width: calc(60px - ((4px + 6px) * 2)); /* Adjusted width for specific icon */
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--dark); /* Custom color if needed */
+}
+.content main .welcome {
+    background: var(--light);
+    border-radius: 20px;
+    padding: 24px;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content main .welcome .user-info {
+    flex-grow: 1;
+}
+
+.content main .welcome .profile-details {
+    margin-top: 16px;
+}
+
+.content main .welcome .edit-profile-btn {
+    background-color: var(--primary);
+    color: var(--light);
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    text-align: center;
     cursor: pointer;
-    text-decoration: none;
+    font-size: 16px;
     transition: background-color 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 10px; /* Adjust as needed */
 }
 
-.profile-edit-btn:hover {
-    background-color: #0056b3;
+.content main .welcome .edit-profile-btn:hover {
+    background-color: var(--light-primary);
 }
-/* Responsiveness for smaller screens */
-@media (max-width: 768px) {
-    .profile-img img {
-        width: 120px;
-        height: 120px;
-    }
-}
-/*Logout button*/
-#logout-button {
-      border: none;
-      background-color: transparent;
-      cursor: pointer;
-      padding: 0;
-      color: inherit; /* Gunakan warna teks yang diwariskan */
-      font-family: 'Poppins';
-      font-weight: 600;
-      font-size: 25px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-    }
 
-    /* Gaya tambahan untuk ikon SVG */
-    #logout-button svg {
-      fill: currentColor;
-      margin-right: 8px; /* Spasi antara ikon dan teks */
-    }
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <title>Responsive Dashboard Design #2 | WikraType</title>
+</head>
 
-    /* Gaya tambahan untuk efek hover */
-    #logout-button:hover {
-      text-decoration: underline; /* Garis bawah saat hover */
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <img src="{{ asset('image/wikrama.png') }}" width="20%" style="margin-left: 7%" alt="">
+            <div class="logo-name"><span>Wikra</span>Type</div>
+        </a>
+        <ul class="side-menu">
+            <li class="#"><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li class="#"><a href="{{ route('HalamanGames')}}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
+            <li class="#"><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
+            <li class="#"><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
+            <li class="active"><a href=""><i class='bx bx-group'></i>Users</a></li>
+            <li class="#"><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="logout">
+                    <i class='bx bx-log-out-circle'></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <a href="#" class="profile">
+                <img src="images/logo.png">
+            </a>
+        </nav>
+
+        <!-- End of Navbar -->
+
+        <main>
+          <div class="header">
+              <div class="left">
+                  <h1>Dashboard</h1>
+                  <ul class="breadcrumb">
+                      <li><a href="#">Dashboard</a></li>
+                  </ul>
+              </div>
+          </div>
+      
+          <div class="welcome">
+            <div class="user-info">
+                <h2>MY PROFILE</h2>
+                <hr>
+                <div class="profile-details">
+                    <p><strong>Name:</strong> [User Name]</p>
+                    <p><strong>Email:</strong> [user@example.com]</p>
+                    <p><strong>Level:</strong> [Beginner]</p>
+                    <p><strong>Total Time:</strong> [XX hours XX mins]</p>
+                    <p><strong>Avg WPM:</strong> [XX]</p>
+                    <p><strong>Avg Accuracy:</strong> [XX%]</p>
+                </div>
+                <button class="edit-profile-btn">Edit Profile</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+      const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
+
+sideLinks.forEach(item => {
+    const li = item.parentElement;
+    item.addEventListener('click', () => {
+        sideLinks.forEach(i => {
+            i.parentElement.classList.remove('active');
+        })
+        li.classList.add('active');
+    })
+});
+
+const menuBar = document.querySelector('.content nav .bx.bx-menu');
+const sideBar = document.querySelector('.sidebar');
+
+menuBar.addEventListener('click', () => {
+    sideBar.classList.toggle('close');
+});
+
+const searchBtn = document.querySelector('.content nav form .form-input button');
+const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
+const searchForm = document.querySelector('.content nav form');
+
+searchBtn.addEventListener('click', function (e) {
+    if (window.innerWidth < 576) {
+        e.preventDefault;
+        searchForm.classList.toggle('show');
+        if (searchForm.classList.contains('show')) {
+            searchBtnIcon.classList.replace('bx-search', 'bx-x');
+        } else {
+            searchBtnIcon.classList.replace('bx-x', 'bx-search');
+        }
     }
-</style>
+});
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth < 768) {
+        sideBar.classList.add('close');
+    } else {
+        sideBar.classList.remove('close');
+    }
+    if (window.innerWidth > 576) {
+        searchBtnIcon.classList.replace('bx-x', 'bx-search');
+        searchForm.classList.remove('show');
+    }
+});
+
+const toggler = document.getElementById('theme-toggle');
+
+toggler.addEventListener('change', function () {
+    if (this.checked) {
+        document.body.classList.add('dark');
+    } else {
+        document.body.classList.remove('dark');
+    }
+});
+    </script>
+    <script>
+        const editProfileBtn = document.querySelector('.edit-profile-btn');
+        const profileDetails = document.querySelector('.profile-details');
+
+        editProfileBtn.addEventListener('click', () => {
+            // Replace with logic for opening edit profile modal or form
+            console.log('Edit profile clicked');
+            // Example: Show a form or modal for editing profile
+        });
+
+    </script>
+</body>
 </html>

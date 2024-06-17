@@ -89,10 +89,19 @@ class user_controller extends Controller
 
     public function HalamanDashboard()
     {
-        return view('user/Dashboard');
+        $users = User::all();
+        return view('user/Dashboard', compact('users'));
     }
     public function HalamanGames()
     {
         return view('user/HalamanGames');
+    }
+    public function HalamanUser()
+    {
+        return view('user/UserProfiles');
+    }
+    public function HalamanAchievements()
+    {
+        return view('user/UserAchievements');
     }
 }

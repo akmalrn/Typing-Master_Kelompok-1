@@ -103,7 +103,7 @@
             <!-- Developer Profile 4 -->
             <div class="profile">
                 <img src="developer4.jpg" alt="Developer 4 Photo">
-                <h2>Dhiksa</h2>
+                <h2>Dhiksa Raja Nararya Hakim</h2>
                 <p> UI/UX FrontEnd</p>
             </div>
 
