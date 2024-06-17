@@ -703,7 +703,11 @@ body{
         <ul class="side-menu">
             <li class="#"><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
-            <li class="#"><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
+            @foreach($typing_lessons as $lesson)
+            @if($lesson->id == 1)
+            <li><a href="{{ route('HalamanTypingLessons', $lesson->id) }}"><i class='bx bx-analyse'></i>Start Lesson {{ $lesson->id }}</a></li>
+            @endif
+            @endforeach
             <li class="active"><a href="#"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
             <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
