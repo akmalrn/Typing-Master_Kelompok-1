@@ -305,7 +305,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- ag-Grid JS -->
     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
-
+    
 
   </body>
   <!-- END: Body-->
@@ -314,4 +314,4 @@ License: You must have a valid license purchased only from themeforest(the above
             <p>Anda tidak memiliki izin untuk mengakses halaman ini.</p>
             <p>Silakan <a href="{{ route('HalamanDashboard') }}">Kembali </a>Tidak Akan Bisa Mengakses Halaman Ini Muehehehehe </p>
         @endif
-        @else
+
