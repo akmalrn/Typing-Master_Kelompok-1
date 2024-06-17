@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
     --light: #f6f6f9;
@@ -551,7 +546,7 @@ body{
 }
 
 .content main .bottom-data .reminders .task-list li .bx{
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 .content main .bottom-data .reminders .task-list li.completed{
@@ -629,7 +624,7 @@ body{
 }
 
 @media screen and (max-width: 576px) {
-    
+
     .content nav form .form-input input{
         display: none;
     }
@@ -690,222 +685,7 @@ body{
     font-size: 1.5rem;
     color: var(--dark); /* Custom color if needed */
 }
-.content main .game-dashboard {
-    margin-top: 36px;
-}
-
-.content main .game-dashboard .level-info {
-    background: var(--light);
-    border-radius: 20px;
-    padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.content main .game-dashboard .level-info h2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--dark);
-    margin-bottom: 16px;
-}
-
-.content main .game-dashboard .progress-bar {
-    width: 100%;
-    height: 12px;
-    background: var(--grey);
-    border-radius: 6px;
-    margin-bottom: 12px;
-}
-
-.content main .game-dashboard .progress {
-    height: 100%;
-    background: var(--primary);
-    border-radius: 6px;
-}
-
-.content main .game-dashboard span {
-    font-size: 14px;
-    color: var(--dark-grey);
-}
-.level-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-gap: 10px;
-    margin-top: 20px;
-}
-
-.level-button {
-    padding: 12px 24px;
-    background-color: var(--primary); /* Adjust to your design */
-    color: var(--light); /* Adjust to your design */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-.level-button:hover {
-    background-color: var(--dark-primary); /* Adjust to your design */
-}
-
-
-  </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <title>Responsive Dashboard Design #2 | WikraType</title>
-</head>
-
-<body>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="#" class="logo">
-            <img src="{{ asset('image/wikrama.png') }}" width="20%" style="margin-left: 7%" alt="">
-            <div class="logo-name"><span>Wikra</span>Type</div>
-        </a>
-        <ul class="side-menu">
-            <li class="#"><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li class="active"><a href="#"><i class="fa-solid fa-gamepad"></i>Game</a></li>
-            @foreach($typing_lessons as $lesson)
-            @if($lesson->id == 1)
-            <li><a href="{{ route('HalamanTypingLessons', $lesson->id) }}"><i class='bx bx-analyse'></i>Start Lesson {{ $lesson->id }}</a></li>
-            @endif
-            @endforeach
-            <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
-            <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="#" class="logout">
-                    <i class='bx bx-log-out-circle'></i>
-                    Logout
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- End of Sidebar -->
-
-    <!-- Main Content -->
-    <div class="content">
-        <!-- Navbar -->
-        <nav>
-            <i class='bx bx-menu'></i>
-            <form action="#">
-                <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
-                </div>
-            </form>
-            <a href="#" class="profile">
-                <img src="{{ asset('images/wikrama.png') }}">
-            </a>
-        </nav>
-
-        <!-- End of Navbar -->
-
-        <main>
-          <div class="header">
-              <div class="left">
-                  <h1>Games</h1>
-                  <ul class="breadcrumb">
-                      <li><a href="#">Game</a></li>
-                  </ul>
-              </div>
-          </div>
-          <div class="game-dashboard">
-            <h2>Game Levels</h2>
-            <div class="level-buttons"></div>
-        </div>
-    </div>
-    <script>
-      const numberOfLevels = 10;
-
-// Selecting the level buttons container
-      const levelButtonsContainer = document.querySelector('.level-buttons');
-
-      // Adding buttons dynamically
-      for (let i = 1; i <= numberOfLevels; i++) {
-          const button = document.createElement('button');
-          button.textContent = `Level ${i}`;
-          button.classList.add('level-button');
-          levelButtonsContainer.appendChild(button);
-      }
-
-      // Example event listener for button click (you can customize this further)
-      const levelButtons = document.querySelectorAll('.level-button');
-      levelButtons.forEach(button => {
-          button.addEventListener('click', () => {
-              // Handle what happens when a button is clicked
-              alert(`You clicked ${button.textContent}`);
-              // Example: Redirect to a specific level page or load level details
-          });
-      });
-    </script>
-    <script>
-      const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
-
-sideLinks.forEach(item => {
-    const li = item.parentElement;
-    item.addEventListener('click', () => {
-        sideLinks.forEach(i => {
-            i.parentElement.classList.remove('active');
-        })
-        li.classList.add('active');
-    })
-});
-
-const menuBar = document.querySelector('.content nav .bx.bx-menu');
-const sideBar = document.querySelector('.sidebar');
-
-menuBar.addEventListener('click', () => {
-    sideBar.classList.toggle('close');
-});
-
-const searchBtn = document.querySelector('.content nav form .form-input button');
-const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
-const searchForm = document.querySelector('.content nav form');
-
-searchBtn.addEventListener('click', function (e) {
-    if (window.innerWidth < 576) {
-        e.preventDefault;
-        searchForm.classList.toggle('show');
-        if (searchForm.classList.contains('show')) {
-            searchBtnIcon.classList.replace('bx-search', 'bx-x');
-        } else {
-            searchBtnIcon.classList.replace('bx-x', 'bx-search');
+            body {
+            padding: 20px;
+            background-color: #f8f9fa;
         }
-    }
-});
-
-window.addEventListener('resize', () => {
-    if (window.innerWidth < 768) {
-        sideBar.classList.add('close');
-    } else {
-        sideBar.classList.remove('close');
-    }
-    if (window.innerWidth > 576) {
-        searchBtnIcon.classList.replace('bx-x', 'bx-search');
-        searchForm.classList.remove('show');
-    }
-});
-
-const toggler = document.getElementById('theme-toggle');
-
-toggler.addEventListener('change', function () {
-    if (this.checked) {
-        document.body.classList.add('dark');
-    } else {
-        document.body.classList.remove('dark');
-    }
-});
-    </script>
-</body>
-
-</html>
