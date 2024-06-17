@@ -5,28 +5,29 @@
       <title>Typing Master</title>
       <!-- Font Awesome Cdn Link -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <body>
       <div class="container">
         <nav>
           <ul>
             <li><a href="#" class="logo">
-                <img src="{{ asset('images/wikrama.png') }}" alt="Wikrama">
+                <img src="{{ asset('image/wikrama.png') }}" alt="Wikrama">
               <span class="nav-item">DashBoard</span>
             </a></li>
             <li><a href="#">
               <i class="fas fa-home"></i>
               <span class="nav-item">Home</span>
             </a></li>
-            <li><a href="">
-              <i class="fas fa-user"></i>
-              <span class="nav-item">My Profile</span>
-            </a></li>
-            <li><a href="">
-              <i class="fas fa-chart-bar"></i>
-              <span class="nav-item">Statistics</span>
-            </a></li>
-            <li>
+            <li class="dropdown">
+              <a href="#">
+                <i class="fas fa-bars"></i>
+                <span class="nav-item">Model</span>
+              </a>
+              <div class="dropdown-content">
+                  <a href="#">Latihan</a>
+                  <a href="#">Test Kecepatan</a>
+                  <a href="{{ route('HalamanGames') }}">Games</a>
               <a href="#">
                   <i class="fas fa-trophy"></i>
                   <span class="nav-item">Achievements</span>
@@ -250,5 +251,5 @@ a:hover{
 .js{
   color: rgb(28, 98, 179);
 }
-    </style>
-    </html>
+</style>
+</html>
