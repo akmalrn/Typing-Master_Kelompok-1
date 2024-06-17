@@ -61,17 +61,17 @@ License: You must have a valid license purchased only from themeforest(the above
         font-weight: bold;
     }
     .arrow-down {
-        margin-left: 5px; /* Spasi antara nama dan panah */
         border: solid white;
         border-width: 0 2px 2px 0;
         display: inline-block;
+        margin-left: 5px;
         padding: 3px;
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
     }
 
     .dropdown-content {
-        display: none; /* Sembunyikan dropdown secara default */
+        display: none;
         position: absolute;
         background-color: #f1f1f1;
         min-width: 160px;
@@ -81,9 +81,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
     .dropdown-content a {
         color: black;
-        padding: 12px 16px;
         text-decoration: none;
         display: block;
+        padding: 12px 16px;
     }
 
     .dropdown-content a:hover {
@@ -212,8 +212,8 @@ License: You must have a valid license purchased only from themeforest(the above
             <h4>User List</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('search') }}" method="GET" class="search-form">
-                <input type="text" name="search" placeholder="Cari Nama Barang">
+            <form action="{{ route('searchUser') }}" method="GET" class="search-form">
+                <input type="text" name="searchUser" placeholder="Cari Nama User">
                 <button type="submit">Cari</button>
             </form><br>
             <div class="table-responsive">
@@ -309,4 +309,3 @@ License: You must have a valid license purchased only from themeforest(the above
             <p>Anda tidak memiliki izin untuk mengakses halaman ini.</p>
             <p>Silakan <a href="{{ route('HalamanDashboard') }}">Kembali </a>Tidak Akan Bisa Mengakses Halaman Ini Muehehehehe </p>
         @endif
-        @else

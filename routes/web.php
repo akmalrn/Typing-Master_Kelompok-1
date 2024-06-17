@@ -83,4 +83,5 @@ Route::get('admin/HalamanReadText', [admin_controller::class, 'HalamanReadText']
 
 //middlewelare
 
-Route::get('/admin/HalamanAdmin/search', [search_controller::class, 'search'])->name('search');
+Route::get('/admin/HalamanAdmin/searchUser', [search_controller::class, 'searchUser'])->name('searchUser');
+Route::get('/admin/HalamanReadText/search', [search_controller::class, 'searchText'])->name('searchText');
