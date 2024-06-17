@@ -39,7 +39,7 @@ Route::get('/welcome', function () {
 
 
 //Typing_Lessons_Controller
-
+Route::get('/user/HalamanTypingLessons/{id}', [typing_lessons_controller::class, 'HalamanTypingLessons'])->name('HalamanTypingLessons');
 Route::get('admin/create/CreateText', [typing_lessons_controller::class, 'HalamanCreateText'])->name('HalamanCreateText');
 Route::post('admin/create/CreateText', [typing_lessons_controller::class, 'CreateTypingLessons'])->name('CreateTypingLessons');
 Route::get('/admin/ubah/{id}/UpdateText', [typing_lessons_controller::class, 'HalamanEditText'])->name('HalamanEditText');
@@ -97,6 +97,6 @@ Route::get('/admin/HalamanAdmin/search', [search_controller::class, 'search'])->
 //GamesController
 Route::get('/user/HalamanGames', [games_controller::class, 'HalamanGames'])->name('HalamanGames');
 //UserController
-Route::get('/user/HalamanUser', [user_controller::class, 'HalamanUser'])->name('HalamanUser');
+Route::get('/user/HalamanUser/{id}', [user_controller::class, 'HalamanUser'])->name('HalamanUser');
 //AchievementsController
 Route::get('/user/HalamanAchievements', [user_controller::class, 'HalamanAchievements'])->name('HalamanAchievements');

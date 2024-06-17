@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\typing_lessons;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
@@ -89,16 +90,25 @@ class user_controller extends Controller
 
     public function HalamanDashboard()
     {
+        $typing_lessons = typing_lessons::all();
         $users = User::all();
-        return view('user/Dashboard', compact('users'));
+        return view('user/Dashboard', compact('users', 'typing_lessons'));
     }
     public function HalamanGames()
     {
         return view('user/HalamanGames');
     }
-    public function HalamanUser()
+    public function HalamanUser($id)
     {
-        return view('user/UserProfiles');
+        $user = User::find($id);
+
+    if ($user && $user->role == 'user') {
+        // Lakukan sesuatu dengan ID pengguna yang login
+        return view('user/UserProfiles', compact('user'));
+    } else {
+        // Jika bukan admin atau tidak ditemukan, redirect atau berikan respons lain
+        return redirect()->route('home')->with('error', 'Unauthorized access');
+    }
     }
     public function HalamanAchievements()
     {

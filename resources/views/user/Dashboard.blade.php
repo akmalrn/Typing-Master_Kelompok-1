@@ -712,9 +712,13 @@ body{
         <ul class="side-menu">
             <li class="active"><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
-            <li class="#"><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
+            @foreach($typing_lessons as $lesson)
+            @if($lesson->id == 6)
+                <a href="{{ route('HalamanTypingLessons', $lesson->id) }}">Start Lesson {{ $lesson->id }}</a>
+            @endif
+        @endforeach
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser')}}"><i class='bx bx-group'></i>Users</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
@@ -740,7 +744,7 @@ body{
                 </div>
             </form>
             <a href="#" class="profile">
-                <img src="images/logo.png">
+                <img src="{{ asset('images/wikrama.png') }}">
             </a>
         </nav>
 
@@ -749,19 +753,19 @@ body{
         <main>
           <div class="header">
               <div class="left">
-                  <h1>Dashboard</h1>
+                  <h1>Selamat Datang Di Typing Master</h1>
                   <ul class="breadcrumb">
                       <li><a href="#">Dashboard</a></li>
                   </ul>
               </div>
           </div>
-          @foreach($users as $user)
+          @if (Auth::user())
           <div class="welcome">
               <div class="user-info">
-                  <h2>Welcome, {{ $user->name }}</h2>
-                  <p>This is your personalized dashboard.</p>
+                <span class="username">Selamat Datang {{ Auth::user()->name }},</span>
+                  <p>Di Halaman Typing Master.</p>
               </div>
-              @endforeach
+            
               <div class="cards">
                   <div class="card">
                       <div class="icon"><i class='bx bxs-dashboard'></i></div>
@@ -850,5 +854,5 @@ toggler.addEventListener('change', function () {
 });
     </script>
 </body>
-
+@endif
 </html>

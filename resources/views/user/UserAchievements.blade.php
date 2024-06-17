@@ -701,11 +701,11 @@ body{
             <div class="logo-name"><span>Wikra</span>Type</div>
         </a>
         <ul class="side-menu">
-            <li class="#"><a href="{{ route('HalamanDashboard')}}""><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li class="#"><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
             <li class="#"><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
             <li class="active"><a href="#"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser')}}"><i class='bx bx-group'></i>Users</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
@@ -740,9 +740,9 @@ body{
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Dashboard</h1>
+                    <h1>Achievements</h1>
                     <ul class="breadcrumb">
-                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Achievements</a></li>
                     </ul>
                 </div>
             </div>
