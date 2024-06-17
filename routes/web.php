@@ -81,13 +81,12 @@ Route::get('admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->nam
 Route::get('admin/HalamanReadText', [admin_controller::class, 'HalamanReadText'])->name('HalamanReadText');
 Route::get('/user/dashboard', [user_controller::class, 'HalamanDashboard'])->name('HalamanDashboard');
 //middlewelare
-<<<<<<< HEAD
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
     
     // Tambahkan rute admin lainnya di sini
 });
-=======
+
 
 Route::get('/admin/HalamanAdmin/search', [search_controller::class, 'search'])->name('search');
->>>>>>> f722e956aefb8ef3ca7fd3cdb6393420c5b50152
