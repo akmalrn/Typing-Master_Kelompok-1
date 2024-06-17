@@ -774,7 +774,7 @@ body{
             <li class="active"><a href="#"><i class="fa-solid fa-gamepad"></i>Game</a></li>
             <li class="#"><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser')}}"><i class='bx bx-group'></i>Users</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
@@ -800,7 +800,7 @@ body{
                 </div>
             </form>
             <a href="#" class="profile">
-                <img src="images/logo.png">
+                <img src="{{ asset('images/wikrama.png') }}">
             </a>
         </nav>
 
@@ -809,7 +809,7 @@ body{
         <main>
           <div class="header">
               <div class="left">
-                  <h1>Dashboard</h1>
+                  <h1>Games</h1>
                   <ul class="breadcrumb">
                       <li><a href="#">Game</a></li>
                   </ul>
