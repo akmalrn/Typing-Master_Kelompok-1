@@ -211,10 +211,11 @@ License: You must have a valid license purchased only from themeforest(the above
             <h4>User List</h4>
         </div>
         <div class="card-body">
-            <div class="ag-grid-btns d-flex justify-content-between flex-wrap mb-1">
-                <input type="text" class="ag-grid-filter form-control w-50 mr-1 mb-1 mb-sm-0" id="filter-text-box"
-                    placeholder="Search...." oninput="onFilterChanged()" />
-            </div>
+            <form action="{{ route('search') }}" method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Cari Nama Barang">
+                <button type="submit">Cari</button>
+            </form>
+                </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -265,7 +266,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
-      <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">Halaman Admin Kelompok-1  &copy; 2024<a class="text-bold-800 grey darken-2" href="{{ route('HalamanDev') }}" target="_blank">Kelompok 1,</a>Sangat Mudah</span><span class=  "float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
+      <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">Halaman Admin Kelompok-1  &copy; 2024<a class="text-bold-800 grey darken-2" href="{{ route('HalamanDev') }}" ;target="_blank">Kelompok 1,</a>Sangat Mudah</span><span class=  "float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
         <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
       </p>
     </footer>
