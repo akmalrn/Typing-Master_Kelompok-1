@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>User List - Vuexy - Bootstrap HTML admin template</title>
+    <title>Typing Master</title>
     <link rel="apple-touch-icon" href="{{ asset('typinglessontemplate/app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('typinglessontemplate/app-assets/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -49,6 +49,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/assets/css/style.css') }}">
     <!-- END: Custom CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         .user-dropdown {
         position: relative;
@@ -61,17 +62,17 @@ License: You must have a valid license purchased only from themeforest(the above
         font-weight: bold;
     }
     .arrow-down {
-        margin-left: 5px; /* Spasi antara nama dan panah */
         border: solid white;
         border-width: 0 2px 2px 0;
         display: inline-block;
+        margin-left: 5px;
         padding: 3px;
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
     }
 
     .dropdown-content {
-        display: none; /* Sembunyikan dropdown secara default */
+        display: none;
         position: absolute;
         background-color: #f1f1f1;
         min-width: 160px;
@@ -81,9 +82,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
     .dropdown-content a {
         color: black;
-        padding: 12px 16px;
         text-decoration: none;
         display: block;
+        padding: 12px 16px;
     }
 
     .dropdown-content a:hover {
@@ -94,6 +95,7 @@ License: You must have a valid license purchased only from themeforest(the above
     .user-dropdown:hover .dropdown-content {
         display: block;
     }
+
     </style>
 
   </head>
@@ -115,6 +117,23 @@ License: You must have a valid license purchased only from themeforest(the above
               </li>
               <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-dark navbar-shadow">
                 <div class="navbar-wrapper">
+                    @if (Auth::check())
+                    <li class="user-dropdown">
+                        <i class="fa-solid fa-user"></i>
+                            <span class="username">{{ Auth::user()->name }}</span>
+                            <span class="arrow-down"></span> <!-- Panah ke bawah -->
+                        <div class="dropdown-content">
+                            @if (Auth::user()->role == 'admin')
+                                <form id="logout-form-admin" action="{{ route('LogoutAdmin') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <a href="#" onclick="event.preventDefault(); if (confirm('Apakah Anda yakin ingin logout?')) { document.getElementById('logout-form-admin').submit(); }">
+                                    Logout
+                                </a>
+                            @endif
+                        </div>
+                    </li>
+                @endif
                     <div class="navbar-container content">
                         <div class="navbar-collapse" id="navbar-mobile">
                             <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
@@ -127,22 +146,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </ul>
                             </div>
                             <ul>
-                                @if (Auth::check())
-                                    <li class="user-dropdown">
-                                            <span class="username">{{ Auth::user()->name }}</span>
-                                            <span class="arrow-down"></span> <!-- Panah ke bawah -->
-                                        <div class="dropdown-content">
-                                            @if (Auth::user()->role == 'admin')
-                                                <form id="logout-form-admin" action="{{ route('LogoutAdmin') }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-                                                <a href="#" onclick="event.preventDefault(); if (confirm('Apakah Anda yakin ingin logout?')) { document.getElementById('logout-form-admin').submit(); }">
-                                                    Logout
-                                                </a>
-                                            @endif
-                                        </div>
-                                    </li>
-                                @endif
                             </ul>
                         </div>
                     </div>
@@ -212,8 +215,8 @@ License: You must have a valid license purchased only from themeforest(the above
             <h4>User List</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('search') }}" method="GET" class="search-form">
-                <input type="text" name="search" placeholder="Cari Nama Barang">
+            <form action="{{ route('searchUser') }}" method="GET" class="search-form">
+                <input type="text" name="searchUser" placeholder="Cari Nama User">
                 <button type="submit">Cari</button>
             </form><br>
             <div class="table-responsive">
@@ -309,4 +312,3 @@ License: You must have a valid license purchased only from themeforest(the above
             <p>Anda tidak memiliki izin untuk mengakses halaman ini.</p>
             <p>Silakan <a href="{{ route('HalamanDashboard') }}">Kembali </a>Tidak Akan Bisa Mengakses Halaman Ini Muehehehehe </p>
         @endif
-        @else

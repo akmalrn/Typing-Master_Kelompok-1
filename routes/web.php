@@ -8,6 +8,10 @@ use App\Http\Controllers\user_login;
 use App\Http\Controllers\admin_controller;
 use App\Http\Controllers\typing_lessons_controller;
 use App\Http\Controllers\search_controller;
+use App\Http\Controllers\games_controller;
+use App\Http\Controllers\user_achievements_controller;
+use App\Http\Controllers\user_profiles_controller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,7 +42,7 @@ Route::get('/welcome', function () {
 
 
 //Typing_Lessons_Controller
-
+Route::get('/user/HalamanTypingLessons/{id}', [typing_lessons_controller::class, 'HalamanTypingLessons'])->name('HalamanTypingLessons');
 Route::get('admin/create/CreateText', [typing_lessons_controller::class, 'HalamanCreateText'])->name('HalamanCreateText');
 Route::post('admin/create/CreateText', [typing_lessons_controller::class, 'CreateTypingLessons'])->name('CreateTypingLessons');
 Route::get('/admin/ubah/{id}/UpdateText', [typing_lessons_controller::class, 'HalamanEditText'])->name('HalamanEditText');
@@ -46,7 +50,7 @@ Route::put('/admin/ubah/{id}/UpdateText', [typing_lessons_controller::class, 'Up
 Route::delete('/admin/HalamanReadText/{id}', [typing_lessons_controller::class, 'DestroyText'])->name('DestroyText');
 
 //User_Achievements_Controller
-
+Route::get('/user/HalamanAchievements', [user_achievements_controller::class, 'HalamanAchievements'])->name('HalamanAchievements');
 
 //User_Controller
 Route::get('listuser', function () {
@@ -58,7 +62,6 @@ Route::get('user/Dashboard', [user_controller::class, 'HalamanDashboard'])->name
 Route::get('/admin/ubah/{id}/UpdateUser', [user_controller::class, 'HalamanEditUsers'])->name('HalamanEditUsers');
 Route::put('/admin/ubah/{id}/UpdateUser', [user_controller::class, 'UpdateUsers'])->name('UpdateUsers');
 Route::delete('/admin/HalamanAdmin/{id}', [user_controller::class, 'DestroyUsers'])->name('DestroyUsers');
-Route::get('user/HalamanGames', [user_controller::class, 'HalamanGames'])->name('HalamanGames');
 
 //User Login
 Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
@@ -83,4 +86,20 @@ Route::get('admin/HalamanReadText', [admin_controller::class, 'HalamanReadText']
 
 //middlewelare
 
-Route::get('/admin/HalamanAdmin/search', [search_controller::class, 'search'])->name('search');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
+    
+    // Tambahkan rute admin lainnya di sini
+});
+
+//SearchController
+Route::get('/admin/HalamanAdmin/searchUser', [search_controller::class, 'searchUser'])->name('searchUser');
+Route::get('/admin/HalamanAdmin/searchText', [search_controller::class, 'searchText'])->name('searchText');
+
+//GamesController
+Route::get('/user/HalamanGames', [games_controller::class, 'HalamanGames'])->name('HalamanGames');
+
+
+
+//UserProfile
+Route::get('/user/HalamanUser/{id}', [user_profiles_controller::class, 'HalamanUserProfile'])->name('HalamanUser');
