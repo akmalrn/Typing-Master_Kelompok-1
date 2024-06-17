@@ -98,20 +98,5 @@ class user_controller extends Controller
     {
         return view('user/HalamanGames');
     }
-    public function HalamanUser($id)
-    {
-        $user = User::find($id);
 
-    if ($user && $user->role == 'user') {
-        // Lakukan sesuatu dengan ID pengguna yang login
-        return view('user/UserProfiles', compact('user'));
-    } else {
-        // Jika bukan admin atau tidak ditemukan, redirect atau berikan respons lain
-        return redirect()->route('home')->with('error', 'Unauthorized access');
-    }
-    }
-    public function HalamanAchievements()
-    {
-        return view('user/UserAchievements');
-    }
 }

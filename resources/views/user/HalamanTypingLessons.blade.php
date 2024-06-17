@@ -3,724 +3,189 @@
 
 <head>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-:root {
-    --light: #f6f6f9;
-    --primary: #1976D2;
-    --light-primary: #CFE8FF;
-    --grey: #eee;
-    --dark-grey: #AAAAAA;
-    --dark: #363949;
-    --danger: #D32F2F;
-	--light-danger: #FECDD3;
-    --warning: #FBC02D;
-    --light-warning: #FFF2C6;
-    --success: #388E3C;
-    --light-success: #BBF7D0;
+.typing-lesson-container {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-.bx{
-    font-size: 1.7rem;
-}
-
-a{
-    text-decoration: none;
-}
-
-li{
-    list-style: none;
-}
-
-html{
-    overflow-x: hidden;
-}
-
-body.dark{
-    --light: #181a1e;
-    --grey: #25252c;
-    --dark: #fbfbfb
-}
-
-body{
-    background: var(--grey);
-    overflow-x: hidden;
-}
-
-.sidebar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: var(--light);
-    width: 230px;
-    height: 100%;
-    z-index: 2000;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    transition: all 0.3s ease;
-}
-
-.sidebar::-webkit-scrollbar{
-    display: none;
-}
-
-.sidebar.close{
-    width: 60px;
-}
-
-.sidebar .logo{
-    font-size: 24px;
-    font-weight: 700;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    color: var(--primary);
-    z-index: 500;
-    padding-bottom: 20px;
-    box-sizing: content-box;
-}
-
-.sidebar .logo .logo-name span{
-    color: var(--dark);
-}
-
-.sidebar .logo .bx{
-    min-width: 60px;
-    display: flex;
-    justify-content: center;
-    font-size: 2.2rem;
-}
-
-.sidebar .side-menu{
-    width: 100%;
-    margin-top: 48px;
-}
-
-.sidebar .side-menu li{
-    height: 48px;
-    background: transparent;
-    margin-left: 6px;
-    border-radius: 48px 0 0 48px;
-    padding: 4px;
-}
-
-.sidebar .side-menu li.active{
-    background: var(--grey);
-    position: relative;
-}
-
-.sidebar .side-menu li.active::before{
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    top: -40px;
-    right: 0;
-    box-shadow: 20px 20px 0 var(--grey);
-    z-index: -1;
-}
-
-.sidebar .side-menu li.active::after{
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    bottom: -40px;
-    right: 0;
-    box-shadow: 20px -20px 0 var(--grey);
-    z-index: -1;
-}
-
-.sidebar .side-menu li a{
-    width: 100%;
-    height: 100%;
-    background: var(--light);
-    display: flex;
-    align-items: center;
-    border-radius: 48px;
-    font-size: 16px;
-    color: var(--dark);
-    white-space: nowrap;
-    overflow-x: hidden;
-    transition: all 0.3s ease;
-}
-
-.sidebar .side-menu li.active a{
-    color: var(--success);
-}
-
-.sidebar.close .side-menu li a{
-    width: calc(48px - (4px * 2));
-    transition: all 0.3s ease;
-}
-
-.sidebar .side-menu li a .bx{
-    min-width: calc(60px - ((4px + 6px) * 2));
-    display: flex;
-    font-size: 1.6rem;
-    justify-content: center;
-}
-
-.sidebar .side-menu li a.logout{
-    color: var(--danger);
-}
-
-.content{
-    position: relative;
-    width: calc(100% - 230px);
-    left: 230px;
-    transition: all 0.3s ease;
-}
-
-.sidebar.close~.content{
-    width: calc(100% - 60px);
-    left: 60px;
-}
-
-.content nav{
-    height: 56px;
-    background: var(--light);
-    padding: 0 24px 0 0;
-    display: flex;
-    align-items: center;
-    grid-gap: 24px;
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
-
-.content nav::before{
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    bottom: -40px;
-    left: 0;
-    border-radius: 50%;
-    box-shadow: -20px -20px 0 var(--light);
-}
-
-.content nav a{
-    color: var(--dark);
-}
-
-.content nav .bx.bx-menu{
-    cursor: pointer;
-    color: var(--dark);
-}
-
-.content nav form{
-    max-width: 400px;
-    width: 100%;
-    margin-right: auto;
-}
-
-.content nav form .form-input{
-    display: flex;
-    align-items: center;
-    height: 36px;
-}
-
-.content nav form .form-input input{
-    flex-grow: 1;
-    padding: 0 16px;
-    height: 100%;
-    border: none;
-    background: var(--grey);
-    border-radius: 36px 0 0 36px;
-    outline: none;
-    width: 100%;
-    color: var(--dark);
-}
-
-.content nav form .form-input button{
-    width: 80px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--primary);
-    color: var(--light);
+.lesson-content {
     font-size: 18px;
-    border: none;
-    outline: none;
-    border-radius: 0 36px 36px 0;
-    cursor: pointer;
-}
-
-.content nav .notif{
-    font-size: 20px;
-    position: relative;
-}
-
-.content nav .notif .count{
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 20px;
-    height: 20px;
-    background: var(--danger);
-    border-radius: 50%;
-    color: var(--light);
-    border: 2px solid var(--light);
-    font-weight: 700;
-    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    white-space: pre-wrap;
 }
 
-.content nav .profile img{
-    width: 36px;
-    height: 36px;
-    object-fit: cover;
-    border-radius: 50%;
+.typing-lesson-container .correct {
+    color: green;
 }
 
-.content nav .theme-toggle{
-    display: block;
-    min-width: 50px;
-    height: 25px;
-    background: var(--grey);
-    cursor: pointer;
-    position: relative;
-    border-radius: 25px;
+.typing-lesson-container .incorrect {
+    color: red;
 }
 
-.content nav .theme-toggle::before{
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    bottom: 2px;
-    width: calc(25px - 4px);
-    background: var(--primary);
-    border-radius: 50%;
-    transition: all 0.3s ease;
+.typing-lesson-container .remaining {
+    color: gray;
 }
 
-.content nav #theme-toggle:checked+.theme-toggle::before{
-    left: calc(100% - (25px - 4px) - 2px);
+.typing-lesson-container .current-block {
+    font-weight: bold;
+    color: black;
 }
 
-.content main{
+#typing-input {
     width: 100%;
-    padding: 36px 24px;
-    max-height: calc(100vh - 56px);
-}
-
-.content main .header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    grid-gap: 16px;
-    flex-wrap: wrap;
-}
-
-.content main .header .left h1{
-    font-size: 36px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--dark);
-}
-
-.content main .header .left .breadcrumb{
-    display: flex;
-    align-items: center;
-    grid-gap: 16px;
-}
-
-.content main .header .left .breadcrumb li{
-    color: var(--dark);
-}
-
-.content main .header .left .breadcrumb li a{
-    color: var(--dark-grey);
-    pointer-events: none;
-}
-
-.content main .header .left .breadcrumb li a.active{
-    color: var(--primary);
-    pointer-events: none;
-}
-
-.content main .header .report{
-    height: 36px;
-    padding: 0 16px;
-    border-radius: 36px;
-    background: var(--primary);
-    color: var(--light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-gap: 10px;
-    font-weight: 500;
-}
-
-.content main .insights{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    grid-gap: 24px;
-    margin-top: 36px;
-}
-
-.content main .insights li{
-    padding: 24px;
-    background: var(--light);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    grid-gap: 24px;
-    cursor: pointer;
-}
-
-.content main .insights li .bx{
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    font-size: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.content main .insights li:nth-child(1) .bx{
-    background: var(--light-primary);
-    color: var(--primary);
-}
-
-.content main .insights li:nth-child(2) .bx{
-    background: var(--light-warning);
-    color: var(--warning);
-}
-
-.content main .insights li:nth-child(3) .bx{
-    background: var(--light-success);
-    color: var(--success);
-}
-
-.content main .insights li:nth-child(4) .bx{
-    background: var(--light-danger);
-    color: var(--danger);
-}
-
-.content main .insights li .info h3{
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--dark);
-}
-
-.content main .insights li .info p{
-    color: var(--dark);
-}
-
-.content main .bottom-data{
-    display: flex;
-    flex-wrap: wrap;
-    grid-gap: 24px;
-    margin-top: 24px;
-    width: 100%;
-    color: var(--dark);
-}
-
-.content main .bottom-data>div{
-    border-radius: 20px;
-    background: var(--light);
-    padding: 24px;
-    overflow-x: auto;
-}
-
-.content main .bottom-data .header{
-    display: flex;
-    align-items: center;
-    grid-gap: 16px;
-    margin-bottom: 24px;
-}
-
-.content main .bottom-data .header h3{
-    margin-right: auto;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.content main .bottom-data .header .bx{
-    cursor: pointer;
-}
-
-.content main .bottom-data .orders{
-    flex-grow: 1;
-    flex-basis: 500px;
-}
-
-.content main .bottom-data .orders table{
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.content main .bottom-data .orders table th{
-    padding-bottom: 12px;
-    font-size: 13px;
-    text-align: left;
-    border-bottom: 1px solid var(--grey);
-}
-
-.content main .bottom-data .orders table td{
-    padding: 16px 0;
-}
-
-.content main .bottom-data .orders table tr td:first-child{
-    display: flex;
-    align-items: center;
-    grid-gap: 12px;
-    padding-left: 6px;
-}
-
-.content main .bottom-data .orders table td img{
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.content main .bottom-data .orders table tbody tr{
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.content main .bottom-data .orders table tbody tr:hover{
-    background: var(--grey);
-}
-
-.content main .bottom-data .orders table tr td .status{
-    font-size: 10px;
-    padding: 6px 16px;
-    color: var(--light);
-    border-radius: 20px;
-    font-weight: 700;
-}
-
-.content main .bottom-data .orders table tr td .status.completed{
-    background: var(--success);
-}
-
-.content main .bottom-data .orders table tr td .status.process{
-    background: var(--primary);
-}
-
-.content main .bottom-data .orders table tr td .status.pending{
-    background: var(--warning);
-}
-
-.content main .bottom-data .reminders{
-    flex-grow: 1;
-    flex-basis: 300px;
-}
-
-.content main .bottom-data .reminders .task-list{
-    width: 100%;
-}
-
-.content main .bottom-data .reminders .task-list li{
-    width: 100%;
-    margin-bottom: 16px;
-    background: var(--grey);
-    padding: 14px 10px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.content main .bottom-data .reminders .task-list li .task-title{
-    display: flex;
-    align-items: center;
-}
-
-.content main .bottom-data .reminders .task-list li .task-title p{
-    margin-left: 6px;
-}
-
-.content main .bottom-data .reminders .task-list li .bx{
-  cursor: pointer;  
-}
-
-.content main .bottom-data .reminders .task-list li.completed{
-    border-left: 10px solid var(--success);
-}
-
-.content main .bottom-data .reminders .task-list li.not-completed{
-    border-left: 10px solid var(--danger);
-}
-
-.content main .bottom-data .reminders .task-list li:last-child{
-   margin-bottom: 0;
-}
-.content main .welcome {
-    background: var(--light);
-    border-radius: 20px;
-    padding: 24px;
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.content main .welcome .user-info {
-    flex-grow: 1;
-}
-
-.content main .welcome .cards {
-    display: flex;
-    grid-gap: 24px;
-}
-
-.content main .welcome .card {
-    background: var(--grey);
-    padding: 16px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    grid-gap: 16px;
-    width: 220px;
-}
-
-.content main .welcome .card .icon {
-    background: var(--light);
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-}
-
-.content main .welcome .card .info h3 {
     font-size: 18px;
-    font-weight: 600;
-    color: var(--dark);
+    line-height: 1.6;
 }
 
-.content main .welcome .card .info p {
-    color: var(--dark-grey);
-    font-size: 14px;
+#start-button {
+    display: none; /* Initially hidden */
 }
 
-@media screen and (max-width: 768px) {
-    .sidebar{
-        width: 200px;
-    }
-
-    .content{
-        width: calc(100% - 60px);
-        left: 200px;
-    }
-
+.input-typing {
+    display: none; /* Initially hidden */
 }
 
-@media screen and (max-width: 576px) {
-    
-    .content nav form .form-input input{
-        display: none;
-    }
-
-    .content nav form .form-input button{
-        width: auto;
-        height: auto;
-        background: transparent;
-        color: var(--dark);
-        border-radius: none;
-    }
-
-    .content nav form.show .form-input input{
-        display: block;
-        width: 100%;
-    }
-
-    .content nav form.show .form-input button{
-        width: 36px;
-        height: 100%;
-        color: var(--light);
-        background: var(--danger);
-        border-radius: 0 36px 36px 0;
-    }
-
-    .content nav form.show~.notif, .content nav form.show~.profile{
-        display: none;
-    }
-
-    .content main .insights {
-        grid-template-columns: 1fr;
-    }
-
-    .content main .bottom-data .header{
-        min-width: 340px;
-    }
-
-    .content main .bottom-data .orders table{
-        min-width: 340px;
-    }
-
-    .content main .bottom-data .reminders .task-list{
-        min-width: 340px;
-    }
-}
-/* Adjusted styles for sidebar icons */
-.sidebar .side-menu li a i {
-    min-width: calc(60px - ((4px + 6px) * 2)); /* Adjusted width based on existing styles */
-    display: flex;
-    justify-content: center;
-    font-size: 1.5rem;
-}
-
-.sidebar .side-menu li a i.fa-gamepad {
-    min-width: calc(60px - ((4px + 6px) * 2)); /* Adjusted width for specific icon */
-    display: flex;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--dark); /* Custom color if needed */
-}
-body {
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-        .typing-lesson {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 18px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            white-space: pre-wrap;
-        }
-        .input-typing {
-            width: 100%;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 18px;
-            margin-top: 20px;
-        }
   </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <title>Responsive Dashboard Design #2 | WikraType</title>
+    <script>
+       document.addEventListener('DOMContentLoaded', function () {
+    const lessonContentDiv = document.querySelector('#lesson-content');
+    const inputTyping = document.querySelector('#typing-input');
+    const startButton = document.getElementById('start-button');
+
+    // Ambil teks dari konten pelajaran dan buat array dari kata
+    const lessonContent = `{!! addslashes($typing_lessons->lesson_content) !!}`;
+
+    // Fungsi untuk memecah teks menjadi baris-baris (maksimal 2 baris)
+    function splitIntoLines(text) {
+        const lines = text.split('\n').slice(0, 2); // Ambil maksimal 2 baris
+        return lines.join('\n'); // Gabungkan kembali menjadi teks
+    }
+
+    // Memisahkan konten pelajaran menjadi maksimal 2 baris
+    const lessonLines = splitIntoLines(lessonContent);
+
+    // Menyimpan kata-kata dari 2 baris konten pelajaran
+    const words = lessonLines.split(/\s+/);
+    const blocks = [];
+    let currentBlockIndex = 0;
+
+    // Fungsi untuk membagi teks menjadi blok-blok kata, masing-masing berisi enam kata
+    function splitIntoWordBlocks(wordsPerBlock) {
+        for (let i = 0; i < words.length; i += wordsPerBlock) {
+            blocks.push(words.slice(i, i + wordsPerBlock).join(' '));
+        }
+    }
+
+    splitIntoWordBlocks(6); // Split teks menjadi blok-blok kata dengan 6 kata per blok
+
+    let startTime;
+    let totalCharactersTyped = 0;
+
+    // Fungsi untuk memperbarui tampilan konten pelajaran
+    function updateLessonContent() {
+        lessonContentDiv.innerHTML = '';
+
+        // Menampilkan blok yang sedang ditulis
+        const currentBlock = blocks[currentBlockIndex];
+        const span = document.createElement('span');
+        span.textContent = currentBlock;
+        span.classList.add('current-block');
+        lessonContentDiv.appendChild(span);
+        lessonContentDiv.appendChild(document.createElement('br'));
+    }
+
+    // Mulai pelajaran saat tombol "Start Lesson" diklik
+    startButton.addEventListener('click', function() {
+        startButton.style.display = 'none'; // Sembunyikan tombol setelah diklik
+        inputTyping.style.display = 'block'; // Tampilkan area input untuk mengetik
+        inputTyping.focus(); // Fokus pada area input
+        startLesson();
+    });
+
+    function startLesson() {
+        currentBlockIndex = 0; // Reset ke blok pertama
+        startTime = new Date().getTime(); // Catat waktu mulai
+        inputTyping.focus(); // Fokus pada area input
+        inputTyping.addEventListener('input', handleTyping); // Tambahkan event listener untuk mengetik
+        updateLessonContent(); // Perbarui tampilan dengan blok pertama
+    }
+
+    function handleTyping() {
+        const typedText = inputTyping.value; // Teks yang diketik pengguna
+
+        // Dapatkan blok saat ini
+        const currentBlock = blocks[currentBlockIndex];
+
+        let displayContent = '';
+
+        // Iterasi melalui setiap karakter di blok saat ini
+        for (let i = 0; i < currentBlock.length; i++) {
+            if (i < typedText.length) { // Jika huruf telah diketik atau sedang diketik
+                if (typedText[i] === currentBlock[i]) {
+                    displayContent += `<span class="correct">${currentBlock[i]}</span>`;
+                } else {
+                    displayContent += `<span class="incorrect">${currentBlock[i]}</span>`;
+                }
+            } else { // Huruf yang belum diketik
+                displayContent += `<span class="remaining">${currentBlock[i]}</span>`;
+            }
+        }
+
+        lessonContentDiv.querySelector('.current-block').innerHTML = displayContent;
+
+        // Jika pengguna menyelesaikan satu baris
+        if (typedText.trim() === currentBlock.trim()) {
+            if (currentBlockIndex < blocks.length - 1) {
+                currentBlockIndex++; // Pindah ke blok berikutnya
+                inputTyping.value = ''; // Reset area input
+                updateLessonContent(); // Perbarui tampilan dengan blok berikutnya
+            } else {
+                finishLesson(); // Selesaikan pelajaran jika sudah mencapai blok terakhir
+            }
+        }
+    }
+
+    function finishLesson() {
+        const endTime = new Date().getTime();
+        const durationInSeconds = (endTime - startTime) / 1000;
+        const charactersPerMinute = Math.floor(totalCharactersTyped / durationInSeconds * 60);
+        alert(`CPM: ${charactersPerMinute}`);
+        resetLesson();
+    }
+
+    function resetLesson() {
+        // Reset tampilan dan persiapan untuk pelajaran berikutnya
+        lessonContentDiv.innerHTML = '';
+        splitIntoWordBlocks(6); // Kembali membagi teks menjadi blok-blok kata
+        currentBlockIndex = 0;
+        inputTyping.value = '';
+        totalCharactersTyped = 0;
+        startButton.style.display = 'block'; // Tampilkan kembali tombol untuk memulai pelajaran baru
+        inputTyping.style.display = 'none'; // Sembunyikan area input
+        inputTyping.removeEventListener('input', handleTyping); // Hapus event listener untuk input
+    }
+
+    // Awalnya sembunyikan input area dan tampilkan tombol "Start Lesson"
+    inputTyping.style.display = 'none';
+    startButton.style.display = 'block';
+});
+
+    </script>
 </head>
-
 <body>
-
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="#" class="logo">
@@ -728,9 +193,13 @@ body {
             <div class="logo-name"><span>Wikra</span>Type</div>
         </a>
         <ul class="side-menu">
-            <li class="active"><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li class="#"><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
-            <li class="#"><a href="#"><i class='bx bx-analyse'></i>Start Typing</a></li>
+            @foreach($typing_lessons as $lesson)
+            @if(isset($lesson->id) && $lesson->id == 1)
+            <li><a href="{{ route('HalamanTypingLessons', $lesson->id) }}"><i class='bx bx-analyse'></i>Start Lesson {{ $lesson->id }}</a></li>
+            @endif
+            @endforeach
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
             <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
@@ -774,19 +243,24 @@ body {
               </div>
           </div>
           @if (Auth::user())
-          <div class="container">
-            <h1 class="mt-5">Typing Lesson: {{ $typing_lessons->lesson_title }}</h1>
-            <p>Difficulty: {{ $typing_lessons->difficulty_level }}</p>
-            <div class="typing-lesson">
-                {{ $typing_lessons->lesson_content }}
+          <div class="typing-lesson-container">
+            <div class="user-info">
+                <span class="username">Selamat Datang {{ Auth::user()->name }},</span>
+                <p>Di Halaman Typing Lessons.</p>
             </div>
-            <textarea class="form-control input-typing" rows="5" placeholder="Start typing here..."></textarea>
+    
+            <!-- Displaying lesson content here -->
+            <div id="lesson-content" class="lesson-content">
+                <!-- Lesson content will be dynamically inserted here -->
+            </div>
+    
+            <!-- Input area for typing, positioned together with lesson content -->
+            <textarea id="typing-input" class="form-control input-typing" rows="3" placeholder="Start typing here..."></textarea>
+    
+            <button id="start-button" class="btn btn-primary mt-3">Start Lesson</button>
         </div>
       </main>
-      
-
     </div>
-
     <script>
       const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
 
