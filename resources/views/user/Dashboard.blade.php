@@ -27,34 +27,7 @@
               <div class="dropdown-content">
                   <a href="#">Latihan</a>
                   <a href="#">Test Kecepatan</a>
-                  <a href="{{ route('HalamanGames') }}">Games</a>
-              <a href="#">
-                  <i class="fas fa-trophy"></i>
-                  <span class="nav-item">Achievements</span>
-              </a>
-          </li>          
-            <li><a href="{{ route('HalamanGames') }}">
-              <i class="fas fa-gamepad"></i>
-              <span class="nav-item">Game</span>
-            </a></li>
-            <li><a href="">
-              <i class="fas fa-cog"></i>
-              <span class="nav-item">Settings</span>
-            </a></li>
-            <li><a href="">
-              <i class="fas fa-question-circle"></i>
-              <span class="nav-item">Help</span>
-            </a></li>
-            <li><a href="{{ route('LogoutUser') }}" class="logout">
-              <i class="fas fa-sign-out-alt"></i>
-              <span class="nav-item" onclick="return confirm('Are you sure you want to logout, {{ Auth::user()->name }}?')">Log out</span>
-            </a></li>
-          </ul>
-        </nav>
-        <section class="main">
-          <div class="main-top">
-            <h1>Typing Master</h1>
-            <i class="fas fa-user-cog"></i>
+                  <a href="{{ route('HalamanGames') }}">Games</a>   
           </div>
         </section>
       </div>
