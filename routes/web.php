@@ -8,6 +8,7 @@ use App\Http\Controllers\user_login;
 use App\Http\Controllers\admin_controller;
 use App\Http\Controllers\typing_lessons_controller;
 use App\Http\Controllers\search_controller;
+use App\Http\Controllers\games_controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,8 +26,6 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('welcome'); // Sesuaikan dengan tampilan atau controller yang sesuai
 })->name('Welcome');
-
-
 //Achievements_Controller
 
 
@@ -60,7 +59,7 @@ Route::get('user/Dashboard', [user_controller::class, 'HalamanDashboard'])->name
 Route::get('/admin/ubah/{id}/UpdateUser', [user_controller::class, 'HalamanEditUsers'])->name('HalamanEditUsers');
 Route::put('/admin/ubah/{id}/UpdateUser', [user_controller::class, 'UpdateUsers'])->name('UpdateUsers');
 Route::delete('/admin/HalamanAdmin/{id}', [user_controller::class, 'DestroyUsers'])->name('DestroyUsers');
-Route::get('user/HalamanGames', [user_controller::class, 'HalamanGames'])->name('HalamanGames');
+
 
 //User Login
 Route::post('/welcome/login', [user_login::class, 'LoginUser'])->name('LoginUser');
@@ -85,5 +84,19 @@ Route::get('admin/HalamanReadText', [admin_controller::class, 'HalamanReadText']
 
 //middlewelare
 
-Route::get('/admin/HalamanAdmin/searchUser', [search_controller::class, 'searchUser'])->name('searchUser');
-Route::get('/admin/HalamanReadText/search', [search_controller::class, 'searchText'])->name('searchText');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/HalamanAdmin', [admin_controller::class, 'HalamanAdmin'])->name('HalamanAdmin');
+    
+    // Tambahkan rute admin lainnya di sini
+});
+
+
+Route::get('/admin/HalamanAdmin/search', [search_controller::class, 'search'])->name('search');
+
+
+//GamesController
+Route::get('/user/HalamanGames', [games_controller::class, 'HalamanGames'])->name('HalamanGames');
+//UserController
+Route::get('/user/HalamanUser', [user_controller::class, 'HalamanUser'])->name('HalamanUser');
+//AchievementsController
+Route::get('/user/HalamanAchievements', [user_controller::class, 'HalamanAchievements'])->name('HalamanAchievements');

@@ -1,286 +1,854 @@
 <!DOCTYPE html>
-<!--
-Template Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-Author: PixInvent
-Website: http://www.pixinvent.com/
-Contact: hello@pixinvent.com
-Follow: www.twitter.com/pixinvents
-Like: www.facebook.com/pixinvents
-Purchase: https://1.envato.market/vuexy_admin
-Renew Support: https://1.envato.market/vuexy_admin
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+<html lang="en">
 
--->
-<html class="loading" lang="en" data-textdirection="ltr">
-  <!-- BEGIN: Head-->
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
-    <title>Typing Master</title>
-    <link rel="apple-touch-icon" href="{{ asset('typinglessontemplate/app-assets/images/ico/apple-icon-120.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('typinglessontemplate/app-assets/images/ico/favicon.ico') }}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+<head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-    <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/vendors/css/vendors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/vendors/css/tables/ag-grid/ag-grid.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/vendors/css/tables/ag-grid/ag-theme-material.css') }}">
-    <!-- END: Vendor CSS-->
+:root {
+    --light: #f6f6f9;
+    --primary: #1976D2;
+    --light-primary: #CFE8FF;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #363949;
+    --danger: #D32F2F;
+	--light-danger: #FECDD3;
+    --warning: #FBC02D;
+    --light-warning: #FFF2C6;
+    --success: #388E3C;
+    --light-success: #BBF7D0;
+}
 
-    <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/bootstrap-extended.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/colors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/components.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/themes/dark-layout.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/themes/semi-dark-layout.min.css') }}">
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-    <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/core/menu/menu-types/vertical-menu.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/core/colors/palette-gradient.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/pages/app-user.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/app-assets/css/pages/aggrid.min.css') }}">
-    <!-- END: Page CSS-->
+.bx{
+    font-size: 1.7rem;
+}
 
-    <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('typinglessontemplate/assets/css/style.css') }}">
-    <!-- END: Custom CSS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        .user-dropdown {
-        position: relative;
-        display: inline-block;
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+html{
+    overflow-x: hidden;
+}
+
+body.dark{
+    --light: #181a1e;
+    --grey: #25252c;
+    --dark: #fbfbfb
+}
+
+body{
+    background: var(--grey);
+    overflow-x: hidden;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--light);
+    width: 230px;
+    height: 100%;
+    z-index: 2000;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    transition: all 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar{
+    display: none;
+}
+
+.sidebar.close{
+    width: 60px;
+}
+
+.sidebar .logo{
+    font-size: 24px;
+    font-weight: 700;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    color: var(--primary);
+    z-index: 500;
+    padding-bottom: 20px;
+    box-sizing: content-box;
+}
+
+.sidebar .logo .logo-name span{
+    color: var(--dark);
+}
+
+.sidebar .logo .bx{
+    min-width: 60px;
+    display: flex;
+    justify-content: center;
+    font-size: 2.2rem;
+}
+
+.sidebar .side-menu{
+    width: 100%;
+    margin-top: 48px;
+}
+
+.sidebar .side-menu li{
+    height: 48px;
+    background: transparent;
+    margin-left: 6px;
+    border-radius: 48px 0 0 48px;
+    padding: 4px;
+}
+
+.sidebar .side-menu li.active{
+    background: var(--grey);
+    position: relative;
+}
+
+.sidebar .side-menu li.active::before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: -40px;
+    right: 0;
+    box-shadow: 20px 20px 0 var(--grey);
+    z-index: -1;
+}
+
+.sidebar .side-menu li.active::after{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: -40px;
+    right: 0;
+    box-shadow: 20px -20px 0 var(--grey);
+    z-index: -1;
+}
+
+.sidebar .side-menu li a{
+    width: 100%;
+    height: 100%;
+    background: var(--light);
+    display: flex;
+    align-items: center;
+    border-radius: 48px;
+    font-size: 16px;
+    color: var(--dark);
+    white-space: nowrap;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+}
+
+.sidebar .side-menu li.active a{
+    color: var(--success);
+}
+
+.sidebar.close .side-menu li a{
+    width: calc(48px - (4px * 2));
+    transition: all 0.3s ease;
+}
+
+.sidebar .side-menu li a .bx{
+    min-width: calc(60px - ((4px + 6px) * 2));
+    display: flex;
+    font-size: 1.6rem;
+    justify-content: center;
+}
+
+.sidebar .side-menu li a.logout{
+    color: var(--danger);
+}
+
+.content{
+    position: relative;
+    width: calc(100% - 230px);
+    left: 230px;
+    transition: all 0.3s ease;
+}
+
+.sidebar.close~.content{
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.content nav{
+    height: 56px;
+    background: var(--light);
+    padding: 0 24px 0 0;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.content nav::before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: -40px;
+    left: 0;
+    border-radius: 50%;
+    box-shadow: -20px -20px 0 var(--light);
+}
+
+.content nav a{
+    color: var(--dark);
+}
+
+.content nav .bx.bx-menu{
+    cursor: pointer;
+    color: var(--dark);
+}
+
+.content nav form{
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+}
+
+.content nav form .form-input{
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+
+.content nav form .form-input input{
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background: var(--grey);
+    border-radius: 36px 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: var(--dark);
+}
+
+.content nav form .form-input button{
+    width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary);
+    color: var(--light);
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+}
+
+.content nav .notif{
+    font-size: 20px;
+    position: relative;
+}
+
+.content nav .notif .count{
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    background: var(--danger);
+    border-radius: 50%;
+    color: var(--light);
+    border: 2px solid var(--light);
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content nav .profile img{
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.content nav .theme-toggle{
+    display: block;
+    min-width: 50px;
+    height: 25px;
+    background: var(--grey);
+    cursor: pointer;
+    position: relative;
+    border-radius: 25px;
+}
+
+.content nav .theme-toggle::before{
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: calc(25px - 4px);
+    background: var(--primary);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.content nav #theme-toggle:checked+.theme-toggle::before{
+    left: calc(100% - (25px - 4px) - 2px);
+}
+
+.content main{
+    width: 100%;
+    padding: 36px 24px;
+    max-height: calc(100vh - 56px);
+}
+
+.content main .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 16px;
+    flex-wrap: wrap;
+}
+
+.content main .header .left h1{
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.content main .header .left .breadcrumb{
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+}
+
+.content main .header .left .breadcrumb li{
+    color: var(--dark);
+}
+
+.content main .header .left .breadcrumb li a{
+    color: var(--dark-grey);
+    pointer-events: none;
+}
+
+.content main .header .left .breadcrumb li a.active{
+    color: var(--primary);
+    pointer-events: none;
+}
+
+.content main .header .report{
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 36px;
+    background: var(--primary);
+    color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 10px;
+    font-weight: 500;
+}
+
+.content main .insights{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 24px;
+    margin-top: 36px;
+}
+
+.content main .insights li{
+    padding: 24px;
+    background: var(--light);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    cursor: pointer;
+}
+
+.content main .insights li .bx{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content main .insights li:nth-child(1) .bx{
+    background: var(--light-primary);
+    color: var(--primary);
+}
+
+.content main .insights li:nth-child(2) .bx{
+    background: var(--light-warning);
+    color: var(--warning);
+}
+
+.content main .insights li:nth-child(3) .bx{
+    background: var(--light-success);
+    color: var(--success);
+}
+
+.content main .insights li:nth-child(4) .bx{
+    background: var(--light-danger);
+    color: var(--danger);
+}
+
+.content main .insights li .info h3{
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.content main .insights li .info p{
+    color: var(--dark);
+}
+
+.content main .bottom-data{
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 24px;
+    margin-top: 24px;
+    width: 100%;
+    color: var(--dark);
+}
+
+.content main .bottom-data>div{
+    border-radius: 20px;
+    background: var(--light);
+    padding: 24px;
+    overflow-x: auto;
+}
+
+.content main .bottom-data .header{
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    margin-bottom: 24px;
+}
+
+.content main .bottom-data .header h3{
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.content main .bottom-data .header .bx{
+    cursor: pointer;
+}
+
+.content main .bottom-data .orders{
+    flex-grow: 1;
+    flex-basis: 500px;
+}
+
+.content main .bottom-data .orders table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content main .bottom-data .orders table th{
+    padding-bottom: 12px;
+    font-size: 13px;
+    text-align: left;
+    border-bottom: 1px solid var(--grey);
+}
+
+.content main .bottom-data .orders table td{
+    padding: 16px 0;
+}
+
+.content main .bottom-data .orders table tr td:first-child{
+    display: flex;
+    align-items: center;
+    grid-gap: 12px;
+    padding-left: 6px;
+}
+
+.content main .bottom-data .orders table td img{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.content main .bottom-data .orders table tbody tr{
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.content main .bottom-data .orders table tbody tr:hover{
+    background: var(--grey);
+}
+
+.content main .bottom-data .orders table tr td .status{
+    font-size: 10px;
+    padding: 6px 16px;
+    color: var(--light);
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.content main .bottom-data .orders table tr td .status.completed{
+    background: var(--success);
+}
+
+.content main .bottom-data .orders table tr td .status.process{
+    background: var(--primary);
+}
+
+.content main .bottom-data .orders table tr td .status.pending{
+    background: var(--warning);
+}
+
+.content main .bottom-data .reminders{
+    flex-grow: 1;
+    flex-basis: 300px;
+}
+
+.content main .bottom-data .reminders .task-list{
+    width: 100%;
+}
+
+.content main .bottom-data .reminders .task-list li{
+    width: 100%;
+    margin-bottom: 16px;
+    background: var(--grey);
+    padding: 14px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content main .bottom-data .reminders .task-list li .task-title{
+    display: flex;
+    align-items: center;
+}
+
+.content main .bottom-data .reminders .task-list li .task-title p{
+    margin-left: 6px;
+}
+
+.content main .bottom-data .reminders .task-list li .bx{
+  cursor: pointer;  
+}
+
+.content main .bottom-data .reminders .task-list li.completed{
+    border-left: 10px solid var(--success);
+}
+
+.content main .bottom-data .reminders .task-list li.not-completed{
+    border-left: 10px solid var(--danger);
+}
+
+.content main .bottom-data .reminders .task-list li:last-child{
+   margin-bottom: 0;
+}
+.content main .welcome {
+    background: var(--light);
+    border-radius: 20px;
+    padding: 24px;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content main .welcome .user-info {
+    flex-grow: 1;
+}
+
+.content main .welcome .cards {
+    display: flex;
+    grid-gap: 24px;
+}
+
+.content main .welcome .card {
+    background: var(--grey);
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    width: 220px;
+}
+
+.content main .welcome .card .icon {
+    background: var(--light);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.content main .welcome .card .info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.content main .welcome .card .info p {
+    color: var(--dark-grey);
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar{
+        width: 200px;
     }
 
-    .username {
-        cursor: pointer;
-        color: white; /* Warna teks */
-        font-weight: bold;
-    }
-    .arrow-down {
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        margin-left: 5px;
-        padding: 3px;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
+    .content{
+        width: calc(100% - 60px);
+        left: 200px;
     }
 
-    .dropdown-content {
+}
+
+@media screen and (max-width: 576px) {
+    
+    .content nav form .form-input input{
         display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
     }
 
-    .dropdown-content a {
-        color: black;
-        text-decoration: none;
+    .content nav form .form-input button{
+        width: auto;
+        height: auto;
+        background: transparent;
+        color: var(--dark);
+        border-radius: none;
+    }
+
+    .content nav form.show .form-input input{
         display: block;
-        padding: 12px 16px;
+        width: 100%;
     }
 
-    .dropdown-content a:hover {
-        background-color: #ddd;
+    .content nav form.show .form-input button{
+        width: 36px;
+        height: 100%;
+        color: var(--light);
+        background: var(--danger);
+        border-radius: 0 36px 36px 0;
     }
-    /* Tampilkan dropdown saat di-hover */
 
-    .user-dropdown:hover .dropdown-content {
-        display: block;
+    .content nav form.show~.notif, .content nav form.show~.profile{
+        display: none;
     }
 
-    </style>
+    .content main .insights {
+        grid-template-columns: 1fr;
+    }
 
-  </head>
-  <!-- END: Head-->
+    .content main .bottom-data .header{
+        min-width: 340px;
+    }
 
-  <!-- BEGIN: Body-->
-  <body class="vertical-layout vertical-menu-modern dark-layout 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="dark-layout">
+    .content main .bottom-data .orders table{
+        min-width: 340px;
+    }
 
-    @if (Auth::user()->role === 'user')
-    <!-- BEGIN: Header-->
-    <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-dark navbar-shadow">
-      <div class="navbar-wrapper">
-        <div class="navbar-container content">
-          <div class="navbar-collapse" id="navbar-mobile">
-            <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-              <ul class="nav navbar-nav">
-                <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
-            </div>
-              </li>
-              <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-dark navbar-shadow">
-                <div class="navbar-wrapper">
-                    @if (Auth::check())
-                    <li class="user-dropdown">
-                        <i class="fa-solid fa-user"></i>
-                            <span class="username">{{ Auth::user()->name }}</span>
-                            <span class="arrow-down"></span> <!-- Panah ke bawah -->
-                        <div class="dropdown-content">
-                            @if (Auth::user()->role == 'user')
-                                <form id="logout-form-admin" action="{{ route('LogoutUser') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                <a href="#" onclick="event.preventDefault(); if (confirm('Apakah Anda yakin ingin logout?')) { document.getElementById('logout-form-admin').submit(); }">
-                                    Logout
-                                </a>
-                            @endif
-                        </div>
-                    </li>
-                @endif
-                    <div class="navbar-container content">
-                        <div class="navbar-collapse" id="navbar-mobile">
-                            <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-                                <ul class="nav navbar-nav">
-                                    <li class="nav-item mobile-menu d-xl-none mr-auto">
-                                        <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#">
-                                            <i class="ficon feather icon-menu"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <ul>
-                            </ul>
-                        </div>
-                    </div>
+    .content main .bottom-data .reminders .task-list{
+        min-width: 340px;
+    }
+}
+/* Adjusted styles for sidebar icons */
+.sidebar .side-menu li a i {
+    min-width: calc(60px - ((4px + 6px) * 2)); /* Adjusted width based on existing styles */
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.sidebar .side-menu li a i.fa-gamepad {
+    min-width: calc(60px - ((4px + 6px) * 2)); /* Adjusted width for specific icon */
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--dark); /* Custom color if needed */
+}
+
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <title>Responsive Dashboard Design #2 | WikraType</title>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <img src="{{ asset('image/wikrama.png') }}" width="20%" style="margin-left: 7%" alt="">
+            <div class="logo-name"><span>Wikra</span>Type</div>
+        </a>
+        <ul class="side-menu">
+            <li class="active"><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
+            <li class="#"><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
+            <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
+            <li><a href="{{ route('HalamanUser')}}"><i class='bx bx-group'></i>Users</a></li>
+            <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+              <a href="{{ route('LogoutUser') }}" onclick="confirm('Apakah Anda yakin ingin logout?')">
+                    <i class='bx bx-log-out-circle'></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
                 </div>
-            </nav>
+            </form>
+            <a href="#" class="profile">
+                <img src="images/logo.png">
+            </a>
+        </nav>
 
-            </ul>
+        <!-- End of Navbar -->
+
+        <main>
+          <div class="header">
+              <div class="left">
+                  <h1>Dashboard</h1>
+                  <ul class="breadcrumb">
+                      <li><a href="#">Dashboard</a></li>
+                  </ul>
+              </div>
           </div>
-        </div>
-      </div>
-    </nav>
+          @foreach($users as $user)
+          <div class="welcome">
+              <div class="user-info">
+                  <h2>Welcome, {{ $user->name }}</h2>
+                  <p>This is your personalized dashboard.</p>
+              </div>
+              @endforeach
+              <div class="cards">
+                  <div class="card">
+                      <div class="icon"><i class='bx bxs-dashboard'></i></div>
+                      <div class="info">
+                          <h3>Total Score</h3>
+                          <p>999999999</p>
+                      </div>
+                  </div>
+                  <div class="card">
+                      <div class="icon"><i class='bx bx-bar-chart'></i></div>
+                      <div class="info">
+                          <h3>WPM</h3>
+                          <p>95.81%</p>
+                      </div>
+                  </div>
+                  <div class="card">
+                      <div class="icon"><i class='bx bx-bar-chart'></i></div>
+                      <div class="info">
+                          <h3>RAW</h3>
+                          <p>87.65%</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </main>
+      
 
-    <!-- END: Header-->
-
-
-    <!-- BEGIN: Main Menu-->
-    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-      <div class="navbar-header">
-        <ul class="nav navbar-nav flex-row">
-          <li class="nav-item mr-auto"><a class="navbar-brand" href="{{ asset('typinglessontemplate/html/ltr/vertical-menu-template-dark/index.html') }}">
-              <div class="brand-logo"></div>
-              <h2 class="brand-text mb-0">Admin</h2></a></li>
-          <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i></a></li>
-        </ul>
-      </div>
-      <div class="shadow-bottom"></div>
-      <div class="main-menu-content">
-        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-          <li class=" navigation-header"><span>Apps</span>
-          </li>
-          <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">User</span></a>
-            <ul class="menu-content">
-              <li><a href="{{ route('HalamanAdmin') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="View">View</span></a>
-              </li>
-            </ul>
-          </li>
-          <li class=" nav-item"><a href="#"><i class="feather icon-credit-card"></i><span class="menu-title" data-i18n="Card">Text</span></a>
-            <ul class="menu-content">
-              <li><a href="{{ route('HalamanCreateText') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Basic">Create</span></a>
-              </li>
-              <li><a href="{{ route('HalamanReadText') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Advance">View</span></a>
-              </li>
-            </ul>
-          </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
     </div>
-    <!-- END: Main Menu-->
 
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
-      <div class="content-overlay"></div>
-      <div class="header-navbar-shadow"></div>
-      <div class="content-wrapper">
-        <div class="content-header row">
-        </div>
-        <div class="content-body"><!-- users list start -->
-<section class="users-list-wrapper">
-  <!-- users filter start -->
-  <!-- users filter end -->
-  <!-- Ag Grid users list section start -->
-  <div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h4>User List</h4>
-        </div>
-        <div class="card-body">
-            <form action="{{ route('searchUser') }}" method="GET" class="search-form">
-                <input type="text" name="searchUser" placeholder="Cari Nama User">
-                <button type="submit">Cari</button>
-            </form><br>
-            <div class="table-responsive">
-               <!-- Table Responsive -->
-            </div>
-        </div>
-    </div>
-</div>
-  <!-- Ag Grid users list section end -->
-</section>
-<!-- users list ends -->
+    <script>
+      const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
 
-        </div>
-      </div>
-    </div>
-    <!-- END: Content-->
+sideLinks.forEach(item => {
+    const li = item.parentElement;
+    item.addEventListener('click', () => {
+        sideLinks.forEach(i => {
+            i.parentElement.classList.remove('active');
+        })
+        li.classList.add('active');
+    })
+});
 
+const menuBar = document.querySelector('.content nav .bx.bx-menu');
+const sideBar = document.querySelector('.sidebar');
 
-    <!-- BEGIN: Customizer-->
+menuBar.addEventListener('click', () => {
+    sideBar.classList.toggle('close');
+});
 
+const searchBtn = document.querySelector('.content nav form .form-input button');
+const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
+const searchForm = document.querySelector('.content nav form');
 
+searchBtn.addEventListener('click', function (e) {
+    if (window.innerWidth < 576) {
+        e.preventDefault;
+        searchForm.classList.toggle('show');
+        if (searchForm.classList.contains('show')) {
+            searchBtnIcon.classList.replace('bx-search', 'bx-x');
+        } else {
+            searchBtnIcon.classList.replace('bx-x', 'bx-search');
+        }
+    }
+});
 
-    <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-light">
-      <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">Halaman Admin Kelompok-1  &copy; 2024<a class="text-bold-800 grey darken-2" href="{{ route('HalamanDev') }}" ;target="_blank">Kelompok 1,</a>Sangat Mudah</span><span class=  "float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
-        <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
-      </p>
-    </footer>
-    <!-- END: Footer-->
+window.addEventListener('resize', () => {
+    if (window.innerWidth < 768) {
+        sideBar.classList.add('close');
+    } else {
+        sideBar.classList.remove('close');
+    }
+    if (window.innerWidth > 576) {
+        searchBtnIcon.classList.replace('bx-x', 'bx-search');
+        searchForm.classList.remove('show');
+    }
+});
 
+const toggler = document.getElementById('theme-toggle');
 
-    <!-- BEGIN: Vendor JS-->
-    <script src="{{ asset('typinglessontemplate/app-assets/vendors/js/vendors.min.js') }}"></script>
-    <!-- BEGIN Vendor JS-->
+toggler.addEventListener('change', function () {
+    if (this.checked) {
+        document.body.classList.add('dark');
+    } else {
+        document.body.classList.remove('dark');
+    }
+});
+    </script>
+</body>
 
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('typinglessontemplate/app-assets/vendors/js/tables/ag-grid/ag-grid-community.min.noStyle.js') }}"></script>
-    <!-- END: Page Vendor JS-->
-
-    <script src="{{ asset('typinglessontemplate/app-assets/js/core/app-menu.min.js') }}"></script>
-    <script src="{{ asset('typinglessontemplate/app-assets/js/core/app.min.js') }}"></script>
-    <script src="{{ asset('typinglessontemplate/app-assets/js/scripts/components.min.js') }}"></script>
-    <!-- BEGIN: Theme JS-->
-    <script src="{{ asset('typinglessontemplate/app-assets/js/scripts/customizer.min.js') }}"></script>
-    <script src="{{ asset('typinglessontemplate/app-assets/js/scripts/footer.min.js') }}"></script>
-    <!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="{{ asset('typinglessontemplate/app-assets/js/scripts/pages/app-user.min.js') }}"></script>
-    <!-- END: Page JS-->
-
-    <!--Script User-->
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- ag-Grid JS -->
-    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
-
-
-  </body>
-  <!-- END: Body-->
 </html>
-@else
-            <p>Anda tidak memiliki izin untuk mengakses halaman ini.</p>
-            <p>Silakan <a href="{{ route('HalamanDashboard') }}">Kembali </a>Tidak Akan Bisa Mengakses Halaman Ini Muehehehehe </p>
-        @endif
