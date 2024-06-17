@@ -1,38 +1,79 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <title>Typing Master</title>
-      <!-- Font Awesome Cdn Link -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    </head>
-    <body>
-      <div class="container">
-        <nav>
-          <ul>
-            <li><a href="#" class="logo">
-                <img src="{{ asset('image/wikrama.png') }}" alt="Wikrama">
-              <span class="nav-item">DashBoard</span>
-            </a></li>
-            <li><a href="#">
-              <i class="fas fa-home"></i>
-              <span class="nav-item">Home</span>
-            </a></li>
-            <li class="dropdown">
-              <a href="#">
-                <i class="fas fa-bars"></i>
-                <span class="nav-item">Model</span>
-              </a>
-              <div class="dropdown-content">
-                  <a href="#">Latihan</a>
-                  <a href="#">Test Kecepatan</a>
-                  <a href="{{ route('HalamanGames') }}">Games</a>   
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Typing Master</title>
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+            <img src="{{ asset('image/wikrama.png') }}" alt="Wikrama">
+          <span class="nav-item">DashBoard</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-home"></i>
+          <span class="nav-item">Home</span>
+        </a></li>
+        <li class="dropdown">
+          <a href="#">
+            <i class="fas fa-bars"></i>
+            <span class="nav-item">Model</span>
+          </a>
+          <div class="dropdown-content">
+              <a href="#">Latihan</a>
+              <a href="#">Test Kecepatan</a>
+              <a href="{{ route('HalamanGames') }}">Games</a>
           </div>
-        </section>
+        </li>
+        <li><a href="#">
+          <i class="fas fa-play"></i>
+          <span class="nav-item">Start Typing</span>
+        </a></li>
+        <li><a href="">
+          <i class="fas fa-user"></i>
+          <span class="nav-item">My Profile</span>
+        </a></li>
+        <li><a href="">
+          <i class="fas fa-chart-bar"></i>
+          <span class="nav-item">Statistics</span>
+        </a></li>
+        <li>
+          <a href="#">
+              <i class="fas fa-trophy"></i>
+              <span class="nav-item">Achievements</span>
+        </a></li>          
+        <li><a href="">
+          <i class="fas fa-question-circle"></i>
+          <span class="nav-item">Toturial</span>
+        </a></li>
+        <li><a href="">
+          <i class="fas fa-cog"></i>
+          <span class="nav-item">Settings</span>
+        </a></li>
+        <li><a href="{{ route('HalamanDev') }}">
+          <i class="fas fa-user-group"></i>
+          <span class="nav-item">Our Dev</span>
+        </a></li>
+        <li><a href="{{ route('LogoutUser') }}" class="logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="nav-item" onclick="return confirm('Are you sure you want to logout, {{ Auth::user()->name }}?')">Log out</span>
+        </a></li>
+      </ul>
+    </nav>
+    <section class="main">
+      <div class="main-top">
+        <h1>Typing Master</h1>
+        <i class="fas fa-user-cog"></i>
       </div>
-    </body>
-    <style>
+    </section>
+  </div>
+</body>
+<style>
 *{
   margin: 0;
   padding: 0;
@@ -102,6 +143,31 @@ a:hover{
 .logout{
   position: absolute;
   bottom: 0;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #f9f9f9;
+  min-width: 280px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: #eee;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 /* Main Section */
@@ -177,7 +243,7 @@ a:hover{
 }
 .course-box ul li{
   margin: 10px;
-  color: gray;
+  color: white;
   cursor: pointer;
 }
 .course-box ul .active{
