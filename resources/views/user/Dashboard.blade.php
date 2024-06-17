@@ -5,6 +5,7 @@
   <title>Typing Master</title>
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="container">
@@ -53,6 +54,10 @@
         <li><a href="">
           <i class="fas fa-cog"></i>
           <span class="nav-item">Settings</span>
+        </a></li>
+        <li><a href="{{ route('HalamanDev') }}">
+          <i class="fas fa-user-group"></i>
+          <span class="nav-item">Our Dev</span>
         </a></li>
         <li><a href="{{ route('LogoutUser') }}" class="logout">
           <i class="fas fa-sign-out-alt"></i>
