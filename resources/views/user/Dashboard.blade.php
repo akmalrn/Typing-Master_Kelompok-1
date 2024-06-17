@@ -10,31 +10,8 @@
       <div class="container">
         <nav>
           <ul>
-            <li><a href="Dashboard" class="logo">
-              <img src="{{assets('assets/images/wikrama.png')}}" alt="">
-              <span class="nav-item">DashBoard</span>
-            </a></li>
-            <li><a href="Dashboard">
-              <i class="fas fa-home"></i>
-              <span class="nav-item">Home</span>
-            </a></li>
-            <li><a href="UserProfiles">
-              <i class="fas fa-user"></i>
-              <span class="nav-item">Profile</span>
-            </a></li>
-            <li><a href="HalamanTypingLessons">
-              <i class="fas fa-keyboard"></i>
-              <span class="nav-item">Typing Lessons</span>
-            </a></li>
-            <li><a href="UserTypingSessions">
-              <i class="fas fa-chart-bar"></i>
-              <span class="nav-item">Analytics</span>
-            </a></li>
-            <li><a href="UserAchievements">
-              <i class="fas fa-trophy"></i>
-              <span class="nav-item">Achievements</span>
             <li><a href="#" class="logo">
-                <img src="{{ asset('image/wikrama.png') }}" alt="Wikrama">
+                <img src="{{ asset('images/wikrama.png') }}" alt="Wikrama">
               <span class="nav-item">DashBoard</span>
             </a></li>
             <li><a href="#">
@@ -65,11 +42,6 @@
             </a></li>
             <li><a href="">
               <i class="fas fa-question-circle"></i>
-              <span class="nav-item">Tutorial</span>
-            </a></li>
-            <li><a href="" class="logout">
-              <i class="fas fa-sign-out-alt"></i>
-              <span class="nav-item">Log out</span>
               <span class="nav-item">Help</span>
             </a></li>
             <li><a href="{{ route('LogoutUser') }}" class="logout">
@@ -97,7 +69,6 @@
   font-family: "Poppins", sans-serif;
 }
 body{
-  background: #ffffff;
   background: #dfe9f5;
 }
 .container{
@@ -109,7 +80,6 @@ nav{
   bottom: 0;
   height: 100vh;
   left: 0;
-  background: #21357a;
   background: #fff;
   width: 280px;
   overflow: hidden;
@@ -133,7 +103,6 @@ nav{
 }
 a{
   position: relative;
-  color: rgba(247,233,2,255);
   color: rgb(85, 83, 83);
   font-size: 14px;
   display: table;

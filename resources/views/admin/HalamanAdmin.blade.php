@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>User List - Vuexy - Bootstrap HTML admin template</title>
+    <title>Typing Master</title>
     <link rel="apple-touch-icon" href="{{ asset('typinglessontemplate/app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('typinglessontemplate/app-assets/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -309,4 +309,4 @@ License: You must have a valid license purchased only from themeforest(the above
             <p>Anda tidak memiliki izin untuk mengakses halaman ini.</p>
             <p>Silakan <a href="{{ route('HalamanDashboard') }}">Kembali </a>Tidak Akan Bisa Mengakses Halaman Ini Muehehehehe </p>
         @endif
-        @else
+        
