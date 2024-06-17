@@ -773,7 +773,7 @@ body{
                 </div>
             </form>
             <a href="#" class="profile">
-                <img src="images/logo.png">
+                <img src="{{ asset('images/wikrama.png') }}">
             </a>
         </nav>
 
@@ -782,26 +782,25 @@ body{
         <main>
           <div class="header">
               <div class="left">
-                  <h1>Dashboard</h1>
+                  <h1>Halaman Profile</h1>
                   <ul class="breadcrumb">
-                      <li><a href="#">Dashboard</a></li>
+                      <li><a href="#">Profile</a></li>
                   </ul>
               </div>
           </div>
       
           <div class="welcome">
             <div class="user-info">
-                <h2>MY PROFILE</h2>
+                <h2>YOUR PROFILE</h2>
                 <hr>
                 <div class="profile-details">
-                    <p><strong>Name:</strong> [User Name]</p>
-                    <p><strong>Email:</strong> [user@example.com]</p>
-                    <p><strong>Level:</strong> [Beginner]</p>
-                    <p><strong>Total Time:</strong> [XX hours XX mins]</p>
-                    <p><strong>Avg WPM:</strong> [XX]</p>
-                    <p><strong>Avg Accuracy:</strong> [XX%]</p>
+                    <p><strong>Name:</strong> {{ $user->name }}</p>
+                    <p><strong>Email:</strong> {{ $user->email }}</p>
+                    <p><strong>Level:</strong> {{ $user->level ?? 'Beginner' }}</p> <!-- Assuming there's a level attribute, otherwise default to 'Beginner' -->
+                    <p><strong>Total Time:</strong> {{ $user->total_time ?? 'XX hours XX mins' }}</p> <!-- Assuming total_time is stored in a readable format -->
+                    <p><strong>Avg WPM:</strong> {{ $user->avg_wpm ?? 'XX' }}</p> <!-- Assuming there's an avg_wpm attribute -->
+                    <p><strong>Avg Accuracy:</strong> {{ $user->avg_accuracy ?? 'XX%' }}</p> <!-- Assuming there's an avg_accuracy attribute -->
                 </div>
-                <button class="edit-profile-btn">Edit Profile</button>
             </div>
         </div>
     </main>
