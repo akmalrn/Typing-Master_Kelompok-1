@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_typing_sessions', function (Blueprint $table) {
-            $table->id('session_id'); // Primary key with auto-increment
+            $table->id(); // Primary key with auto-increment
             $table->unsignedBigInteger('user_id'); // Foreign key reference to users table
             $table->unsignedBigInteger('lesson_id'); // Foreign key reference to typing_lessons table
             $table->float('wpm'); // Words per minute
@@ -21,10 +21,10 @@ return new class extends Migration
             $table->integer('errors'); // Number of errors
             $table->integer('practice_time'); // Practice time in seconds
             $table->timestamp('session_date')->default(DB::raw('CURRENT_TIMESTAMP')); // Session date and time
-            
+
             // Defining foreign key constraints
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('lesson_id')->references('lesson_id')->on('typing_lessons')->onDelete('cascade');
+            $table->foreign('lesson_id')->references('id')->on('typing_lessons')->onDelete('cascade');
 
             $table->timestamps(); // Adds created_at and updated_at columns
         });

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <title>Modern Login Page | AsmrProg</title>
+    <title>Login Page</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
@@ -231,14 +231,6 @@
                 @csrf <!-- Token CSRF untuk keamanan -->
                 <h1>Create Account</h1>
 
-                <!-- Ikon Media Sosial -->
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-
                 <span>or use your email for registration</span>
 
 
@@ -250,30 +242,31 @@
                 @if ($errors->has('name'))
                     <span class="error">{{ $errors->first('name') }}</span>
                 @endif
-                <input type="password" name="password" placeholder="Password">
                 @if ($errors->has('password'))
                     <span class="error">{{ $errors->first('password') }}</span>
                 @endif
 
+                <input type="password" name="password" placeholder="Password">
                 <!-- Button Submit -->
                 <button type="submit">Sign Up</button>
-            </form>
+            </form>  
 
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form action="{{ route('LoginUser') }}" method="POST">
+                @csrf
                 <h1>Sign In</h1>
                 <div class="social-icons">
-                    <!-- Tambahkan tombol di form atau halaman login -->
-                    <a href="{{ route('auth.google') }}" class="btn btn-google">
+                <!-- Tambahkan tombol Google login -->
+                    <a href="{{ url('auth/google') }}" class="btn btn-google">
                         <i class="fa-brands fa-google-plus-g"></i>
                     </a>
                 </div>
-                <span>or use your email password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <span>or use your email and password</span>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <button type="submit">Sign In</button>
             </form>
         </div>
         <div class="toggle-container">
