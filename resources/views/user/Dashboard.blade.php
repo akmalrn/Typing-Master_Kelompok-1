@@ -30,16 +30,11 @@
             @endif
             @endforeach
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i>Your Profile</a></li>
             <li><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
-            <li>
-              <a href="{{ route('LogoutUser') }}" onclick="confirm('Apakah Anda yakin ingin logout?')">
-                    <i class='bx bx-log-out-circle'></i>
-                    Logout
-                </a>
-            </li>
+            <li><a href="{{ route('LogoutUser') }}" onclick="return confirm('Apakah Anda yakin ingin logout?')"><i class='bx bx-log-out-circle'></i>Logout</a></li>
         </ul>
     </div>
     <!-- End of Sidebar -->
@@ -165,7 +160,7 @@ toggler.addEventListener('change', function () {
     }
 });
     </script>
-    
+
 </body>
 @endif
 
