@@ -9,8 +9,10 @@ use App\Http\Controllers\admin_controller;
 use App\Http\Controllers\typing_lessons_controller;
 use App\Http\Controllers\search_controller;
 use App\Http\Controllers\games_controller;
+use App\Http\Controllers\settings_controller;
 use App\Http\Controllers\user_achievements_controller;
 use App\Http\Controllers\user_profiles_controller;
+use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +41,7 @@ Route::get('/welcome', function () {
 
 
 //Setting_Controller
+ROute::get('user/HalamanSetting',[settings_controller::class, 'HalamanSetting'])->middleware('auth')->name('HalamanSetting');
 
 
 //Typing_Lessons_Controller
