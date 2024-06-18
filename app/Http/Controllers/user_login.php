@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class user_login extends Controller
 {
-    
+
     public function LoginUser(Request $request)
 {
     // Validasi input
@@ -40,14 +40,18 @@ class user_login extends Controller
     }
         }
 
-        public function LogoutUser()
+        public function LogoutUser(Request $request)
         {
             Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
             return redirect()->route('Welcome')->with('success', 'You have been logged out.');
         }
-        public function LogoutAdmin()
+        public function LogoutAdmin(Request $request)
         {
             Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
             return redirect()->route('Welcome')->with('success', 'You have been logged out.');
         }
 }
