@@ -52,33 +52,6 @@ class user_controller extends Controller
     }
 
     // Menampilkan form untuk mengedit pengguna
-    public function HalamanEditUsers($id)
-    {
-        // Menggunakan Eloquent untuk menemukan pengguna berdasarkan ID
-        $users = User::find($id);
-        return view('admin/ubah/UpdateUser', compact('users'));
-    }
-
-    // Memperbarui pengguna di basis data
-    public function UpdateUsers(Request $request, $id)
-    {
-        // Validasi input
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'nullable|min:6',
-        ]);
-
-        // Menggunakan Eloquent untuk memperbarui pengguna
-        $user = User::find($id);
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password ? bcrypt($request->password) : $user->password,
-        ]);
-
-        return redirect()->route('HalamanAdmin')->with('success', 'User updated successfully.');
-    }
 
     // Menghapus pengguna dari basis data
     public function DestroyUsers($id)
@@ -90,13 +63,17 @@ class user_controller extends Controller
 
     public function HalamanDashboard()
     {
+        $userId = Auth::id();
         $typing_lessons = typing_lessons::all();
         $users = User::all();
-        return view('user/Dashboard', compact('users', 'typing_lessons'));
+        return view('user/Dashboard', compact('users', 'typing_lessons', 'userId'));
     }
     public function HalamanGames()
     {
-        return view('user/HalamanGames');
+        $userId = Auth::id();
+
+        // Tampilkan view 'HalamanGames' dan kirimkan userId ke view tersebut
+        return view('user/HalamanGames', ['userId' => $userId]);
     }
 
 }
