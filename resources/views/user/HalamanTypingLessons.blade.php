@@ -54,7 +54,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{{asset('/css/style.css')}}"> 
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -202,10 +202,10 @@
             @endforeach
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
             <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
-            <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
             <li>
+        <li><a href="#">    <i class='bx bx-cog'></i>Settings</a></li>
               <a href="{{ route('LogoutUser') }}" onclick="confirm('Apakah Anda yakin ingin logout?')">
                     <i class='bx bx-log-out-circle'></i>
                     Logout
@@ -248,15 +248,15 @@
                 <span class="username">Selamat Datang {{ Auth::user()->name }},</span>
                 <p>Di Halaman Typing Lessons.</p>
             </div>
-    
+
             <!-- Displaying lesson content here -->
             <div id="lesson-content" class="lesson-content">
                 <!-- Lesson content will be dynamically inserted here -->
             </div>
-    
+
             <!-- Input area for typing, positioned together with lesson content -->
             <textarea id="typing-input" class="form-control input-typing" rows="3" placeholder="Start typing here..."></textarea>
-    
+
             <button id="start-button" class="btn btn-primary mt-3">Start Lesson</button>
         </div>
       </main>

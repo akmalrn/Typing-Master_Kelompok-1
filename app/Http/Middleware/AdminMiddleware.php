@@ -21,6 +21,6 @@ class AdminMiddleware
         }
 
         // Jika pengguna bukan admin, redirect ke halaman 403 atau halaman lain yang sesuai
-        return redirect('/errors/403'); // Anda bisa mengganti dengan rute atau tampilan yang sesuai
+        return redirect()->route('Welcome')->with('error', 'Access denied. Admins only.');
     }
 }
