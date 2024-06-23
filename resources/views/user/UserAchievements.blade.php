@@ -551,7 +551,7 @@ body{
 }
 
 .content main .bottom-data .reminders .task-list li .bx{
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 .content main .bottom-data .reminders .task-list li.completed{
@@ -579,7 +579,7 @@ body{
 }
 
 @media screen and (max-width: 576px) {
-    
+
     .content nav form .form-input input{
         display: none;
     }
@@ -688,7 +688,7 @@ body{
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <title>Responsive Dashboard Design #2 | WikraType</title>
 </head>
 
@@ -708,17 +708,20 @@ body{
             <li><a href="{{ route('HalamanTypingLessons', $lesson->id) }}"><i class='bx bx-analyse'></i>Start Lesson {{ $lesson->id }}</a></li>
             @endif
             @endforeach
+
             <li class="active"><a href="#"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
             <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class="fa-solid fa-user"></i> Users</a></li>
             <li><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
             <li><a href="{{ route('HalamanDev') }}"><i class="fa-solid fa-users"></i>Our Dev</a></li>
+
+            <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i>Your Profile</a></li>
+            <li><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
+
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#" class="logout">
-                    <i class='bx bx-log-out-circle'></i>
-                    Logout
-                </a>
+                <li><a href="{{ route('LogoutUser') }}" onclick="return confirm('Apakah Anda yakin ingin logout?')"><i class='bx bx-log-out-circle'></i>Logout</a></li>
             </li>
         </ul>
     </div>
@@ -751,7 +754,7 @@ body{
                     </ul>
                 </div>
             </div>
-        
+
             <!-- Achievement Section -->
             <section class="achievement">
                 <h2>Achievement</h2>
@@ -770,11 +773,11 @@ body{
                 <a href="#" class="back-btn">Back to Dashboard</a>
             </section>
             <!-- End Achievement Section -->
-        
+
             <!-- Your existing content continues... -->
         </main>
-        
-      
+
+
 
     </div>
 
