@@ -6,6 +6,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\user_controller;
 use App\Http\Controllers\user_login;
 use App\Http\Controllers\admin_controller;
+use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\typing_lessons_controller;
 use App\Http\Controllers\search_controller;
 use App\Http\Controllers\games_controller;

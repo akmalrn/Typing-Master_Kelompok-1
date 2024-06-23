@@ -2,14 +2,34 @@
 <html lang="en">
 
 <head>
-  <style>
-  </style>
+    <style>
+        /* Example styles for dark mode */
+        body.dark {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .sidebar.dark {
+            background-color: #1e1e1e;
+        }
+        .sidebar.dark a {
+            color: #ffffff;
+        }
+        .content.dark {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        .settings.dark {
+            background-color: #2e2e2e;
+            color: #ffffff;
+        }
+        /* Add other dark mode styles as needed */
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
     <title>Responsive Dashboard Design #2 | WikraType</title>
 </head>
 
@@ -29,9 +49,10 @@
             <li><a href="{{ route('HalamanTypingLessons', $lesson->id) }}"><i class='bx bx-analyse'></i>Start Lesson {{ $lesson->id }}</a></li>
             @endif
             @endforeach
-            <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
-            <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
+            <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i>Achievement</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class="fa-solid fa-user"></i> Users</a></li>
+            <li class="active"><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
+            <li><a href="{{ route('HalamanDev') }}"><i class="fa-solid fa-users"></i>Our Dev</a></li>
         </ul>
         <ul class="side-menu">
             <li>
@@ -59,127 +80,136 @@
                 <img src="{{ asset('images/wikrama.png') }}">
             </a>
         </nav>
-
         <!-- End of Navbar -->
 
         <main>
-          <div class="header">
-              <div class="left">
-                  <h1>Selamat Datang Di Typing Master</h1>
-                  <ul class="breadcrumb">
-                      <li><a href="#">Dashboard</a></li>
-                  </ul>
-              </div>
-          </div>
-          <div class="settings">
-            <h2>Settings</h2>
-            <form id="settings-form">
-                <div class="form-group">
-                    <label for="theme-toggle">Dark Mode</label>
-                    <input type="checkbox" id="theme-toggle">
+            <div class="header">
+                <div class="left">
+                    <h1>Selamat Datang Di Typing Master</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">Dashboard</a></li>
+                    </ul>
                 </div>
-                <div class="form-group">
-                    <label for="language-select">Language</label>
-                    <select id="language-select">
-                        <option value="en">English</option>
-                        <option value="id">Indonesian</option>
-                        <!-- Add more languages as needed -->
-                    </select>
-                </div>
-                <button type="submit">Save Settings</button>
-            </form>
-        </div>
-    </main>
-
-
+            </div>
+            <div class="settings">
+                <h2>Settings</h2>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="theme-toggle">Dark Mode</label>
+                        <input type="checkbox" id="theme-toggle">
+                    </div>
+                    <div class="form-group">
+                        <label for="language-select">Language</label>
+                        <select id="language-select">
+                            <option value="en">English</option>
+                            <option value="id">Indonesian</option>
+                            <!-- Add more languages as needed -->
+                        </select>
+                    </div>
+                    <button type="submit">Save Settings</button>
+                </form>
+            </div>
+        </main>
     </div>
 
     <script>
- document.addEventListener('DOMContentLoaded', (event) => {
-        // Sidebar Menu Toggle
-        const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
-        sideLinks.forEach(item => {
-            const li = item.parentElement;
-            item.addEventListener('click', () => {
-                sideLinks.forEach(i => {
-                    i.parentElement.classList.remove('active');
-                });
-                li.classList.add('active');
-            });
-        });
-
-        const menuBar = document.querySelector('.content nav .bx.bx-menu');
-        const sideBar = document.querySelector('.sidebar');
-
-        menuBar.addEventListener('click', () => {
-            sideBar.classList.toggle('close');
-        });
-
-        const searchBtn = document.querySelector('.content nav form .form-input button');
-        const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
-        const searchForm = document.querySelector('.content nav form');
-
-        searchBtn.addEventListener('click', function (e) {
-            if (window.innerWidth < 576) {
-                e.preventDefault();
-                searchForm.classList.toggle('show');
-                if (searchForm.classList.contains('show')) {
-                    searchBtnIcon.classList.replace('bx-search', 'bx-x');
-                } else {
-                    searchBtnIcon.classList.replace('bx-x', 'bx-search');
-                }
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth < 768) {
-                sideBar.classList.add('close');
-            } else {
-                sideBar.classList.remove('close');
-            }
-            if (window.innerWidth > 576) {
-                searchBtnIcon.classList.replace('bx-x', 'bx-search');
-                searchForm.classList.remove('show');
-            }
-        });
-
-        const toggler = document.getElementById('theme-toggle');
-
-        toggler.addEventListener('change', function () {
-            if (this.checked) {
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Load Settings
+            if (localStorage.getItem('darkMode') === 'true') {
                 document.body.classList.add('dark');
+                document.querySelector('.sidebar').classList.add('dark');
+                document.querySelector('.content').classList.add('dark');
+                document.querySelector('.settings').classList.add('dark');
+                document.getElementById('theme-toggle').checked = true;
             } else {
                 document.body.classList.remove('dark');
+                document.querySelector('.sidebar').classList.remove('dark');
+                document.querySelector('.content').classList.remove('dark');
+                document.querySelector('.settings').classList.remove('dark');
+                document.getElementById('theme-toggle').checked = false;
             }
+
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage) {
+                document.getElementById('language-select').value = savedLanguage;
+            }
+
+            // Sidebar Menu Toggle
+            const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
+            sideLinks.forEach(item => {
+                const li = item.parentElement;
+                item.addEventListener('click', () => {
+                    sideLinks.forEach(i => {
+                        i.parentElement.classList.remove('active');
+                    });
+                    li.classList.add('active');
+                });
+            });
+
+            const menuBar = document.querySelector('.content nav .bx.bx-menu');
+            const sideBar = document.querySelector('.sidebar');
+
+            menuBar.addEventListener('click', () => {
+                sideBar.classList.toggle('close');
+            });
+
+            const searchBtn = document.querySelector('.content nav form .form-input button');
+            const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
+            const searchForm = document.querySelector('.content nav form');
+
+            searchBtn.addEventListener('click', function (e) {
+                if (window.innerWidth < 576) {
+                    e.preventDefault();
+                    searchForm.classList.toggle('show');
+                    if (searchForm.classList.contains('show')) {
+                        searchBtnIcon.classList.replace('bx-search', 'bx-x');
+                    } else {
+                        searchBtnIcon.classList.replace('bx-x', 'bx-search');
+                    }
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth < 768) {
+                    sideBar.classList.add('close');
+                } else {
+                    sideBar.classList.remove('close');
+                }
+                if (window.innerWidth > 576) {
+                    searchBtnIcon.classList.replace('bx-x', 'bx-search');
+                    searchForm.classList.remove('show');
+                }
+            });
+
+            const toggler = document.getElementById('theme-toggle');
+
+            toggler.addEventListener('change', function () {
+                if (this.checked) {
+                    document.body.classList.add('dark');
+                    document.querySelector('.sidebar').classList.add('dark');
+                    document.querySelector('.content').classList.add('dark');
+                    document.querySelector('.settings').classList.add('dark');
+                    localStorage.setItem('darkMode', true);
+                } else {
+                    document.body.classList.remove('dark');
+                    document.querySelector('.sidebar').classList.remove('dark');
+                    document.querySelector('.content').classList.remove('dark');
+                    document.querySelector('.settings').classList.remove('dark');
+                    localStorage.setItem('darkMode', false);
+                }
+            });
+
+            const settingsForm = document.getElementById('settings-form');
+            settingsForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const isDarkMode = toggler.checked;
+                const selectedLanguage = document.getElementById('language-select').value;
+                localStorage.setItem('darkMode', isDarkMode);
+                localStorage.setItem('language', selectedLanguage);
+                alert('Settings saved!');
+            });
         });
-
-        // Save Settings Form
-        const settingsForm = document.getElementById('settings-form');
-        settingsForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const isDarkMode = toggler.checked;
-            const selectedLanguage = document.getElementById('language-select').value;
-            localStorage.setItem('darkMode', isDarkMode);
-            localStorage.setItem('language', selectedLanguage);
-            alert('Settings saved!');
-        });
-
-        // Load Settings
-        if (localStorage.getItem('darkMode') === 'true') {
-            toggler.checked = true;
-            document.body.classList.add('dark');
-        } else {
-            toggler.checked = false;
-            document.body.classList.remove('dark');
-        }
-
-        const savedLanguage = localStorage.getItem('language');
-        if (savedLanguage) {
-            document.getElementById('language-select').value = savedLanguage;
-        }
-    });
     </script>
 </body>
-
 
 </html>

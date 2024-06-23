@@ -7,6 +7,10 @@
     text-align: center;
     margin: 20px auto;
     max-width: 800px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 .lesson-content {
@@ -17,6 +21,10 @@
     flex-direction: column;
     align-items: center;
     white-space: pre-wrap;
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
 }
 
 .typing-lesson-container .correct {
@@ -40,16 +48,30 @@
     width: 100%;
     font-size: 18px;
     line-height: 1.6;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 #start-button {
     display: none; /* Initially hidden */
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#start-button:hover {
+    background: #0056b3;
 }
 
 .input-typing {
     display: none; /* Initially hidden */
 }
-
   </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -201,11 +223,13 @@
             @endif
             @endforeach
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class="fa-solid fa-user"></i> Users</a></li>
+            <li><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
+            <li><a href="{{ route('HalamanDev') }}"><i class="fa-solid fa-users"></i>Our Dev</a></li>
         </ul>
         <ul class="side-menu">
             <li>
-        <li><a href="#">    <i class='bx bx-cog'></i>Settings</a></li>
+        <li><a href="#">    
               <a href="{{ route('LogoutUser') }}" onclick="confirm('Apakah Anda yakin ingin logout?')">
                     <i class='bx bx-log-out-circle'></i>
                     Logout
