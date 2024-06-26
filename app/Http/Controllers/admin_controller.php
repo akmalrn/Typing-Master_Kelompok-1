@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\typing_lessons;
+use App\Models\TypingLessons;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -26,8 +26,8 @@ class admin_controller extends Controller
     public function HalamanReadText()
     {
         $userId = Auth::id();
-        $typing_lessons = typing_lessons::all();
-        return view('admin/HalamanReadText', compact('typing_lessons', 'userId'));
+        $TypingLessons = TypingLessons::all();
+        return view('admin/HalamanReadText', compact('TypingLessons', 'userId'));
     }
 
     public function HalamanEditUsers($id)
@@ -76,7 +76,7 @@ class admin_controller extends Controller
         Log::info('Creating Typing Lesson with data: ', $validatedData);
 
         // Simpan data ke database
-        $lesson = typing_lessons::create([
+        $lesson = TypingLessons::create([
             'lesson_title' => $request->input('lesson_title'),
             'lesson_content' => $request->input('lesson_content'),
             'difficulty_level' => $request->input('difficulty_level'),
@@ -91,8 +91,8 @@ class admin_controller extends Controller
 
     public function HalamanEditText($id)
     {
-        $typing_lessons = typing_lessons::findOrFail($id);
-        return view('admin/ubah/UpdateText', compact('typing_lessons'));
+        $TypingLessons = TypingLessons::findOrFail($id);
+        return view('admin/ubah/UpdateText', compact('TypingLessons'));
     }
 
     // Metode untuk memperbarui data
@@ -106,8 +106,8 @@ class admin_controller extends Controller
         ]);
 
         // Temukan dan perbarui lesson
-        $typing_lessons = typing_lessons::findOrFail($id);
-        $typing_lessons->update([
+        $TypingLessons = TypingLessons::findOrFail($id);
+        $TypingLessons->update([
             'lesson_title' => $request->input('lesson_title'),
             'lesson_content' => $request->input('lesson_content'),
             'difficulty_level' => $request->input('difficulty_level'),
@@ -120,8 +120,8 @@ class admin_controller extends Controller
     // Metode untuk menghapus data
     public function DestroyText($id)
     {
-        $typing_lessons = typing_lessons::findOrFail($id);
-        $typing_lessons->delete();
+        $TypingLessons = TypingLessons::findOrFail($id);
+        $TypingLessons->delete();
 
         // Redirect ke halaman lain dengan pesan sukses
         return redirect()->route('HalamanReadText')->with('success', 'Typing lesson deleted successfully!');
