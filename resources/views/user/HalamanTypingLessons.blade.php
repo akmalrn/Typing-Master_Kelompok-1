@@ -72,6 +72,34 @@
 .input-typing {
     display: none; /* Initially hidden */
 }
+
+.section {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    position: relative;
+}
+
+.locked::after {
+    content: '🔒';
+    font-size: 24px;
+    color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.unlocked::after {
+    content: '🔓';
+    font-size: 24px;
+    color: green;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
   </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -185,6 +213,7 @@
         const durationInSeconds = (endTime - startTime) / 1000;
         const charactersPerMinute = Math.floor(totalCharactersTyped / durationInSeconds * 60);
         alert(`CPM: ${charactersPerMinute}`);
+        unlockNextSection();
         resetLesson();
     }
 
@@ -200,11 +229,21 @@
         inputTyping.removeEventListener('input', handleTyping); // Hapus event listener untuk input
     }
 
+    function unlockNextSection() {
+        const sections = document.querySelectorAll('.section');
+        for (let i = 0; i < sections.length; i++) {
+            if (sections[i].classList.contains('locked')) {
+                sections[i].classList.remove('locked');
+                sections[i].classList.add('unlocked');
+                break;
+            }
+        }
+    }
+
     // Awalnya sembunyikan input area dan tampilkan tombol "Start Lesson"
     inputTyping.style.display = 'none';
     startButton.style.display = 'block';
 });
-
     </script>
 </head>
 <body>
@@ -232,23 +271,6 @@
                     <i class='bx bx-log-out-circle'></i>
                     Logout
                 </a>
-            </li>
-        </ul>
-    </div> <div class="sidebar">
-        <a href="#" class="logo">
-            <img src="{{ asset('image/wikrama.png') }}" width="20%" style="margin-left: 7%" alt="">
-            <div class="logo-name"><span>Wikra</span>Type</div>
-        </a>
-        <ul class="side-menu">
-            <li class="#"><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
-            <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i>Your Profile</a></li>
-            <li><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <li><a href="{{ route('LogoutUser') }}" onclick="return confirm('Apakah Anda yakin ingin logout?')"><i class='bx bx-log-out-circle'></i>Logout</a></li>
             </li>
         </ul>
     </div>
@@ -288,15 +310,25 @@
                 <p>Di Halaman Typing Lessons.</p>
             </div>
 
-            <!-- Displaying lesson content here -->
-            <div id="lesson-content" class="lesson-content">
-                <!-- Lesson content will be dynamically inserted here -->
+            <!-- Sections for typing lessons -->
+            <div class="section" id="section-top">
+                <h2>Bagian Atas</h2>
+                <div id="lesson-content" class="lesson-content">
+                    <!-- Lesson content will be dynamically inserted here -->
+                </div>
+                <textarea id="typing-input" class="form-control input-typing" rows="3" placeholder="Start typing here..."></textarea>
+                <button id="start-button" class="btn btn-primary mt-3">Start Lesson</button>
             </div>
 
-            <!-- Input area for typing, positioned together with lesson content -->
-            <textarea id="typing-input" class="form-control input-typing" rows="3" placeholder="Start typing here..."></textarea>
+            <div class="section locked" id="section-middle">
+                <h2>Bagian Tengah</h2>
+                <div class="lesson-content">Konten bagian tengah akan tersedia setelah menyelesaikan bagian atas.</div>
+            </div>
 
-            <button id="start-button" class="btn btn-primary mt-3">Start Lesson</button>
+            <div class="section locked" id="section-bottom">
+                <h2>Bagian Bawah</h2>
+                <div class="lesson-content">Konten bagian bawah akan tersedia setelah menyelesaikan bagian tengah.</div>
+            </div>
         </div>
       </main>
     </div>
