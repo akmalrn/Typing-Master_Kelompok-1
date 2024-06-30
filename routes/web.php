@@ -6,7 +6,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\user_controller;
 use App\Http\Controllers\user_login;
 use App\Http\Controllers\admin_controller;
-use App\Http\Controllers\typing_lessons_controller;
+use App\Http\Controllers\TypingLessons_Controller;
 use App\Http\Controllers\search_controller;
 use App\Http\Controllers\games_controller;
 use App\Http\Controllers\settings_controller;
@@ -44,8 +44,8 @@ Route::get('/welcome', function () {
 ROute::get('user/HalamanSetting',[settings_controller::class, 'HalamanSetting'])->middleware('auth')->name('HalamanSetting');
 
 
-//Typing_Lessons_Controller
-Route::get('/user/HalamanTypingLessons/{id}', [typing_lessons_controller::class, 'HalamanTypingLessons'])->middleware('auth')->name('HalamanTypingLessons');
+//TypingLessons
+Route::get('/user/HalamanTypingLessons', [TypingLessons_Controller::class, 'HalamanTypingLessons'])->middleware('auth')->name('HalamanTypingLessons');
 
 //User_Achievements_Controller
 Route::get('/user/HalamanAchievements', [user_achievements_controller::class, 'HalamanAchievements'])->middleware('auth')->name('HalamanAchievements');

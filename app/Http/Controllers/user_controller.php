@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\typing_lessons;
+use App\Models\TypingLessons;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
@@ -64,9 +64,9 @@ class user_controller extends Controller
     public function HalamanDashboard()
     {
         $userId = Auth::id();
-        $typing_lessons = typing_lessons::all();
+        $TypingLessons = TypingLessons::all();
         $users = User::all();
-        return view('user/Dashboard', compact('users', 'typing_lessons', 'userId'));
+        return view('user/Dashboard', compact('users', 'TypingLessons', 'userId'));
     }
     public function HalamanGames()
     {

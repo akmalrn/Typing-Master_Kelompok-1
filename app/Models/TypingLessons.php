@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class typing_lessons extends Model
+class TypingLessons extends Model
 {
-
     protected $table = "typing_lessons";
 
     use HasFactory;
