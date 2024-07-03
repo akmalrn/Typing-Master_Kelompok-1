@@ -343,44 +343,43 @@ function getTypingSpeedMessage(wpm) {
 }
 
 function gamePlay(e) {
-  if (e.code == "Space") {
-    e.preventDefault();
-    wordValidator();
-    falseCharInWordCount = 0; // falseCharInWordCount dijadikan 0 sbelum masuk word selanjutnya
-    paragraph.children[currentWord].style.backgroundColor = transparent;
-    charCount = 0;
-    wordsFinished++;
-    currentWord++; // counter (current word) berpindah ke selanjutnya
-    // Pengkondisian jika paragraph sekarang sudah habis, akan diupdate ke paragraph selanjutnya
-    if (currentWord >= paragraph.children.length) {
-      console.log(paragraphCount);
-      paragraphCount++;
-      if (paragraphCount >= newHTML.length) paragraphCount = 0;
-      currentWord = 0;
-      paragraph.innerHTML = newHTML[paragraphCount].join(" ");
-      updateParagraph();
+    if (e.code == "Space") {
+        e.preventDefault();
+        wordValidator();
+        falseCharInWordCount = 0;
+        paragraph.children[currentWord].style.backgroundColor = `transparent`;
+        charCount = 0;
+        wordsFinished++;
+        currentWord++;
+        if (currentWord >= paragraph.children.length) {
+            paragraphCount++;
+            if (paragraphCount >= newHTML.length) paragraphCount = 0;
+            currentWord = 0;
+            paragraph.innerHTML = newHTML[paragraphCount].join(" ");
+            updateParagraph();
+        }
+        Array.from(paragraph.children[currentWord].children).forEach(
+            (char) => (char.style.color = "white")
+        );
+        paragraph.children[currentWord].style.backgroundColor = "#008846";
+    } else if (
+        e.key.length < 2 &&
+        charCount < paragraph.children[currentWord].children.length
+    ) {
+        let currentChar = paragraph.children[currentWord].children[charCount];
+        if (e.key === currentChar.innerText) {
+            currentChar.style.color = "black";
+            charCount++;
+            correctChars++; // Tambahkan ini
+        } else {
+            currentChar.style.color = "red";
+            falseCharInWordCount++;
+            incorrectChars++; // Tambahkan ini
+            charCount++;
+        }
+    } else if (e.key === "Backspace") {
+        eraser();
     }
-    //====MASUK KE WORD SELANJUTNYA======
-    Array.from(paragraph.children[currentWord].children).forEach(
-      (char) => (char.style.color = "white")
-    );
-    paragraph.children[currentWord].style.backgroundColor = "#008846";
-  } else if (
-    e.key.length < 2 &&
-    charCount < paragraph.children[currentWord].children.length
-  ) {
-    let currentChar = paragraph.children[currentWord].children[charCount];
-    if (e.key === currentChar.innerText) {
-      currentChar.style.color = "black";
-      charCount++;
-    } else {
-      currentChar.style.color = "red";
-      falseCharInWordCount++;
-      charCount++;
-    }
-  } else if (e.key === "Backspace") {
-    eraser();
-  }
 }
 function updateParagraph() {
   Array.from(paragraph.children).forEach((word) => {
@@ -415,9 +414,7 @@ function gameResult() {
 
   // Tampilkan hasil game beserta akurasi
   wpmEstDisplay.innerText = trueWord;
-  wpmEstDisplay.parentElement.style.color = ${color};
-  document.querySelector(".accuracy").innerText = accuracy + "%";
-  document.querySelector(".total-errors").innerText = totalErrors; // Tambahkan ini jika ingin menampilkan total kesalahan
+  wpmEstDisplay.parentElement.style.color = `${color}`;
   resultDialog.children[0].innerHTML = `
     Kecepatan ngetikmu:
     <h1 class="wpm-result" style="color: ${color};">${trueWord} WPM</h1>
