@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('/css/Dashboard.css')}}">
     <title>Responsive Dashboard Design #2 | WikraType</title>
 </head>
 
@@ -22,13 +22,12 @@
             <div class="logo-name"><span>Wikra</span>Type</div>
         </a>
         <ul class="side-menu">
-            <li class="active"><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
             <li><a href="{{ route('HalamanTypingLessons') }}"><i class='bx bx-analyse'></i>Start Lesson</a></li>
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class="fa-solid fa-user"></i> Users</a></li>
             <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i>Your Profile</a></li>
-            <li><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
+            <li class="active"><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
             <li><a href="{{ route('HalamanDev') }}"><i class="fa-solid fa-users"></i>Our Dev</a></li>
         </ul>
         <ul class="side-menu">
@@ -60,9 +59,9 @@
         <main>
           <div class="header">
               <div class="left">
-                  <h1>Selamat Datang Di Typing Master</h1>
+                  <h1>Setting</h1>
                   <ul class="breadcrumb">
-                      <li><a href="#">Dashboard</a></li>
+                      <li><a href="#">{{ Auth::user()->name }}</a></li>
                   </ul>
               </div>
           </div>

@@ -2,19 +2,117 @@
 <html lang="en">
 
 <head>
+  <style>
+.typing-lesson-container {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.lesson-content {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: pre-wrap;
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.typing-lesson-container .correct {
+    color: green;
+}
+
+.typing-lesson-container .incorrect {
+    color: red;
+}
+
+.typing-lesson-container .remaining {
+    color: gray;
+}
+
+.typing-lesson-container .current-block {
+    font-weight: bold;
+    color: black;
+}
+
+#typing-input {
+    width: 100%;
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#start-button {
+    display: none; /* Initially hidden */
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#start-button:hover {
+    background: #0056b3;
+}
+
+.input-typing {
+    display: none; /* Initially hidden */
+}
+  </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/UserProfiles.css') }}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <title>Responsive Dashboard Design #2 | WikraType</title>
+    <script>
+
+    </script>
 </head>
-
 <body>
-
     <!-- Sidebar -->
     <div class="sidebar">
+        <a href="#" class="logo">
+            <img src="{{ asset('image/wikrama.png') }}" width="20%" style="margin-left: 7%" alt="">
+            <div class="logo-name"><span>Wikra</span>Type</div>
+        </a>
+        <ul class="side-menu">
+            <li class="#"><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
+            @foreach($TypingLessons as $lesson)
+            @if($lesson->id == 1)
+            <li><a href="{{ route('HalamanTypingLessons', $lesson->id) }}"><i class='bx bx-analyse'></i>Start Lesson {{ $lesson->id }}</a></li>
+            @endif
+            @endforeach
+            <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i> Users</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+        <li><a href="#">    <i class='bx bx-cog'></i>Settings</a></li>
+              <a href="{{ route('LogoutUser') }}" onclick="confirm('Apakah Anda yakin ingin logout?')">
+                    <i class='bx bx-log-out-circle'></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div> <div class="sidebar">
         <a href="#" class="logo">
             <img src="{{ asset('image/wikrama.png') }}" width="20%" style="margin-left: 7%" alt="">
             <div class="logo-name"><span>Wikra</span>Type</div>
@@ -24,7 +122,8 @@
             <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
             <li><a href="{{ route('HalamanTypingLessons') }}"><i class='bx bx-analyse'></i>Start Lesson</a></li>
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li class="active"><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i>Your Profile</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class="fa-solid fa-user"></i> Users</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i>Your Profile</a></li>
             <li><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
             <li><a href="{{ route('HalamanDev') }}"><i class="fa-solid fa-users"></i>Our Dev</a></li>
         </ul>
@@ -57,29 +156,26 @@
         <main>
           <div class="header">
               <div class="left">
-                  <h1>Your Profile</h1>
+                  <h1>Selamat Datang Di Typing Lessons</h1>
                   <ul class="breadcrumb">
-                      <li><a href="#"></a></li>
+                      <li><a href="#">Typing Lessons</a></li>
                   </ul>
               </div>
           </div>
-
-          <div class="welcome">
-            <div class="user-info">
-                <h2>YOUR PROFILE</h2>
-                <hr>
-                <div class="profile-details">
-                    <p><strong>Name:</strong> {{ $user->name }}</p>
-                    <p><strong>Email:</strong> {{ $user->email }}</p>
-                    <p><strong>Level:</strong> {{ $user->level ?? 'Beginner' }}</p> <!-- Assuming there's a level attribute, otherwise default to 'Beginner' -->
-                    <p><strong>Total Time:</strong> {{ $user->total_time ?? 'XX hours XX mins' }}</p> <!-- Assuming total_time is stored in a readable format -->
-                    <p><strong>Avg WPM:</strong> {{ $user->avg_wpm ?? 'XX' }}</p> <!-- Assuming there's an avg_wpm attribute -->
-                    <p><strong>Avg Accuracy:</strong> {{ $user->avg_accuracy ?? 'XX%' }}</p> <!-- Assuming there's an avg_accuracy attribute -->
-                </div>
+          @if (Auth::user())
+          <div>
+            <div>
+                <a href="{{ route('') }}"></a>
             </div>
-        </div>
-    </main>
-
+            <div>
+                <a href="{{ route('') }}"></a>
+            </div>
+            <div>
+                <a href="{{ route('') }}"></a>
+            </div>
+          </div>
+      </main>
+    </div>
     <script>
       const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
 
@@ -138,16 +234,6 @@ toggler.addEventListener('change', function () {
     }
 });
     </script>
-    <script>
-        const editProfileBtn = document.querySelector('.edit-profile-btn');
-        const profileDetails = document.querySelector('.profile-details');
-
-        editProfileBtn.addEventListener('click', () => {
-            // Replace with logic for opening edit profile modal or form
-            console.log('Edit profile clicked');
-            // Example: Show a form or modal for editing profile
-        });
-
-    </script>
 </body>
+@endif
 </html>
