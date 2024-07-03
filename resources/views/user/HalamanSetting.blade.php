@@ -1,154 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <style>
+  </style>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Settings</title>
-    <style>
-        body, html {
-            background-color: #EBEBFB;
-            color: #171730;
-            user-select: none;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: "Poppins", sans-serif;
-        }
-
-        .container {
-            box-sizing: border-box;
-            background-color: white;
-            padding: 20px;
-            border-radius: 20px;
-            width: 450px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1, h3 {
-            font-family: "Roboto Slab", serif;
-            font-weight: 600;
-            margin: 0;
-            text-align: center;
-        }
-
-        .setting-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .toggle-container {
-            position: relative;
-            width: fit-content;
-            height: fit-content;
-        }
-
-        .toggle {
-            width: 60px;
-            height: 35px;
-            border-radius: 40px;
-            background-color: #EBEBFB;
-            display: inline-block;
-        }
-
-        .toggle-c {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: white;
-            display: inline-block;
-            position: absolute;
-            left: 5px;
-            top: 5px;
-            transition: 300ms all;
-            border: 1px solid #8c8ca4;
-        }
-
-        input[type="checkbox"] {
-            display: none;
-        }
-
-        input[type="checkbox"]:checked + div .toggle-c {
-            left: 30px;
-            background-color: #30305C;
-            border-color: #30305C;
-        }
-
-        /* Mengatur gaya untuk input type time */
-        input[type="time"] {
-            appearance: none;
-            border: 1px solid #ccc;
-            padding: 8px;
-            border-radius: 4px;
-            font-size: 14px;
-            width: 100px;
-            margin-top: 5px;
-            display: block; /* mengatur input time agar menjadi blok */
-        }
-
-        /* Stil untuk label */
-        label {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        /* Stil untuk tombol */
-        button {
-            padding: 10px 20px;
-            background-color: #30305C;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            align-self: flex-end;
-        }
-
-        button:hover {
-            background-color: #171730;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('/css/Dashboard.css')}}">
+    <title>Responsive Dashboard Design #2 | WikraType</title>
 </head>
+
 <body>
-    <div class="container">
-        <div>
-            <h1>Settings</h1>
-        </div>
-        <div class="setting-item">
-            <label for="togg-1">    
-                <span>Dark Mode</span>
-                <input type="checkbox" id="togg-1">
-                <div class="toggle-container">
-                    <span class="toggle"></span>
-                    <span class="toggle-c"></span>
-                </div>
-            </label>
-        </div>
-        <div class="setting-item">
-            <label for="togg-2">    
-                <span>Practice Time</span>
-                <input type="time" id="togg-2">
-            </label>
-        </div>
-        <div class="setting-item">
-            <label for="togg-3">    
-                <span>Desktop Notification</span>
-                <input type="checkbox" id="togg-3">
-                <div class="toggle-container">
-                    <span class="toggle"></span>
-                    <span class="toggle-c"></span>
-                </div>
-            </label>
-        </div>
-        <button id="save-settings">Save Settings</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <img src="{{ asset('image/wikrama.png') }}" width="20%" style="margin-left: 7%" alt="">
+            <div class="logo-name"><span>Wikra</span>Type</div>
+        </a>
+        <ul class="side-menu">
+            <li><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
+            <li><a href="{{ route('HalamanTypingLessons') }}"><i class='bx bx-analyse'></i>Start Lesson</a></li>
+            <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
+            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i>Your Profile</a></li>
+            <li class="active"><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
+            <li><a href="{{ route('HalamanDev') }}"><i class="fa-solid fa-users"></i>Our Dev</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <li><a href="{{ route('LogoutUser') }}" onclick="return confirm('Apakah Anda yakin ingin logout?')"><i class='bx bx-log-out-circle'></i>Logout</a></li>
+            </li>
+        </ul>
     </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <a href="#" class="profile">
+                <img src="{{ asset('images/wikrama.png') }}">
+            </a>
+        </nav>
+
+        <!-- End of Navbar -->
+
+        <main>
+          <div class="header">
+              <div class="left">
+                  <h1>Setting</h1>
+                  <ul class="breadcrumb">
+                      <li><a href="#">{{ Auth::user()->name }}</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="settings">
+            <h2>Settings</h2>
+            <form id="settings-form">
+                <div class="form-group">
+                    <label for="theme-toggle">Dark Mode</label>
+                    <input type="checkbox" id="theme-toggle">
+                </div>
+                <div class="form-group">
+                    <label for="language-select">Language</label>
+                    <select id="language-select">
+                        <option value="en">English</option>
+                        <option value="id">Indonesian</option>
+                        <!-- Add more languages as needed -->
+                    </select>
+                </div>
+                <button type="submit">Save Settings</button>
+            </form>
+        </div>
+    </main>
+
+
+    </div>
+
+    <script>
+ document.addEventListener('DOMContentLoaded', (event) => {
+        // Sidebar Menu Toggle
+        const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
+        sideLinks.forEach(item => {
+            const li = item.parentElement;
+            item.addEventListener('click', () => {
+                sideLinks.forEach(i => {
+                    i.parentElement.classList.remove('active');
+                });
+                li.classList.add('active');
+            });
+        });
+
+        const menuBar = document.querySelector('.content nav .bx.bx-menu');
+        const sideBar = document.querySelector('.sidebar');
+
+        menuBar.addEventListener('click', () => {
+            sideBar.classList.toggle('close');
+        });
+
+        const searchBtn = document.querySelector('.content nav form .form-input button');
+        const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
+        const searchForm = document.querySelector('.content nav form');
+
+        searchBtn.addEventListener('click', function (e) {
+            if (window.innerWidth < 576) {
+                e.preventDefault();
+                searchForm.classList.toggle('show');
+                if (searchForm.classList.contains('show')) {
+                    searchBtnIcon.classList.replace('bx-search', 'bx-x');
+                } else {
+                    searchBtnIcon.classList.replace('bx-x', 'bx-search');
+                }
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 768) {
+                sideBar.classList.add('close');
+            } else {
+                sideBar.classList.remove('close');
+            }
+            if (window.innerWidth > 576) {
+                searchBtnIcon.classList.replace('bx-x', 'bx-search');
+                searchForm.classList.remove('show');
+            }
+        });
+
+        const toggler = document.getElementById('theme-toggle');
+
+        toggler.addEventListener('change', function () {
+            if (this.checked) {
+                document.body.classList.add('dark');
+            } else {
+                document.body.classList.remove('dark');
+            }
+        });
+
+        // Save Settings Form
+        const settingsForm = document.getElementById('settings-form');
+        settingsForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const isDarkMode = toggler.checked;
+            const selectedLanguage = document.getElementById('language-select').value;
+            localStorage.setItem('darkMode', isDarkMode);
+            localStorage.setItem('language', selectedLanguage);
+            alert('Settings saved!');
+        });
+
+        // Load Settings
+        if (localStorage.getItem('darkMode') === 'true') {
+            toggler.checked = true;
+            document.body.classList.add('dark');
+        } else {
+            toggler.checked = false;
+            document.body.classList.remove('dark');
+        }
+
+        const savedLanguage = localStorage.getItem('language');
+        if (savedLanguage) {
+            document.getElementById('language-select').value = savedLanguage;
+        }
+    });
+    </script>
 </body>
+
+
 </html>

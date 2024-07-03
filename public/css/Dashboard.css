@@ -689,3 +689,76 @@ body{
             padding: 20px;
             background-color: #f8f9fa;
         }
+/* Settings Section */
+.settings {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.settings h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.settings .form-group {
+    margin-bottom: 15px;
+}
+
+.settings .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.settings .form-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.settings .form-group select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.settings button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.settings button:hover {
+    background-color: #0056b3;
+}
+
+/* Dark Mode Styles */
+body.dark {
+    background-color: #121212;
+    color: white;
+}
+
+body.dark .settings {
+    background: #333;
+    color: white;
+}
+
+body.dark .settings button {
+    background-color: #444;
+}
+
+body.dark .settings button:hover {
+    background-color: #222;
+}
+
+body.dark .settings .form-group select {
+    background: #444;
+    color: white;
+    border: 1px solid #555;
+}

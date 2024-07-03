@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\typing_lessons;
+use App\Models\TypingLessons;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -29,16 +29,16 @@ class search_controller extends Controller
     {
         $search = $request->input('searchText');
 
-        $typing_lessons = typing_lessons::query();
+        $TypingLessons = TypingLessons::query();
 
         if ($search) {
-            $typing_lessons->where(function ($query) use ($search) {
+            $TypingLessons->where(function ($query) use ($search) {
                 $query->where('difficulty_level', 'like', "%$search%");
             });
         }
 
-        $typing_lessons = $typing_lessons->get();
+        $TypingLessons = $TypingLessons->get();
 
-        return view('admin/HalamanReadText', compact('typing_lessons'));
+        return view('admin/HalamanReadText', compact('TypingLessons'));
     }
 }
