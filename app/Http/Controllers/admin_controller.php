@@ -37,6 +37,15 @@ class admin_controller extends Controller
         return view('admin/ubah/UpdateUser', compact('users'));
     }
 
+    public function DestroyUsers($id)
+    {
+        $User = User::findOrFail($id);
+        $User->delete();
+
+        // Redirect ke halaman lain dengan pesan sukses
+        return redirect()->route('HalamanAdmin')->with('success', 'Typing lesson deleted successfully!');
+    }
+
     // Memperbarui pengguna di basis data
     public function UpdateUsers(Request $request, $id)
     {

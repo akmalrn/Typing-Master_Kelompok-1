@@ -47,20 +47,23 @@ class TypingLessons_Controller extends Controller
 
     public function BarisAtas()
     {
-        $TypingLessons = TypingLessons::all();
-        return view('user/BarisAtas', compact('TypingLessons'));
+        $lesson = TypingLessons::where('lesson_title', 'Baris Atas')->firstOrFail();
+
+        return view('user/BarisAtas', compact('lesson'));
     }
     
 
     public function BarisBawah()
     {
-        $TypingLessons = TypingLessons::all();
-        return view('user/BarisBawah', compact('TypingLessons'));
+        $lesson = TypingLessons::where('lesson_title', 'Baris Bawah')->firstOrFail();
+
+        return view('user/BarisBawah', compact('lesson'));
     }
 
     public function Angka()
     {
-        $TypingLessons = TypingLessons::all();
-        return view('user/BarisAngka', compact('TypingLessons'));
+        $lesson = TypingLessons::where('lesson_title', 'Angka')->firstOrFail();
+
+        return view('user/Angka', compact('lesson'));
     }
 }
