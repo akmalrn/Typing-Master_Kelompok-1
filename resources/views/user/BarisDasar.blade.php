@@ -145,9 +145,11 @@ toggler.addEventListener('change', function () {
       </dialog>
       <dialog id="result-dialog">
         <p class="result-text">
-          Kecepatan Ngetikmu: <span id="result-wpm"></span> WPM! <br />
-          Sepertinya Kamu musti latihan lebih sering lagi <br />
-          biar tambah ngebut ngetiknya.
+            Kecepatan Ngetikmu: <span id="result-wpm"></span> WPM! <br />
+            Akurasi: <span class="accuracy"></span><br />
+            Kelasalahan: <span class="totalErrors"></span><br />
+            Sepertinya Kamu musti latihan lebih sering lagi <br />
+            biar tambah ngebut ngetiknya.
         </p>
         <div class="button-result">
           <button class="btn">OKE</button>
@@ -224,7 +226,12 @@ toggler.addEventListener('change', function () {
             <span class="wpm-est">0</span> WPM
           </div>
         </div>
+        <div class="accuracy-error-ctr ctr">
+          <div class="accuracy"><span class="accuracy-value"></span>Accuracy : </div>
+          <div class="total-errors"><span class="error-count"></span>Total Salah : </div>
+        </div>
       </div>
+
     </section>
 
         <script>
@@ -244,9 +251,8 @@ let trueWord = 0;
 let paragraphCount = 0;
 let hitungMundur = 60;
 let intervalId;
-let correctChars = 0;
-let incorrectChars = 0;
-
+let totalChars = 0;
+let totalErrors = 0;
 
 const typingSpeedMessages = {
   slow: {
@@ -289,7 +295,7 @@ const arrayHTML = words.map(
     `<span class= "word">${word
       .split("")
       .filter((e) => e !== "\n")
-      .map((char) => `<span>${char}</span>`)
+      .map((char) => <span>${char}</span>)
       .join("")}</span>`
 );
 
@@ -312,10 +318,11 @@ function paragraphChunks(arr, chunkLength = 20) {
 }
 
 function wordValidator() {
-  if (
-    charCount < paragraph.children[currentWord].children.length ||
-    falseCharInWordCount > 0
-  ) {
+  let correctChars = paragraph.children[currentWord].children.length - falseCharInWordCount;
+  totalChars += paragraph.children[currentWord].children.length;
+  totalErrors += falseCharInWordCount;
+
+  if (charCount < paragraph.children[currentWord].children.length || falseCharInWordCount > 0) {
     Array.from(paragraph.children[currentWord].children).forEach(
       (char) => (char.style.color = "red")
     );
@@ -324,6 +331,7 @@ function wordValidator() {
     trueWord++;
   }
 }
+
 
 function getTypingSpeedMessage(wpm) {
   for (const level in typingSpeedMessages) {
@@ -334,52 +342,46 @@ function getTypingSpeedMessage(wpm) {
   }
 }
 
-function calculateAccuracy() {
-    const totalTypedChars = correctChars + incorrectChars;
-    if (totalTypedChars === 0) return 100; // Jika tidak ada karakter yang diketik, akurasi dianggap 100%
-    return Math.round((correctChars / totalTypedChars) * 100);
-}
-
 function gamePlay(e) {
-    if (e.code == "Space") {
-        e.preventDefault();
-        wordValidator();
-        falseCharInWordCount = 0;
-        paragraph.children[currentWord].style.backgroundColor = `transparent`;
-        charCount = 0;
-        wordsFinished++;
-        currentWord++;
-        if (currentWord >= paragraph.children.length) {
-            paragraphCount++;
-            if (paragraphCount >= newHTML.length) paragraphCount = 0;
-            currentWord = 0;
-            paragraph.innerHTML = newHTML[paragraphCount].join(" ");
-            updateParagraph();
-        }
-        Array.from(paragraph.children[currentWord].children).forEach(
-            (char) => (char.style.color = "white")
-        );
-        paragraph.children[currentWord].style.backgroundColor = "#008846";
-    } else if (
-        e.key.length < 2 &&
-        charCount < paragraph.children[currentWord].children.length
-    ) {
-        let currentChar = paragraph.children[currentWord].children[charCount];
-        if (e.key === currentChar.innerText) {
-            currentChar.style.color = "black";
-            charCount++;
-            correctChars++; // Tambahkan ini
-        } else {
-            currentChar.style.color = "red";
-            falseCharInWordCount++;
-            incorrectChars++; // Tambahkan ini
-            charCount++;
-        }
-    } else if (e.key === "Backspace") {
-        eraser();
+  if (e.code == "Space") {
+    e.preventDefault();
+    wordValidator();
+    falseCharInWordCount = 0; // falseCharInWordCount dijadikan 0 sbelum masuk word selanjutnya
+    paragraph.children[currentWord].style.backgroundColor = transparent;
+    charCount = 0;
+    wordsFinished++;
+    currentWord++; // counter (current word) berpindah ke selanjutnya
+    // Pengkondisian jika paragraph sekarang sudah habis, akan diupdate ke paragraph selanjutnya
+    if (currentWord >= paragraph.children.length) {
+      console.log(paragraphCount);
+      paragraphCount++;
+      if (paragraphCount >= newHTML.length) paragraphCount = 0;
+      currentWord = 0;
+      paragraph.innerHTML = newHTML[paragraphCount].join(" ");
+      updateParagraph();
     }
+    //====MASUK KE WORD SELANJUTNYA======
+    Array.from(paragraph.children[currentWord].children).forEach(
+      (char) => (char.style.color = "white")
+    );
+    paragraph.children[currentWord].style.backgroundColor = "#008846";
+  } else if (
+    e.key.length < 2 &&
+    charCount < paragraph.children[currentWord].children.length
+  ) {
+    let currentChar = paragraph.children[currentWord].children[charCount];
+    if (e.key === currentChar.innerText) {
+      currentChar.style.color = "black";
+      charCount++;
+    } else {
+      currentChar.style.color = "red";
+      falseCharInWordCount++;
+      charCount++;
+    }
+  } else if (e.key === "Backspace") {
+    eraser();
+  }
 }
-
 function updateParagraph() {
   Array.from(paragraph.children).forEach((word) => {
     word.style.backgroundColor = "transparent";
@@ -391,16 +393,11 @@ function updateParagraph() {
 }
 
 function eraser() {
-    if (charCount == 0) return;
-    charCount--;
-    const hurufSekarang = paragraph.children[currentWord].children[charCount];
-    if (hurufSekarang.style.color === "red") {
-        falseCharInWordCount--;
-        incorrectChars--; // Tambahkan ini
-    } else {
-        correctChars--; // Tambahkan ini
-    }
-    hurufSekarang.style.color = "white";
+  if (charCount == 0) return;
+  charCount--;
+  const hurufSekarang = paragraph.children[currentWord].children[charCount];
+  if (hurufSekarang.style.color === "red") falseCharInWordCount--;
+  hurufSekarang.style.color = "white";
 }
 
 function estimatingWPM() {
@@ -409,21 +406,29 @@ function estimatingWPM() {
   const result = trueWord * finiteNum;
   const { color } = getTypingSpeedMessage(result);
   wpmEstDisplay.innerText = result;
-  wpmEstDisplay.parentElement.style.color = `${color}`;
+  wpmEstDisplay.parentElement.style.color = ${color};
 }
 
 function gameResult() {
+  const accuracy = Math.round(((totalChars - totalErrors) / totalChars) * 100);
   const { message, color } = getTypingSpeedMessage(trueWord);
+
+  // Tampilkan hasil game beserta akurasi
   wpmEstDisplay.innerText = trueWord;
-  wpmEstDisplay.parentElement.style.color = `${color}`;
+  wpmEstDisplay.parentElement.style.color = ${color};
+  document.querySelector(".accuracy").innerText = accuracy + "%";
+  document.querySelector(".total-errors").innerText = totalErrors; // Tambahkan ini jika ingin menampilkan total kesalahan
   resultDialog.children[0].innerHTML = `
-        Kecepatan ngetikmu:
-        <h1 class="wpm-result" style="color: ${color};">${trueWord} WPM</h1>
-        <p>${message}</p>
-        <p>Akurasi: ${accuracy}%</p>
-        `;
+    Kecepatan ngetikmu:
+    <h1 class="wpm-result" style="color: ${color};">${trueWord} WPM</h1>
+    <p>${message}</p>
+    <p>Akurasi: ${accuracy}%</p>
+    <p>Total Kesalahan: ${totalErrors}</p>
+  `;
   resultDialog.showModal();
 }
+
+
 
 const ketik = (event) => {
   gamePlay(event);
@@ -480,7 +485,6 @@ wpmEstDisplay.parentNode.addEventListener("click", () => {
 btn.onclick = starto;
 
             </script>
-
 </body>
 @endif
 </html>
