@@ -71,28 +71,30 @@
               </div>
 
               <div class="cards">
-                  <div class="card">
-                      <div class="icon"><i class='bx bxs-dashboard'></i></div>
-                      <div class="info">
-                          <h3>Total Score</h3>
-                          <p>999999999</p>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="icon"><i class='bx bx-bar-chart'></i></div>
-                      <div class="info">
-                          <h3>WPM</h3>
-                          <p>95.81%</p>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="icon"><i class='bx bx-bar-chart'></i></div>
-                      <div class="info">
-                          <h3>RAW</h3>
-                          <p>87.65%</p>
-                      </div>
-                  </div>
-              </div>
+                <div class="card">
+                    <div class="icon"><i class='bx bxs-dashboard'></i></div>
+                    <div class="info">
+                        <h3>WPM</h3>
+                        <p>{{ $avgWPM }}</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class='bx bx-bar-chart'></i></div>
+                    <div class="info">
+                        <h3>Accuracy</h3>
+                        <p>{{ $avgAccuracy }}</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class='bx bx-bar-chart'></i></div>
+                    <div class="info">
+                        <h3>Error</h3>
+                        <p>{{ $avgErrors }}</p>
+                    </div>
+                </div>
+            </div>
+
+
           </div>
       </main>
 

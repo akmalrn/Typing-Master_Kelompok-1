@@ -72,12 +72,12 @@
                     <p><strong>Name:</strong> {{ $user->name }}</p>
                     <p><strong>Email:</strong> {{ $user->email }}</p>
                     <p><strong>Level:</strong> {{ $user->level ?? 'Beginner' }}</p> <!-- Assuming there's a level attribute, otherwise default to 'Beginner' -->
-                    <p><strong>Total Time:</strong> {{ $user->total_time ?? 'XX hours XX mins' }}</p> <!-- Assuming total_time is stored in a readable format -->
-                    <p><strong>Avg WPM:</strong> {{ $user->avg_wpm ?? 'XX' }}</p> <!-- Assuming there's an avg_wpm attribute -->
-                    <p><strong>Avg Accuracy:</strong> {{ $user->avg_accuracy ?? 'XX%' }}</p> <!-- Assuming there's an avg_accuracy attribute -->
+                    <div class="typing-stats">
+                        <p><strong>WPM:</strong> {{ $maxWPM }}</p>
+                        <p><strong>Accuracy:</strong> {{ $maxAccuracy }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
     </main>
 
     <script>

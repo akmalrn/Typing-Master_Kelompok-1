@@ -257,9 +257,6 @@ let hitungMundur = 60;
 let intervalId;
 let totalChars = 0;
 let totalErrors = 0;
-let totalTypedChars = 0;
-let totalTimeInSeconds = 0;
-const cpmEstDisplay = document.querySelector(".cpm-est");
 
 const typingSpeedMessages = {
   slow: {
