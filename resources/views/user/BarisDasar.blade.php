@@ -82,11 +82,11 @@ toggler.addEventListener('change', function () {
         </a>
         <ul class="side-menu">
             <li><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
             <li><a href="{{ route('HalamanTypingLessons') }}"><i class='bx bx-analyse'></i>Start Lesson</a></li>
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
             <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i>Your Profile</a></li>
             <li><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
+            <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
             <li><a href="{{ route('HalamanDev') }}"><i class="fa-solid fa-users"></i>Our Dev</a></li>
         </ul>
         <ul class="side-menu">
@@ -228,8 +228,10 @@ toggler.addEventListener('change', function () {
         </div>
         <div class="accuracy-error-ctr ctr">
           <div class="accuracy"><span class="accuracy-value"></span>Accuracy : </div>
-          <div class="total-errors"><span class="error-count"></span>Total Salah : </div>
         </div>
+        <div class="accuracy-error-ctr ctr">
+            <div class="total-errors"><span class="error-count"></span>Total Salah : </div>
+          </div>
       </div>
 
     </section>
@@ -244,11 +246,11 @@ const wpmEstDisplay = document.querySelector(".wpm-est");
 
 let wordsFinished = 0;
 let currentWord = 0;
-let charCount = 0;
 let falseCharInWordCount = 0;
 let falseWord = 0;
 let trueWord = 0;
 let paragraphCount = 0;
+let charCount = 0;
 let hitungMundur = 60;
 let intervalId;
 let totalChars = 0;
@@ -260,7 +262,7 @@ const typingSpeedMessages = {
     maxWPM: 15,
     message:
       "Lambat banget?!!, mungkin ngetik bukan passionmu deh. </br> kamu cocoknya joget aja! Oke gass oke gass",
-    color: "red",
+    color: "red",f
   },
   beginner: {
     minWPM: 16,
@@ -343,44 +345,66 @@ function getTypingSpeedMessage(wpm) {
 }
 
 function gamePlay(e) {
-    if (e.code == "Space") {
-        e.preventDefault();
-        wordValidator();
-        falseCharInWordCount = 0;
-        paragraph.children[currentWord].style.backgroundColor = `transparent`;
-        charCount = 0;
-        wordsFinished++;
-        currentWord++;
-        if (currentWord >= paragraph.children.length) {
-            paragraphCount++;
-            if (paragraphCount >= newHTML.length) paragraphCount = 0;
-            currentWord = 0;
-            paragraph.innerHTML = newHTML[paragraphCount].join(" ");
-            updateParagraph();
-        }
+  if (e.code == "Space") {
+    e.preventDefault();
+
+    let currentWordLength = paragraph.children[currentWord]?.children.length;
+
+    if (charCount >= currentWordLength) {
+      // Jika kata sudah selesai diketik, pindah ke kata berikutnya
+      wordValidator(); // Validasi kata saat ini
+      falseCharInWordCount = 0; // Reset hitungan kesalahan
+      paragraph.children[currentWord].style.backgroundColor = transparent;
+      charCount = 0; // Reset penghitung karakter untuk kata berikutnya
+      wordsFinished++;
+      currentWord++; // Pindah ke kata berikutnya
+
+      // Jika paragraf habis, perbarui ke paragraf berikutnya
+      if (currentWord >= paragraph.children.length) {
+        console.log("End of paragraph reached - updating paragraph");
+        paragraphCount++;
+        if (paragraphCount >= newHTML.length) paragraphCount = 0;
+        currentWord = 0;
+        paragraph.innerHTML = newHTML[paragraphCount].join(" ");
+        updateParagraph();
+      }
+
+      // Highlight kata berikutnya
+      if (paragraph.children[currentWord]) {
         Array.from(paragraph.children[currentWord].children).forEach(
-            (char) => (char.style.color = "white")
+          (char) => (char.style.color = "white")
         );
         paragraph.children[currentWord].style.backgroundColor = "#008846";
-    } else if (
-        e.key.length < 2 &&
-        charCount < paragraph.children[currentWord].children.length
-    ) {
-        let currentChar = paragraph.children[currentWord].children[charCount];
-        if (e.key === currentChar.innerText) {
-            currentChar.style.color = "black";
-            charCount++;
-            correctChars++; // Tambahkan ini
-        } else {
-            currentChar.style.color = "red";
-            falseCharInWordCount++;
-            incorrectChars++; // Tambahkan ini
-            charCount++;
-        }
-    } else if (e.key === "Backspace") {
-        eraser();
+      }
+    } else {
+      // Jika kata belum selesai diketik, pindah ke huruf berikutnya
+      let currentChar = paragraph.children[currentWord]?.children[charCount];
+      if (currentChar) {
+        currentChar.style.color = "red"; // Tandai karakter yang belum selesai sebagai salah
+        charCount++;
+      }
     }
+  } else if (e.key.length === 1) {
+    let currentChar = paragraph.children[currentWord]?.children[charCount];
+
+    // Jika masih ada karakter di kata saat ini
+    if (charCount < paragraph.children[currentWord].children.length) {
+      if (e.key === currentChar.innerText) {
+        currentChar.style.color = "black"; // Jika benar, warna hitam
+      } else {
+        currentChar.style.color = "red"; // Jika salah, warna merah
+        falseCharInWordCount++;
+      }
+      charCount++;
+    } else {
+      // Jika charCount melebihi panjang kata, tetap catat sebagai salah
+      falseCharInWordCount++;
+    }
+  } else if (e.key === "Backspace") {
+    eraser();
+  }
 }
+
 function updateParagraph() {
   Array.from(paragraph.children).forEach((word) => {
     word.style.backgroundColor = "transparent";
@@ -414,7 +438,9 @@ function gameResult() {
 
   // Tampilkan hasil game beserta akurasi
   wpmEstDisplay.innerText = trueWord;
-  wpmEstDisplay.parentElement.style.color = `${color}`;
+  wpmEstDisplay.parentElement.style.color = ${color};
+  document.querySelector(".accuracy").innerText = accuracy + "%";
+  document.querySelector(".total-errors").innerText = totalErrors; // Tambahkan ini jika ingin menampilkan total kesalahan
   resultDialog.children[0].innerHTML = `
     Kecepatan ngetikmu:
     <h1 class="wpm-result" style="color: ${color};">${trueWord} WPM</h1>
