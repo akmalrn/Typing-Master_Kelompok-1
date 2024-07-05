@@ -62,7 +62,7 @@ html {
 
   .paragraph {
     margin: 7em auto 5px;
-    width: clamp(50%, 720px, 50%);
+    width: clamp(80%, 720px, 50%);
     box-sizing: border-box;
     font-size: 1.2em;
     line-height: 1.6;
