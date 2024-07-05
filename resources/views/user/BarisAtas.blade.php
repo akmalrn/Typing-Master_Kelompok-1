@@ -299,7 +299,7 @@ Array.from(resultDialog.children).forEach((e) =>
   })
 );
 
-function paragraphChunks(arr, chunkLength = 20) {
+function paragraphChunks(arr, chunkLength = 8) {
   const subArrays = [];
   const arrFiltered = arr.filter((e) => e != '<span class= "word"></span>');
   while (arrFiltered.length > 0) {
