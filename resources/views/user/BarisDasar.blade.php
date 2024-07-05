@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/HalamanMengetik.css') }}">
@@ -137,7 +137,7 @@ toggler.addEventListener('change', function () {
                   </ul>
               </div>
           </div>
-          @if (Auth::user())
+          @if (Auth::user() && isset($lesson))
           <i class="fa-solid fa-bars toggle-btn"></i>
     <section id="main-sec" class="main">
       <dialog class="mobile-msg">
@@ -212,7 +212,7 @@ toggler.addEventListener('change', function () {
         </p>
         <div class="btn close">oke</div>
       </dialog>
-
+      <div id="typing-test-container" data-lesson-id="{{ $lesson->id }}"></div>
       <!-- Paragraf pelajaran dari database -->
       <div class="paragraph">
         {{ $lesson->lesson_content }}
@@ -237,6 +237,8 @@ toggler.addEventListener('change', function () {
     </section>
 
         <script>
+            window.userId = {{ Auth::user()->id }};
+
         const btn = document.querySelector(".btn.ctr");
 const paragraph = document.querySelector(".paragraph");
 const words = paragraph.innerHTML.split(" ");
@@ -255,6 +257,9 @@ let hitungMundur = 60;
 let intervalId;
 let totalChars = 0;
 let totalErrors = 0;
+let totalTypedChars = 0;
+let totalTimeInSeconds = 0;
+const cpmEstDisplay = document.querySelector(".cpm-est");
 
 const typingSpeedMessages = {
   slow: {
@@ -449,8 +454,42 @@ function gameResult() {
     <p>Total Kesalahan: ${totalErrors}</p>
   `;
   resultDialog.showModal();
+  const lessonId = document.getElementById('typing-test-container').getAttribute('data-lesson-id');
+  sendTypingData(userId, lessonId, trueWord, accuracy, totalErrors);
 }
 
+function sendTypingData(userId, lessonId, wpm, accuracy, totalErrors) {
+    fetch('/api/user/BarisDasar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            user_id: userId,
+            lesson_id: lessonId,
+            wpm: wpm,
+            accuracy: accuracy,
+            errors: totalErrors,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response:', data);
+        // Lakukan sesuatu setelah permintaan selesai
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Tangani kesalahan jika terjadi
+    });
+}
 
 
 const ketik = (event) => {
@@ -461,7 +500,7 @@ function restartBtn() {
   clearInterval(intervalId);
   document.removeEventListener("keydown", ketik);
   wordsFinished = 0;
-  hitungMundur = 60;
+  hitungMundur =60;
   currentWord = 0;
   charCount = 0;
   falseCharInWordCount = 0;
@@ -472,7 +511,7 @@ function restartBtn() {
   updateParagraph();
   wpmEstDisplay.innerText = 0;
   wpmEstDisplay.parentElement.style.color = "#f8f8f2";
-  detik.innerText = 60;
+  detik.innerText =60;
   btn.innerText = "Start";
   btn.onclick = starto;
 }

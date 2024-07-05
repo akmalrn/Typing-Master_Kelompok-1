@@ -19,8 +19,6 @@ return new class extends Migration
             $table->float('wpm'); // Words per minute
             $table->float('accuracy'); // Accuracy percentage
             $table->integer('errors'); // Number of errors
-            $table->integer('practice_time'); // Practice time in seconds
-            $table->timestamp('session_date')->default(DB::raw('CURRENT_TIMESTAMP')); // Session date and time
 
             // Defining foreign key constraints
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

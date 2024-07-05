@@ -23,7 +23,7 @@ class user_login extends Controller
     if (Auth::attempt($credentials)) {
         // Login berhasil, dapatkan ID pengguna
         $user = Auth::id();
-
+       
         // Anda bisa mendapatkan detail pengguna lain jika diperlukan
         $user = Auth::user();
         $userRole = $user->role;
