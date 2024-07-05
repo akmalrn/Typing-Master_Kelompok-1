@@ -225,14 +225,18 @@ toggler.addEventListener('change', function () {
           <div class="display-est-wpm ctr">
             <span class="wpm-est">0</span> WPM
           </div>
+          <div class="display-cpm ctr">
+            <span class="cpm-est">0</span> CPM
+          </div>
         </div>
         <div class="accuracy-error-ctr ctr">
           <div class="accuracy"><span class="accuracy-value"></span>Accuracy : </div>
         </div>
         <div class="accuracy-error-ctr ctr">
-            <div class="total-errors"><span class="error-count"></span>Total Salah : </div>
-          </div>
-      </div>
+          <div class="total-errors"><span class="error-count"></span>Total Salah : </div>
+        </div>
+    </div>
+
 
     </section>
 
@@ -255,6 +259,8 @@ let hitungMundur = 60;
 let intervalId;
 let totalChars = 0;
 let totalErrors = 0;
+let totalTypedChars = 0;
+let totalTimeInSeconds = 0;
 
 const typingSpeedMessages = {
   slow: {
@@ -262,7 +268,7 @@ const typingSpeedMessages = {
     maxWPM: 15,
     message:
       "Lambat banget?!!, mungkin ngetik bukan passionmu deh. </br> kamu cocoknya joget aja! Oke gass oke gass",
-    color: "red",f
+    color: "red",
   },
   beginner: {
     minWPM: 16,
@@ -297,7 +303,7 @@ const arrayHTML = words.map(
     `<span class= "word">${word
       .split("")
       .filter((e) => e !== "\n")
-      .map((char) => <span>${char}</span>)
+      .map((char) => `<span>${char}</span>`)
       .join("")}</span>`
 );
 
@@ -354,7 +360,7 @@ function gamePlay(e) {
       // Jika kata sudah selesai diketik, pindah ke kata berikutnya
       wordValidator(); // Validasi kata saat ini
       falseCharInWordCount = 0; // Reset hitungan kesalahan
-      paragraph.children[currentWord].style.backgroundColor = transparent;
+      paragraph.children[currentWord].style.backgroundColor = `transparent`;
       charCount = 0; // Reset penghitung karakter untuk kata berikutnya
       wordsFinished++;
       currentWord++; // Pindah ke kata berikutnya
@@ -429,7 +435,7 @@ function estimatingWPM() {
   const result = trueWord * finiteNum;
   const { color } = getTypingSpeedMessage(result);
   wpmEstDisplay.innerText = result;
-  wpmEstDisplay.parentElement.style.color = ${color};
+  wpmEstDisplay.parentElement.style.color = `${color}`;
 }
 
 function gameResult() {
@@ -438,7 +444,7 @@ function gameResult() {
 
   // Tampilkan hasil game beserta akurasi
   wpmEstDisplay.innerText = trueWord;
-  wpmEstDisplay.parentElement.style.color = ${color};
+  wpmEstDisplay.parentElement.style.color = `${color}`;
   document.querySelector(".accuracy").innerText = accuracy + "%";
   document.querySelector(".total-errors").innerText = totalErrors; // Tambahkan ini jika ingin menampilkan total kesalahan
   resultDialog.children[0].innerHTML = `
@@ -506,6 +512,81 @@ wpmEstDisplay.parentNode.addEventListener("click", () => {
 });
 
 btn.onclick = starto;
+
+
+const cpmEstDisplay = document.querySelector(".cpm-est");
+
+function updateCPM() {
+  if (totalTimeInSeconds > 0) {
+    const cpm = Math.round((totalTypedChars / totalTimeInSeconds) * 60);
+    cpmEstDisplay.innerText = cpm;
+  }
+}
+
+function gamePlay(e) {
+  if (e.code == "Space") {
+    e.preventDefault();
+    if (charCount >= paragraph.children[currentWord].children.length) {
+      wordValidator();
+      falseCharInWordCount = 0;
+      paragraph.children[currentWord].style.backgroundColor = `transparent`;
+      charCount = 0;
+      wordsFinished++;
+      currentWord++;
+      if (currentWord >= paragraph.children.length) {
+        paragraphCount++;
+        if (paragraphCount >= newHTML.length) paragraphCount = 0;
+        currentWord = 0;
+        paragraph.innerHTML = newHTML[paragraphCount].join(" ");
+        updateParagraph();
+      }
+      if (paragraph.children[currentWord]) {
+        Array.from(paragraph.children[currentWord].children).forEach(
+          (char) => (char.style.color = "white")
+        );
+        paragraph.children[currentWord].style.backgroundColor = "#008846";
+      }
+    } else {
+      let currentChar = paragraph.children[currentWord]?.children[charCount];
+      if (currentChar) {
+        currentChar.style.color = "red";
+        charCount++;
+      }
+    }
+  } else if (e.key.length === 1) {
+    let currentChar = paragraph.children[currentWord]?.children[charCount];
+    if (charCount < paragraph.children[currentWord].children.length) {
+      if (e.key === currentChar.innerText) {
+        currentChar.style.color = "black";
+        totalTypedChars++;
+      } else {
+        currentChar.style.color = "red";
+        falseCharInWordCount++;
+        totalTypedChars++;
+      }
+      charCount++;
+    } else {
+      falseCharInWordCount++;
+      totalTypedChars++;
+    }
+  } else if (e.key === "Backspace") {
+    eraser();
+  }
+}
+
+function intervalLogic() {
+  if (hitungMundur > 0) {
+    hitungMundur--;
+    totalTimeInSeconds++;
+    if (hitungMundur % 2 == 0) estimatingWPM();
+    updateCPM();
+    detik.innerText = hitungMundur;
+  } else {
+    clearInterval(intervalId);
+    gameResult();
+    document.removeEventListener("keydown", ketik);
+  }
+}
 
             </script>
 </body>
