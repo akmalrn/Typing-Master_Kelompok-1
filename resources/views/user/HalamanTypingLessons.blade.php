@@ -2,84 +2,13 @@
 <html lang="en">
 
 <head>
-  <style>
-.typing-lesson-container {
-    text-align: center;
-    margin: 20px auto;
-    max-width: 800px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.lesson-content {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    white-space: pre-wrap;
-    background: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-.typing-lesson-container .correct {
-    color: green;
-}
-
-.typing-lesson-container .incorrect {
-    color: red;
-}
-
-.typing-lesson-container .remaining {
-    color: gray;
-}
-
-.typing-lesson-container .current-block {
-    font-weight: bold;
-    color: black;
-}
-
-#typing-input {
-    width: 100%;
-    font-size: 18px;
-    line-height: 1.6;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-#start-button {
-    display: none; /* Initially hidden */
-    background: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-#start-button:hover {
-    background: #0056b3;
-}
-
-.input-typing {
-    display: none; /* Initially hidden */
-}
-  </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('/css/HalamanTypingLessons.css') }}">
     <title>Responsive Dashboard Design #2 | WikraType</title>
     <script>
 
@@ -118,11 +47,10 @@
             <div class="logo-name"><span>Wikra</span>Type</div>
         </a>
         <ul class="side-menu">
-            <li class="active"><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a href="{{ route('HalamanDashboard')}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li><a href="{{ route('HalamanGames') }}"><i class="fa-solid fa-gamepad"></i>Game</a></li>
-            <li><a href="{{ route('HalamanTypingLessons') }}"><i class='bx bx-analyse'></i>Start Lesson</a></li>
+            <li class="active"><a href="{{ route('HalamanTypingLessons') }}"><i class='bx bx-analyse'></i>Start Lesson</a></li>
             <li><a href="{{route('HalamanAchievements')}}"><i class="fa-solid fa-trophy"></i></i>Achievement</a></li>
-            <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class="fa-solid fa-user"></i> Users</a></li>
             <li><a href="{{ route('HalamanUser', ['id' => Auth::user()->id]) }}"><i class='bx bx-group'></i>Your Profile</a></li>
             <li><a href="{{ route('HalamanSetting') }}"><i class='bx bx-cog'></i>Settings</a></li>
             <li><a href="{{ route('HalamanDev') }}"><i class="fa-solid fa-users"></i>Our Dev</a></li>
@@ -156,14 +84,27 @@
         <main>
           <div class="header">
               <div class="left">
-                  <h1>Selamat Datang Di Typing Lessons</h1>
+                  <h1>Typing Lessons</h1>
                   <ul class="breadcrumb">
-                      <li><a href="#">Typing Lessons</a></li>
+                      <li><a href="#">{{ Auth::user()->name }}</a></li>
                   </ul>
               </div>
           </div>
           @if (Auth::user())
-
+            <div class="links-wrapper">
+                <div class="link-container">
+                    <a class="styled-link" href="{{ route('BarisDasar') }}">Baris Dasar</a>
+                </div>
+                <div class="link-container">
+                    <a class="styled-link" href="{{ route('BarisAtas') }}">Baris Atas</a>
+                </div>
+                <div class="link-container">
+                    <a class="styled-link" href="{{ route('BarisBawah') }}">Baris Bawah</a>
+                </div>
+                <div class="link-container">
+                    <a class="styled-link" href="{{ route('Angka') }}">Angka</a>
+                </div>
+            </div>
       </main>
     </div>
     <script>

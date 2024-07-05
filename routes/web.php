@@ -46,6 +46,11 @@ ROute::get('user/HalamanSetting',[settings_controller::class, 'HalamanSetting'])
 
 //TypingLessons
 Route::get('/user/HalamanTypingLessons', [TypingLessons_Controller::class, 'HalamanTypingLessons'])->middleware('auth')->name('HalamanTypingLessons');
+Route::get('/user/BarisDasar', [TypingLessons_Controller::class, 'BarisDasar'])->middleware('auth')->name('BarisDasar');
+Route::post('/user/BarisDasar', [TypingLessons_Controller::class, 'storeTypingBarisDasar'])->middleware('auth')->name('storeTypingBarisDasar');
+Route::get('/user/BarisAtas', [TypingLessons_Controller::class, 'BarisAtas'])->middleware('auth')->name('BarisAtas');
+Route::get('/user/BarisBawah', [TypingLessons_Controller::class, 'BarisBawah'])->middleware('auth')->name('BarisBawah');
+Route::get('/user/Angka', [TypingLessons_Controller::class, 'Angka'])->middleware('auth')->name('Angka');
 
 //User_Achievements_Controller
 Route::get('/user/HalamanAchievements', [user_achievements_controller::class, 'HalamanAchievements'])->middleware('auth')->name('HalamanAchievements');

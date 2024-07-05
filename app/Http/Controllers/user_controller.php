@@ -53,14 +53,6 @@ class user_controller extends Controller
 
     // Menampilkan form untuk mengedit pengguna
 
-    // Menghapus pengguna dari basis data
-    public function DestroyUsers($id)
-    {
-        // Menggunakan Eloquent untuk menghapus pengguna
-        User::find($id)->delete();
-        return redirect()->route('HalamanAdmin')->with('success', 'User deleted successfully.');
-    }
-
     public function HalamanDashboard()
     {
         $userId = Auth::id();
